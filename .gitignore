@@ -11,3 +11,5 @@ x64
 /EngineTest/GeometryViewer/GeometryViewer.Shader/build
 *.diagsession
 *.vspx
+!/EngineTest/Libs/HelixToolkit-SharpDX/bin
+!/EngineTest/Libs/HelixToolkit-SharpDX_NET40/bin
