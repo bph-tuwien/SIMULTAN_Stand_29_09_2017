@@ -1,0 +1,285 @@
+﻿<Window x:Class="ComponentBuilder.UIElements.WebServiceMapWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cbwpfu="clr-namespace:ComponentBuilder.WpfUtils"
+        UseLayoutRounding="True"
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
+        Title="WebService Mapping" Height="400" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto" MinHeight="5"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="1.75*"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+        
+        <!-- COMPONENTS -->
+        <Button x:Name="btn_copmps_expand" Grid.Row="1" Grid.Column="1" Width="26" Height="26" HorizontalAlignment="Left" Margin="0"
+                Style="{StaticResource ReliefButton}"
+                ToolTip="Komponente entfalten">
+            <Button.Content>
+                <Image Source="../Data/icons/a_expand.png"/>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btn_copmps_collapse" Grid.Row="1" Grid.Column="1" Width="26" Height="26" HorizontalAlignment="Left" Margin="28,0,0,0"
+                Style="{StaticResource ReliefButton}"
+                ToolTip="Komponente falten">
+            <Button.Content>
+                <Image Source="../Data/icons/a_collapse.png"/>
+            </Button.Content>
+        </Button>
+        
+        <TextBlock x:Name="tb_comp_name" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" FontWeight="Bold" Foreground="DimGray" Text="Komponenten:" Margin="5,2"/>
+        
+        <cbwpfu:TreeViewForMapping x:Name="tv_comps" Grid.Row="3" Grid.Column="1" Grid.RowSpan="4"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" MaxHeight="1200"
+                                   ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                   ItemTemplateSelector="{StaticResource ComponentDataTemplateSelectorMappingToWebServ}"
+                                   ItemContainerStyle="{StaticResource TreeItemForComponentMapping}">
+            <TreeView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                    <GradientStop Color="#FFE0E0E0" Offset="0.95"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </TreeView.Background>
+            <TreeView.Resources>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </TreeView.Resources>
+        </cbwpfu:TreeViewForMapping>
+
+        <ToggleButton x:Name="tbtn_get_CM" Height="26" Width="26" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" 
+                      Style="{StaticResource ToggleButtonRed}" Margin="0,2,0,5"
+                      IsEnabled="True"
+                      ToolTip="Komponente zum Mapping aus Liste wählen">
+            <ToggleButton.Content>
+                <Image Source="../Data/icons/xcomp_translate_C.png"/>
+            </ToggleButton.Content>
+            <ToggleButton.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </ToggleButton.Effect>
+        </ToggleButton>
+        <Button x:Name="btn_DEBUG_struct_tree_from_comp" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26"
+                Style="{StaticResource ReliefButtonOrange}" Margin="28,2,0,5"
+                ToolTip="Struktur extrahieren">
+            <Button.Content>
+                <Image Source="../Data/icons/a_pin.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="Orange" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </Button.Effect>
+        </Button>
+        
+        <!-- WEB SERVICES -->
+        <TextBlock x:Name="txt_url_msg" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Foreground="DimGray" Text="URLs OK" Margin="5,2"/>
+        <ComboBox x:Name="chb_ws_entry_points" Grid.Row="0" Grid.Column="5" Height="24" Margin="0,2,0,2" ToolTip="Web-Service auswählen"/>
+
+        <Button x:Name="btn_types_expand" Grid.Row="1" Grid.Column="5" Width="26" Height="26" HorizontalAlignment="Left" Margin="0"
+                Style="{StaticResource ReliefButton}"
+                ToolTip="Web-Service Inputbaum entfalten">
+            <Button.Content>
+                <Image Source="../Data/icons/a_expand.png"/>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btn_types_collapse" Grid.Row="1" Grid.Column="5" Width="26" Height="26" HorizontalAlignment="Left" Margin="28,0,0,0"
+                Style="{StaticResource ReliefButton}"
+                ToolTip="Web-Service Inputbaum falten">
+            <Button.Content>
+                <Image Source="../Data/icons/a_collapse.png"/>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btn_type_populate" Grid.Row="1" Grid.Column="5" Width="26" Height="26" HorizontalAlignment="Left" Margin="56,0,0,0"
+                Style="{StaticResource ReliefButtonOrange}"
+                ToolTip="ausgewählten Typ um seine Sub-Typen erweitern">
+            <Button.Content>
+                <Image Source="../Data/icons/a_expand_one.png"/>
+            </Button.Content>
+        </Button>
+        <Button x:Name="btn_type_depopulate" Grid.Row="1" Grid.Column="5" Width="26" Height="26" HorizontalAlignment="Left" Margin="84,0,0,0"
+                Style="{StaticResource ReliefButtonOrange}"
+                ToolTip="ausgewählten Typ vereinfachen">
+            <Button.Content>
+                <Image Source="../Data/icons/a_collapse_one.png"/>
+            </Button.Content>
+        </Button>
+        <ComboBox x:Name="cb_mappings" Grid.Row="1" Grid.Column="5" HorizontalAlignment="Stretch" Margin="112,0,28,0" MinWidth="80"
+                  ItemTemplate="{StaticResource SelectableDictionaryEntry}"
+                  ToolTip="Mapping auswählen"/>
+        <Button x:Name="btn_Restore" Grid.Row="1" Grid.Column="5" Width="26" Height="26" HorizontalAlignment="Right"
+                Style="{StaticResource ReliefButton}"
+                ToolTip="Markierte Mappings anwenden">
+            <Button.Content>
+                <Image Source="../Data/icons/xcomp_map_Restore.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </Button.Effect>
+        </Button>
+
+        <TextBlock x:Name="tb_caller_name" Grid.Row="2" Grid.Column="5" HorizontalAlignment="Left" FontWeight="Bold" Foreground="DimGray" Text="Entry Point:" Margin="5,2"/>
+
+        <cbwpfu:TreeViewForMapping x:Name="tv_types" Grid.Row="3" Grid.Column="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="Auto" Height="Auto" MaxHeight="1200"
+                  ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  ItemTemplate="{StaticResource TypeNodeInList}"
+                  ItemContainerStyle="{StaticResource TreeItemForTypeNodes}">
+            <TreeView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                    <GradientStop Color="#FFE0E0E0" Offset="0.95"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </TreeView.Background>
+            <TreeView.Resources>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </TreeView.Resources>
+        </cbwpfu:TreeViewForMapping>
+        <Button x:Name="btn_instance_create" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" Height="26" Width="26" Margin="0,2,0,5"
+                Style="{StaticResource ReliefButtonOrange}"
+                ToolTip="Das Instanziieren testen...">
+            <Button.Content>
+                <Image Source="../Data/icons/a_test.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="Orange" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="btn_pin_mapping" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" Height="26" Width="26" Margin="28,2,0,5"
+                Style="{StaticResource ReliefButtonOrange}"
+                ToolTip="Zuordnung festhalten">
+            <Button.Content>
+                <Image Source="../Data/icons/a_pin.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="Orange" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </Button.Effect>
+        </Button>
+        <TextBox x:Name="txt_mapping_key" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" Margin="56,2,0,0" Height="26" Width="60" Text="Name" Padding="0,2,0,0"
+                 Style="{StaticResource CoordinateInput}"/>
+        <Button x:Name="btn_clean_all" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Left" Height="26" Width="26" Margin="118,2,0,5"
+                Style="{StaticResource ReliefButton}"
+                ToolTip="alle Zuordnungen zurücksetzen">
+            <Button.Content>
+                <Image Source="../Data/icons/xcomp_map_Clean.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </Button.Effect>
+        </Button>
+
+        <TextBlock Grid.Row="5" Grid.Column="5" HorizontalAlignment="Left" FontWeight="Bold" Foreground="DimGray" Text="Exit Point:" Margin="5,2"/>
+        <ComboBox x:Name="cb_results" Grid.Row="5" Grid.Column="5" HorizontalAlignment="Stretch" Margin="100,0,0,5" MinHeight="24" MinWidth="100" ToolTip="Ergebnis auswählen"/>
+        <cbwpfu:TreeViewForMapping x:Name="tv_return_type" Grid.Row="6" Grid.RowSpan="3" Grid.Column="5" Width="Auto" Height="Auto" MaxHeight="400"
+                                   Margin="0,0,0,5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                  ItemTemplate="{StaticResource TypeNodeInList}"
+                                  ItemContainerStyle="{StaticResource TreeItemForTypeNodes}">
+            <TreeView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                    <GradientStop Color="#FFFFFFE0" Offset="0.985"/>
+                    <GradientStop Color="Orange" Offset="1"/>
+                </LinearGradientBrush>
+            </TreeView.Background>
+            <TreeView.Resources>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </TreeView.Resources>
+        </cbwpfu:TreeViewForMapping>
+
+        <!-- marking of the mapping relationships -->
+        <StackPanel x:Name="c_pointer_midside_measure" Grid.Row="3" Grid.RowSpan="4" Grid.Column="2" IsHitTestVisible="False"/>
+        <StackPanel x:Name="c_pointer_middle_measure" Grid.Row="3" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="3" IsHitTestVisible="False"/>
+        <Canvas x:Name="c_pointer_WS" Grid.Row="3" Grid.RowSpan="4" Grid.Column="2" Grid.ColumnSpan="3" UseLayoutRounding="True" Background="Transparent" Margin="0,0,-10,0" RenderOptions.EdgeMode="Aliased"/>
+        
+        <!-- general -->
+        <Border Grid.Row="8" Grid.Column="1" HorizontalAlignment="Right" Margin="0,2,56,5" BorderBrush="DimGray" BorderThickness="1">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="cb_as_example" HorizontalAlignment="Right" Margin="2,5,5,0"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,3,5,0" Text="als Template"/>
+                <CheckBox x:Name="cb_as_example_global" HorizontalAlignment="Right" Margin="0,5,5,0"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,3,5,0" Text="im gesamten Projekt"/>
+            </StackPanel>
+            <Border.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="2" Direction="315" BlurRadius="3"/>
+            </Border.Effect>
+        </Border>        
+
+        <Button x:Name="btn_unmap" Height="26" Width="26" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Right"
+                      Style="{StaticResource ReliefButton}" Margin="0,2,28,5"
+                      IsEnabled="True"
+                      ToolTip="Zuordnung entfernen">
+            <Button.Content>
+                <Image Source="../Data/icons/xcomp_map_Cdel.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </Button.Effect>
+        </Button>
+        <ToggleButton x:Name="tbtn_map" Height="26" Width="26" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Right"
+                      Style="{StaticResource ToggleButtonRed}" Margin="0,2,0,5"
+                      IsEnabled="True"
+                      ToolTip="Die Auswahl zu einem Typ zuordnen">
+            <ToggleButton.Content>
+                <Image Source="../Data/icons/xcomp_map_C.png"/>
+            </ToggleButton.Content>
+            <ToggleButton.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </ToggleButton.Effect>
+        </ToggleButton>
+
+        <ToggleButton x:Name="tbtn_map_back" Height="26" Width="26" Grid.Row="8" Grid.Column="4" HorizontalAlignment="Right"
+                      Style="{StaticResource ToggleButtonRed}" Margin="0,2,2,5"
+                      IsEnabled="True"
+                      ToolTip="Das Ergebnis in ein Parameter speichern">
+            <ToggleButton.Content>
+                <Image Source="../Data/icons/xcomp_map_C_back.png"/>
+            </ToggleButton.Content>
+            <ToggleButton.Effect>
+                <DropShadowEffect Color="Black" Opacity="0.5" ShadowDepth="3" Direction="315"/>
+            </ToggleButton.Effect>
+        </ToggleButton>
+
+        <Button x:Name="btn_SEND" Grid.Row="4" Grid.Column="5" Width="26" Height="26" HorizontalAlignment="Right" Margin="0,2,28,5"
+                Style="{StaticResource ReliefButton}" BorderBrush="White"
+                ToolTip="Web-Service Aufrufen">
+            <Button.Content>
+                <Image Source="../Data/icons/xcomp_map_send.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="White" Opacity="1" ShadowDepth="3" Direction="225"/>
+            </Button.Effect>
+        </Button>
+        <Button x:Name="btn_OK" Height="26" Width="26" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right"
+                    Style="{StaticResource ReliefButton}" BorderBrush="White" Margin="0,2,0,5"                         
+                    IsDefault="True" 
+                    ToolTip="OK">
+            <Button.Content>
+                <Image Source="../Data/icons/btn_OK.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="White" Opacity="1" ShadowDepth="3" Direction="225"/>
+            </Button.Effect>
+        </Button>
+    </Grid>
+</Window>

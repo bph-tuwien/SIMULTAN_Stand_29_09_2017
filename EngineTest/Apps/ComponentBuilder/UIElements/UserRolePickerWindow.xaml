@@ -1,0 +1,196 @@
+﻿<Window x:Class="ComponentBuilder.UIElements.UserRolePickerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Benutzerprofil auswählen" Height="390" Width="480"
+        ResizeMode="NoResize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF34537A" Offset="0"/>
+            <GradientStop Color="#FF006699" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid SnapsToDevicePixels="True" UseLayoutRounding="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="66"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="66"/>
+            <RowDefinition Height="66"/>
+            <RowDefinition Height="66"/>
+            <RowDefinition Height="66"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="5,0,5,0">
+            <Image Source="../Data/icons/TU-logo_weiss.png" Height="64" Width="64"/>
+            <Image Source="../Data/icons/app_64.png" Height="64" Width="64"/>
+        </StackPanel>
+        <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Foreground="White" Text="Benutzerprofile"
+                   FontSize="32" VerticalAlignment="Center" FontFamily="Century Gothic"/>
+        
+        <!-- Login: User Roles -->
+        <Button Grid.Row="2" Grid.Column="1" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Administrator" BorderBrush="Black" IsDefault="True" Tag="@" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="@" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="#FF00FFFF" BlurRadius="3" ShadowDepth="3" Opacity="0.25" />
+            </Button.Effect>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="2" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Moderator" Tag="A" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="A" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="3" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Netzbetreiber" Tag="B" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="B" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="2" Grid.Column="4" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Energieversorgung" Tag="C" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="C" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+
+        <Button Grid.Row="2" Grid.Column="5" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Bauträger" Tag="D" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="D" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="2" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Baubetreiber" Tag="E" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="E" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="3" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Architektur" Tag="F" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="F" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="3" Grid.Column="4" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Brandschutz" Tag="G" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="G" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+
+        <Button Grid.Row="3" Grid.Column="5" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Bauphysik" Tag="H" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="H" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="2" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Gebäudetechnik" Tag="I" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="I" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="3" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="MSR" Tag="J" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="J" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="4" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                HorizontalAlignment="Center" VerticalAlignment="Center"
+                ToolTip="Ausführende Firma" Tag="K" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="K" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+        <Button Grid.Row="4" Grid.Column="5" Height="64" Width="64" Style="{StaticResource ReliefButton}"
+                VerticalAlignment="Center" HorizontalAlignment="Center"
+                ToolTip="Gast" Tag="L" Click="Button_Click">
+            <Button.Content>
+                <TextBlock Text="L" FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="50">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Opacity="0.5" Color="#FF954400" />
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Button.Content>
+        </Button>
+
+        <Image x:Name="img_git_ok" Source="../Data/icons/btn_OK.png" Grid.Row="5" HorizontalAlignment="Left" Margin="5,0,0,0" Height="24" Width="24"/>
+        <TextBlock x:Name="tb_git_msg_short" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="6" Padding="3" Text="GIT Message Short" Foreground="White" FontWeight="Bold" Margin="30,5,0,0"/>
+        <TextBlock x:Name="tb_git_msg_long" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="6" Padding="3" Text="GIT Message Long" Foreground="White" VerticalAlignment="Top" Margin="30,0,0,0"/>
+
+    </Grid>
+</Window>

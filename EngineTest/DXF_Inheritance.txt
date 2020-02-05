@@ -1,0 +1,17 @@
+DXFEntity
+	DXFDummy
+	DXFLayer
+	DXFPositionable
+		DXFLine
+			DXFText
+				DXFAttribute
+				DXFMText
+		DXFCircle
+		DXFEllipse
+		DXFLWPolyLine
+		DXFEntiyContainer
+			DXFSection
+			DXFTable
+			DXFBlock
+			DXFInsert
+			DXFPolyLine

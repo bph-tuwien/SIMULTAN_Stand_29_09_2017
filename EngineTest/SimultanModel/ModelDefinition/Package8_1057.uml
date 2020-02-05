@@ -1,0 +1,2930 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="94e2fd51-750e-4c34-9c22-77f232489cc5"
+  name="Geometry"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0bcf208a-4f40-40ab-b99e-fa7f210cd61b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DParameterStructure.Geometry"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="235737c5-9c26-47c9-8184-f228cc8cfb7d"
+        name="GeometricRelationship"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="e80c2ce6-d61c-4e99-b408-fe03a1528e42"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="952f6e2f-cd48-4221-a4c9-047ee509d37e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="2f9dab93-a362-40fd-a979-e616f2170a5d">
+                <propertyInstance
+                  Id="f9297866-52c3-444d-9d6d-5a05a3fde904"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c90b8dda-b281-4896-8c78-9e0111e9e28e">
+                <propertyInstance
+                  Id="ab2473c5-6c03-4c7f-9a3e-63f23e8fa46c"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="459fe919-8ef6-4ad5-8c09-f1b2bfdaddf3">
+                <propertyInstance
+                  Id="1e8723d7-73e2-4a11-ad39-f12163f755d0"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="434cf97b-53b4-4804-9342-68be6605aaad">
+                <propertyInstance
+                  Id="170628e9-5dc9-4cc8-96af-7fc110106d16"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5b28bc0a-c416-4d96-873e-1acd3049b58c">
+                <propertyInstance
+                  Id="bca00e24-2b17-4870-969e-38596d7b823e"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="9cfbc08b-1a03-42c3-b569-5107063705bf">
+            <interfaceMoniker
+              Id="d8ecacd9-72a5-45dc-a41d-7b0290ae6b14"
+              LastKnownName="INotifyPropertyChanged"
+              LastKnownLocation="Package3_1057.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="3eb51777-aabb-48d9-8506-0e604f7e4cd8"
+            isDerived="false"
+            sourceEndRoleName="GeometricRelationship"
+            targetEndRoleName="TRm_WC2LC"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+              LastKnownName="Matrix3D"
+              LastKnownLocation="Package_1129.uml" />
+            <description>Property TRm_WC2LC references type Matrix3D.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="978842f5-1b60-41dc-b50c-438793672da6"
+                  name="GeometricRelationship"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="78ef9f65-1bfe-4a44-87ff-16fd8c0b24b2"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="351e895b-d4cd-44ec-a7a7-bf98bc2d36e5"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="19df34ff-370b-411c-ac56-c1dac73c5e80"
+                  name="TRm_WC2LC"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="df8abb0f-f443-41c3-b335-aef17d9f97e2"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="8a32318e-4814-4b59-9589-5d6d47125e9e"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="97826f4d-3192-48f0-9f43-dbe175cb1ad0"
+            isDerived="false"
+            sourceEndRoleName="GeometricRelationship"
+            targetEndRoleName="TRm_LC2WC"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+              LastKnownName="Matrix3D"
+              LastKnownLocation="Package_1129.uml" />
+            <description>Property TRm_LC2WC references type Matrix3D.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d657adc5-a18d-4a8f-a13c-0bb507779b64"
+                  name="GeometricRelationship"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="006ff8b1-46f4-4ecc-bc2a-0dfb7aa9da3e"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="b011674d-8a4f-4911-b882-fb46baef630c"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="39c4b57d-e104-4a7b-9bb9-c7c5c1718e18"
+                  name="TRm_LC2WC"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="4f94c7c4-67cd-4c82-aaff-b20841987352"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="cec31c11-bb9a-49b7-9a54-c40c41368153"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8cbae580-4369-4caf-80b3-17cd76ae64a6"
+            isDerived="false"
+            sourceEndRoleName="GeometricRelationship"
+            targetEndRoleName="ID"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="596eec60-7db3-4ad1-8fc7-80a9cff3b20c"
+              LastKnownName="Int64"
+              LastKnownLocation="Package2_1057.uml" />
+            <description>Property ID references type Int64.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="127dbd66-09bc-4908-b502-4a4a7c005f92"
+                  name="GeometricRelationship"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="b05e3ba7-01fa-4edf-b1cd-0ac4c0a06988"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="89122df2-83ad-454c-9f3a-082f5e93bf2c"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="19bed84f-f234-4ee3-8a3c-bb9d0658729d"
+                  name="ID"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="17d298bc-123f-433d-8690-4c36e4d38105"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="d28ed43e-5d4b-403c-b36e-6e806b4998fc"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="ddf4a481-74d6-4cf4-86e3-79f27bbce0df"
+            isDerived="false"
+            sourceEndRoleName="GeometricRelationship"
+            targetEndRoleName="Type"
+            isLeaf="false"
+            isAbstract="false">
+            <enumerationMoniker
+              Id="7338a726-d880-4265-9d97-d005026dc5fe"
+              LastKnownName="Relation2GeomType"
+              LastKnownLocation="Package8_1057.uml" />
+            <description>Property Type references type Relation2GeomType.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a24e7450-a1f2-4f21-ac3b-9bedcf481433"
+                  name="GeometricRelationship"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="37ea234e-2fc3-4e1e-904f-2ffd1212e5c4"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="e0dcbedc-1012-473c-bc98-7c3f3c0090fd"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7291abb5-da92-4276-af6d-cfda486b9f52"
+                  name="Type"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="cb7e4b12-e6e1-44f5-b2ef-1c36107e29c1"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c1f2b2b0-7973-4ead-8329-b34c2dbfac2a"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="8a008d7b-4c7d-4a8e-aeda-91cbd918bc8a"
+            isDerived="false"
+            sourceEndRoleName="GeometricRelationship"
+            targetEndRoleName="GeomIDs"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="5ae85862-18bd-4b66-b447-4128a3184010"
+              LastKnownName="Vector3D"
+              LastKnownLocation="Package_1129.uml" />
+            <description>Property GeomIDs references type Vector3D.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="12142c45-4ff8-4fe0-a997-422c27ff5281"
+                  name="GeometricRelationship"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="de11f2a7-b33c-4ef7-a253-d1aca6cbd7e5"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="30fed1f1-316b-4b19-bb34-fc5ecc32939d"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a4b51ecd-60f1-441e-b931-cadc97703b88"
+                  name="GeomIDs"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="b313a4bc-0bf1-4698-a9dc-8cb6ebcb34d5"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="4800b6d7-bcd7-41d7-a88a-212f286b6165"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="e5f70e86-ab08-44f9-840d-bf26f96d530b"
+            isDerived="false"
+            sourceEndRoleName="GeometricRelationship"
+            targetEndRoleName="GeomCS"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+              LastKnownName="Matrix3D"
+              LastKnownLocation="Package_1129.uml" />
+            <description>Property GeomCS references type Matrix3D.</description>
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0645a542-de47-42c9-ae0d-569ffe8589ca"
+                  name="GeometricRelationship"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="974f8d73-5c27-4585-994d-ed62ba94e49f"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="4b0bbfa0-b52c-4596-a44f-094949dd03de"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="330e142e-16e4-404b-8fdf-feb83f12cdbd"
+                  name="GeomCS"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="db2415b1-ee5b-47a1-b013-c5c1fbe28264"
+                      name="Lower"
+                      value="1" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="ce109c57-7ff6-41ec-81ba-a9dbdc6b04b5"
+                      name="Upper"
+                      value="1" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="74981c27-663a-48af-ab3c-17eb960010e6"
+            name="TRm_WC2LC"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="17e72c7a-1ebd-4c52-8401-1f923811525f"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DTRm_WC2LC"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="63b51189-4f14-44cc-acc0-f2f42acfcc3b"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d64c2ad9-007a-4a7e-a13a-7254aa97aa7b">
+                    <propertyInstance
+                      Id="14cefc43-ccfd-4a6f-8136-f015a1ef98c0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7185ad26-a812-4069-a37a-0d2084f10da1">
+                    <propertyInstance
+                      Id="6362b5d8-8e0e-42f8-9cf3-dd77637cda9c"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="07733e98-08f3-433c-ae3f-a991f5c3ff4c">
+                    <propertyInstance
+                      Id="9e43d5dd-6982-418c-b68c-2b135f974ea3"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b894fce6-cd77-41a7-aaaf-0f514b0070d9">
+                    <propertyInstance
+                      Id="4354578c-dc97-40e4-b1c4-50040afb1762"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e5396f9-8267-43df-abb4-6555bb027e11">
+                    <propertyInstance
+                      Id="000909af-f81d-46f1-9e67-7d79ead6a47c"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cff94d45-2215-4f19-94cb-a9e66da88187">
+                    <propertyInstance
+                      Id="697b4566-f9d9-4316-b6ff-7c0b206c555a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9286ef74-2f9b-4bef-979c-3dce4645dfd8">
+                    <propertyInstance
+                      Id="6e17f827-8852-4ebb-a1cd-fbcccdf7e0f8"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                LastKnownName="Matrix3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="849de29b-a7d3-43ac-bf5c-6775fecccdbc"
+            name="TRm_LC2WC"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="9ed83381-0a47-4be2-ad6a-cb429c417bd4"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DTRm_LC2WC"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b6624223-77b7-4911-a6c4-d5edbf540972"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="64de452e-faa5-4bb3-b1cc-9f50d78ba7fd">
+                    <propertyInstance
+                      Id="c8f4436e-95f1-46bd-be92-b1a7e7d2e056"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="08c5d471-de9f-4024-b224-f1284ebdb624">
+                    <propertyInstance
+                      Id="0f3bc693-f29f-4466-a165-64c80b114587"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e507500f-f397-486c-8bc8-1f01e8abf543">
+                    <propertyInstance
+                      Id="ecbb8633-5dd4-4ca9-bd73-f3e3245f7f82"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a570ba5-6be9-4dda-9014-4b345bc485d0">
+                    <propertyInstance
+                      Id="311687fa-1de8-47a1-9569-b064371c2e0c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef0fb38c-432e-4185-8ca0-0d2eea2db37c">
+                    <propertyInstance
+                      Id="84794939-c8a6-46b7-aa93-10e2b59bf9d5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1661a374-3dbd-449d-861b-85ed83dc439f">
+                    <propertyInstance
+                      Id="a31feb15-0e33-4eff-9ffa-9d773f858dde"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="91b25ccb-703e-4391-bf6e-6e2f39581de5">
+                    <propertyInstance
+                      Id="234f4c9d-cee7-4260-9da1-6b5b3accb483"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                LastKnownName="Matrix3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="dc781a68-8fdf-4e1e-8845-9f110a912c56"
+            name="ID"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="61369786-8240-4581-9ca8-726c7700ae85"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DID"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c8ed993b-002f-447c-ad0f-c126b561fa53"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d8b380ab-8126-48a1-8462-175f42c8dd1b">
+                    <propertyInstance
+                      Id="ff5ec169-7510-4ae3-a96c-e5b1986cc77f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aab46cbf-3eed-4fd5-96df-317a74753b8d">
+                    <propertyInstance
+                      Id="dac92a58-a097-456c-9f61-93e4b1d69314"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd71cbeb-9630-4ee1-8837-4d1ca107bca1">
+                    <propertyInstance
+                      Id="d1524964-377f-47b7-ad02-466da93dff38"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4df691cb-1e02-4f9d-9707-5ef31278b5da">
+                    <propertyInstance
+                      Id="b4ef56b3-57b3-4156-856c-c3fa1677c608"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c0b813ac-0546-4e1a-8699-d77650f331e3">
+                    <propertyInstance
+                      Id="eb833864-a563-43b1-b19f-00e916e20ded"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="921c6b68-ff6f-467f-b631-3c77f2789c3e">
+                    <propertyInstance
+                      Id="46586a26-3873-4ca5-874f-4e5f6081b42b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="755fe017-fabd-4797-ad85-7ed1fd7587a2">
+                    <propertyInstance
+                      Id="f85bb0a5-1e2d-47df-a595-e4b19d31719f"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="596eec60-7db3-4ad1-8fc7-80a9cff3b20c"
+                LastKnownName="Int64"
+                LastKnownLocation="Package2_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="732335cf-e730-41e5-981f-c00c6e64ceb1"
+            name="Name"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="5adda342-7876-49da-8766-248eb55ebe14"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DName"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="61f630a7-72fe-4222-a310-c5d74bdf6b9f"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7d497359-d848-4748-b375-2da41440e199">
+                    <propertyInstance
+                      Id="b3d32620-8d97-4e15-9644-3c5c9163dfb7"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e6a8e47e-c844-4bdd-b391-a69f2731618f">
+                    <propertyInstance
+                      Id="0d2a7b78-f2c5-48cc-94ad-27f57dae9586"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5835f863-749e-4c4f-8361-0ef6408bad4f">
+                    <propertyInstance
+                      Id="dafc838f-36a1-48b5-8cb0-120b085c3299"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b08783ac-a674-4dc3-ad26-efb880123a3a">
+                    <propertyInstance
+                      Id="eb443725-8600-4aca-83ab-d32e023a81ed"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e56f7ef7-5722-4a52-a297-0426144ac5c8">
+                    <propertyInstance
+                      Id="cf1ff6df-f32e-467a-9ec8-83fcc427340a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd46d577-185b-4af9-88e8-61f221f8adfe">
+                    <propertyInstance
+                      Id="0e834e39-4fe9-47d1-aff5-bf7953f92562"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="34a6f2f1-4b83-4841-a2b5-b7ce1aedeca7">
+                    <propertyInstance
+                      Id="f72876eb-3ad7-453e-a3dd-55b6a42bb0cb"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="SimultanModel.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="41bca800-9bb1-4f82-b5de-f5addd315d1a"
+            name="Type"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="ef13e790-4e4d-478e-bdea-516a935bb598"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DType"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4cac55a8-8014-4503-879f-5e1104c835d5"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3dc0bb2c-e4e1-4fb7-8530-3b2d88d4e7c6">
+                    <propertyInstance
+                      Id="9f7fbaee-8d11-47a8-a6a4-673f792fed5f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2919f4a6-35ca-441f-99ec-a66450b2adc0">
+                    <propertyInstance
+                      Id="12951032-3fba-43c0-9066-99ae22873135"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="30565ddd-06f5-498f-abd5-8d885d69f74f">
+                    <propertyInstance
+                      Id="6d444c06-28a4-45b8-b86a-7131bba528d6"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cbb9bd14-40e5-4a46-b519-a229a072c5ae">
+                    <propertyInstance
+                      Id="14638e90-dcc3-4b82-ae63-4cce0eca804f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0fe94f85-d4b0-4cd0-8de4-7c0e515752ca">
+                    <propertyInstance
+                      Id="d2ed6433-b224-408c-a66e-50503532c861"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="82ba7849-a928-438a-83d3-2758b8e41716">
+                    <propertyInstance
+                      Id="8bc01b92-856c-4ee9-a1a2-6c61ca588395"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28458bdd-5b15-4576-be84-326da0744f79">
+                    <propertyInstance
+                      Id="21d45d38-ecb2-450d-aa1d-ee27fa95304a"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <enumerationMoniker
+                Id="7338a726-d880-4265-9d97-d005026dc5fe"
+                LastKnownName="Relation2GeomType"
+                LastKnownLocation="Package8_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ac6a7e43-d8e8-4124-8581-e59e9edb2e80"
+            name="GeomIDs"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="03d7156c-ce13-4630-91a9-2e7a80da361b"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DGeomIDs"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3ca8b37b-d8c0-45c4-be86-7a87bae19890"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="77ab6892-4298-4aba-9056-e8d4b6e9522c">
+                    <propertyInstance
+                      Id="49b5541d-0135-46e2-950d-9b671f9f3b00"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="88be484e-772f-40d9-a26a-c76cea5e748c">
+                    <propertyInstance
+                      Id="80f2bcf1-88fd-4727-a7ff-8cd881700e7c"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1f1c314-af08-45e2-9dee-35eb2e875456">
+                    <propertyInstance
+                      Id="1924ce40-e815-44bc-80db-2e15c62f1f94"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="532f4319-cd14-4c24-8570-55e68a145df8">
+                    <propertyInstance
+                      Id="d1b3f12e-ce81-4e21-a368-67ac91645595"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9f488e43-7dcd-44d0-b869-f8dbbbe040cf">
+                    <propertyInstance
+                      Id="3da123fe-98d3-4a48-848b-50ae2118ed75"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e99dacae-30cd-4d5d-853e-84bfdd10e825">
+                    <propertyInstance
+                      Id="bf5bd159-e3e4-4f00-927f-012792056b57"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3d6473c8-5d06-486d-b703-df19b928bfc0">
+                    <propertyInstance
+                      Id="fbaedd09-b5db-4ac8-8414-0d0a9531e29b"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5ae85862-18bd-4b66-b447-4128a3184010"
+                LastKnownName="Vector3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="764fce49-1797-4cc2-a661-929a1d5bb4e4"
+            name="GeomCS"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="616ca61f-74dc-404f-ba05-4fb00aa15fc0"
+                handle="viewcode://./CodeSchema_Property?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DGeomCS"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="fec910b9-d1d5-4bc4-a411-1d38ecf90186"
+                name="property"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ab96bc8-2bd1-4729-a642-d4d601c35fb8">
+                    <propertyInstance
+                      Id="abdbee6b-3729-45d1-8143-11d2c71641c2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="500de752-bada-4933-b9e8-bd360359a68c">
+                    <propertyInstance
+                      Id="cf69a14e-688f-4223-a4cf-33231f42c676"
+                      name="Get"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d46b6c2c-7887-40c7-8f92-4fa814a39e2e">
+                    <propertyInstance
+                      Id="bda966d5-b6a8-4a5d-b4a9-b3224f7cd6cd"
+                      name="HasBody"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1e9dd57a-350a-4dde-82ef-9fadd8a7f25c">
+                    <propertyInstance
+                      Id="d911486b-9ee9-40b3-b6bc-600fff35f2e6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="82025a56-5561-4900-ae73-4d40aae8dd61">
+                    <propertyInstance
+                      Id="71c3bcaa-7e95-4229-9f07-956ada9adb9a"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3796e50c-0b1c-4b6c-875c-d527d3420b00">
+                    <propertyInstance
+                      Id="570ea88a-dc09-40d6-9b0f-b3f0f5b953fb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8fa9e13-a8ce-4268-96c4-10542d4a606c">
+                    <propertyInstance
+                      Id="e3907ba1-7f67-4248-8412-5d5c3d16f731"
+                      name="Set"
+                      value="public" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                LastKnownName="Matrix3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="41d45016-d255-45d6-98b4-ece4694629d8"
+            name="NR_GEOMETRICRELATIONSHIPS"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="0e7f23b5-53cc-45ea-aca9-12e30895f152"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DNR_GEOMETRICRELATIONSHIPS"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="862fecf4-d392-4fbe-86cc-f8a24f0e5881"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="91cf4390-c3b8-438f-b2c9-b153f61a8e9a">
+                    <propertyInstance
+                      Id="4c03a827-0fad-4b91-b998-fb2eee210d09"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81a8641b-be1d-47b2-b48a-c33358396287">
+                    <propertyInstance
+                      Id="e84f1e93-034e-4a17-b086-937b71c883ac"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="464ced71-04ba-4e83-a752-1bd58028a76f">
+                    <propertyInstance
+                      Id="6681db2f-5e52-42a1-a298-56933afdaeb5"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="278f2471-0e0f-4afa-a5ec-a1a038dec66a">
+                    <propertyInstance
+                      Id="31bade87-0dea-4e69-a66f-a5b5d0f8a752"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="280928c4-602e-4452-8986-8a3cda5dfdfe">
+                    <propertyInstance
+                      Id="2a7e7a2e-2e71-41ac-a4f9-3a902f5c7a69"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="596eec60-7db3-4ad1-8fc7-80a9cff3b20c"
+                LastKnownName="Int64"
+                LastKnownLocation="Package2_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="68a32c4e-1579-4829-bc87-f553888956dc"
+            name="NR_FORMATTER"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="3860984a-ac62-40e8-8085-05327ebf6dad"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DNR_FORMATTER"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="5b5af5a5-b097-425d-a63d-8b7ece53d5a4"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0ec26e43-5adc-428a-ae8e-652ef842ba11">
+                    <propertyInstance
+                      Id="7e10043c-d071-4bc6-adc0-880d2a4675e2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="afbcb39b-d681-4de9-b6c9-bdd36e9f06f0">
+                    <propertyInstance
+                      Id="8f2c8d1c-a2a5-4c35-b70a-ef1486e1bba9"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb731c30-e8a4-4816-a710-d80c4482ccf1">
+                    <propertyInstance
+                      Id="8a9a19a5-b207-49d5-b068-39867097709e"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ba0c4e0b-1a24-4ee8-a971-a32533e794fc">
+                    <propertyInstance
+                      Id="75b7f1e2-f594-44ce-8ec8-5adfb46802ec"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="12d5343c-c4ea-49b1-80bb-5b15c0606901">
+                    <propertyInstance
+                      Id="b72c3e3d-1d68-454c-b806-640f20130039"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <interfaceMoniker
+                Id="f8cc31d3-9ad3-4a95-b85b-4d54359820ab"
+                LastKnownName="IFormatProvider"
+                LastKnownLocation="Package2_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f901a00c-658c-4d08-a6b0-228a5fa7d041"
+            name="PropertyChanged"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="98e27a00-5e57-4e78-b6b7-38fae264fb7f"
+                handle="viewcode://./CodeSchema_Event?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DPropertyChanged"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ac2d4501-a30d-480c-93f2-d944d17c5d79"
+                name="event"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9d1bb4c5-567d-48d0-afae-a9943dba7dcc">
+                    <propertyInstance
+                      Id="2b31a833-593b-48f6-a992-ded1542400cf"
+                      name="Add"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3f45458b-1863-48c3-894f-a7e5ca449055">
+                    <propertyInstance
+                      Id="a51f3acd-4b71-48c2-ada6-420ce50b2c75"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b0c7237c-140b-4fb0-9924-922d8f8a5764">
+                    <propertyInstance
+                      Id="04342955-ee6b-4c07-b96e-badb2ae8c107"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a11e1a79-7933-41a5-9be5-6ee7dae16e95">
+                    <propertyInstance
+                      Id="dcdb9fd3-22c6-4048-be49-62932bf55709"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f4764015-f3b6-49e0-b9c8-534305b49e87">
+                    <propertyInstance
+                      Id="9833eb6c-c07d-46a0-a3fd-fa79f42df479"
+                      name="Remove"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="b5d13291-a516-402a-827b-fab734512dbb"
+                LastKnownName="PropertyChangedEventHandler"
+                LastKnownLocation="Package3_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3e5131f2-13b1-424b-84a4-197aeaf577a3"
+            name="tr_wc2lc"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="9bf17629-2663-41dd-8015-3130b95328c4"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Dtr_wc2lc"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="8b035c67-8c13-471f-87fd-2ee5c65dc89e"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="61157776-7aac-4749-8204-a4f749ef45e4">
+                    <propertyInstance
+                      Id="3a5f02f2-ce94-4a2a-ae1d-b6e66d5b7b99"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00e104d7-4fc4-4549-85d4-5f7dac69adc1">
+                    <propertyInstance
+                      Id="90772ae4-055d-411e-a312-19704784580d"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="96afc2e6-d3ca-462a-9566-d52ad31342e6">
+                    <propertyInstance
+                      Id="4f16096a-9c9e-4177-a50a-69011dbf06ce"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9a57ef6c-184e-4b31-9e8c-0e22679ad8ed">
+                    <propertyInstance
+                      Id="e4fc13c3-06f6-4a05-88af-dc00e4b58f9c"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd139835-2e2f-49af-93ef-768fd3a07367">
+                    <propertyInstance
+                      Id="d6991ce3-d013-465c-8277-544c0a0a7b9e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                LastKnownName="Matrix3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f130a141-55c5-489d-ad0b-08046f5e1c74"
+            name="tr_lc2wc"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="35761f3b-2f1e-456e-8bfb-9790428e3e51"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Dtr_lc2wc"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7fe56c26-318c-4c1f-9fcf-2bb901e98309"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5c619c63-58db-462c-a105-80ca8edb5647">
+                    <propertyInstance
+                      Id="ffae5053-c701-44eb-b326-317983953976"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b09de9df-8d11-4f5d-a94e-639efbbac96e">
+                    <propertyInstance
+                      Id="b76142a2-6b29-4ba1-b7b1-5bc7d1252ded"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3fccf480-c518-41c3-9bbd-ea1c32be8a7c">
+                    <propertyInstance
+                      Id="d1d1b78c-56aa-4e61-8016-4f7ebf41ee68"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c5da150c-bc2f-485c-8b8e-541a522145d3">
+                    <propertyInstance
+                      Id="90b70179-27a1-48f5-9de8-8586cbe26732"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="effaade3-e8f1-40c0-8d62-8a9a773f6b2c">
+                    <propertyInstance
+                      Id="3a91f729-8383-4d26-b46a-562aa3d89ee4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                LastKnownName="Matrix3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="aa38b464-ed5c-42a2-928e-25f64985b6d6"
+            name="id"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="8c538585-3840-40b1-adec-7ec9aa30f9c9"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Did"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e6a716f4-89d0-4481-a7d6-0beab32d3a5c"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ad168caa-8dca-4178-80c5-df769118a82e">
+                    <propertyInstance
+                      Id="ec525147-0491-4105-b587-494cb15f552e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dbee72f2-3dec-4613-9ed8-32f724dbe3d3">
+                    <propertyInstance
+                      Id="e3070ab9-47d7-46d0-a5ee-eaac5bea6a47"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a893aae7-a1c1-45c1-9f2d-cc3d2dfc8c86">
+                    <propertyInstance
+                      Id="a403caea-8b35-4131-a20b-9c8374956d0c"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b0192863-c568-4dfa-9e03-9379dfa73f79">
+                    <propertyInstance
+                      Id="edd4c8b9-ba63-46e9-b942-7821320e7823"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e3078b0-66dd-42e8-ad22-6f86da41fd18">
+                    <propertyInstance
+                      Id="938fb33a-ac10-499f-b792-d6e2f79b0ccf"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="596eec60-7db3-4ad1-8fc7-80a9cff3b20c"
+                LastKnownName="Int64"
+                LastKnownLocation="Package2_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="26573591-61b4-4d9a-aefb-22d7bc810e39"
+            name="name"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="521cda60-c416-471c-b4bf-9a5ebef7f66e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Dname"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ec4da4f8-02d2-4436-a83a-c0e0df562e43"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d3ac84d9-8c46-47b9-9213-6558764b083b">
+                    <propertyInstance
+                      Id="87b2c248-e384-4307-97d1-f421eac32376"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5b6c3ef1-02e1-4ed5-8691-06afe6a8a116">
+                    <propertyInstance
+                      Id="ce906a92-df37-4f5e-9883-a2ba4aad94b4"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b7877da6-297f-446a-a31c-d2797149adfb">
+                    <propertyInstance
+                      Id="f97ff12d-8fe2-42de-b22a-5f273fd786d8"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4ccd5d7e-1a3a-4ba0-b736-1acc61108b57">
+                    <propertyInstance
+                      Id="43f3a513-4002-4d3e-a5bb-bafe9d55d049"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="33fef0d1-7bf0-464a-8143-72efe8d0c3e3">
+                    <propertyInstance
+                      Id="d34d8b09-3ba0-4462-93d2-a01dff510c3f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <primitiveTypeMoniker
+                Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                LastKnownName="String"
+                LastKnownLocation="SimultanModel.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ad2fa09b-5481-4499-a3b4-0f5714ec0fa8"
+            name="type"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="4e40cfe4-7b8a-4d81-82a1-8e2af8d52642"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Dtype"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="74be6d72-0f3d-4f29-9381-fd88919cc959"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a1da2cb7-f747-461b-83cb-df14148d425b">
+                    <propertyInstance
+                      Id="f9d70a21-6b38-4f79-9201-a4ee20361bcc"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa135c6e-0354-4b48-af40-9665558d00de">
+                    <propertyInstance
+                      Id="b3503746-f007-414a-b423-6f29d7d6f946"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ac967ca7-a424-411b-a66b-23373cf151b9">
+                    <propertyInstance
+                      Id="0e00bb54-da42-4761-a254-44577b1c3217"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2160df7d-182f-47d1-9cc2-742855cfdeea">
+                    <propertyInstance
+                      Id="5d71f1a6-ba7c-4f4e-a5a2-75771379f948"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="14ebd1c8-9f37-4c65-a0f8-6693ae2b9eff">
+                    <propertyInstance
+                      Id="6044d47e-b2e1-40cd-9983-ddd80d56b126"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <enumerationMoniker
+                Id="7338a726-d880-4265-9d97-d005026dc5fe"
+                LastKnownName="Relation2GeomType"
+                LastKnownLocation="Package8_1057.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="dbfcc9dc-148d-4f9b-820f-8ee234390499"
+            name="geom_ids"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d676eb88-271b-4719-a6aa-f7121cb24cf4"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Dgeom_ids"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="cb3f6faf-36eb-4dca-8c11-14037d2551cd"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="56ce0c67-1b02-433c-9119-929c94185ce9">
+                    <propertyInstance
+                      Id="46259c7c-7641-4775-8dd0-70c123f9ec4e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a2c9138-db26-4be2-9d57-aa20e2e4802e">
+                    <propertyInstance
+                      Id="558cd9ce-cc73-4358-8265-f3d22f95002b"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0887655-758d-454d-a3dd-5a8303be7ea5">
+                    <propertyInstance
+                      Id="7a43c289-4490-475b-8d25-f5a8fa8a5521"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dda86dab-9686-4fd5-a5aa-f73f4896d737">
+                    <propertyInstance
+                      Id="c3c2ffb2-87a6-44fe-b570-1710bc17de13"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1c365507-768d-4684-b3f9-7e19532f9b76">
+                    <propertyInstance
+                      Id="e83c652b-bfd8-44f0-bfd6-0106834eff55"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="5ae85862-18bd-4b66-b447-4128a3184010"
+                LastKnownName="Vector3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e0533295-5b6a-492d-8f63-aa0a95bab17f"
+            name="geom_cs"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d5cab793-df7a-48d6-8e5d-07eabc9ef05c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3Dgeom_cs"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="751de526-0e25-49f8-9193-28c2939d5445"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8bfb03a8-cb8d-4f4d-80f8-b3a58b49f87d">
+                    <propertyInstance
+                      Id="88ae3c24-2819-4048-90ff-ad3deb7b7b77"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="719598f3-4f16-48a3-be37-0618feb954ae">
+                    <propertyInstance
+                      Id="c4ea5541-b1d3-4b45-ba43-d84ebb0ec42b"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="de1f7e48-fcd6-45a1-9470-775f0fc1dddb">
+                    <propertyInstance
+                      Id="53684f85-d823-4b99-88cf-0dba685e3f2d"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1ba5de93-1344-41cf-b242-62228fe46474">
+                    <propertyInstance
+                      Id="bbe27496-f216-444f-a8aa-e8a1d0bb4c58"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="438b3f66-6432-4059-833f-7087bc3c0943">
+                    <propertyInstance
+                      Id="bb46173f-ed5f-4527-8769-63412c8649cc"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                LastKnownName="Matrix3D"
+                LastKnownLocation="Package_1129.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="983161f7-bdfe-47fa-a2e3-417db2fa5084"
+            name="ReferenceSameGeometry"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="823d0e72-8d98-4ff9-841f-a9cfe26f340e"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DReferenceSameGeometry OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7d500f0f-e30d-4394-9b18-1f9b7c3e13bd"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5c0fe5cb-6a09-4b50-bc42-36a79d414b85">
+                    <propertyInstance
+                      Id="2ab9d978-d9e7-43b6-86c4-505ae4e159fa"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="292fc63a-eb29-4bd4-ab95-b5727557a2e8">
+                    <propertyInstance
+                      Id="5d9890ec-5cca-4784-b26f-f3ba815aa2f0"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c34e7145-4428-45bc-84dd-e6db2495f2e5">
+                    <propertyInstance
+                      Id="5b48c520-40fb-434f-bd02-ec7f34255dc6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="72dacdf6-315f-4467-844d-b01bed4b0b15">
+                    <propertyInstance
+                      Id="77f3a360-370f-4bad-b948-3111a2c89a94"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="288a4327-c2dd-47b6-b0e7-1006fb5c561b">
+                    <propertyInstance
+                      Id="6b6e5a96-67f2-4a4c-8569-258ec147277d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a0ec13c2-0664-4ce1-85a7-5bacd138e790">
+                    <propertyInstance
+                      Id="fc6a71a6-d7f4-4057-9b15-878a3a1ce771"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="812b53f8-2cb6-4aa9-99cb-81e8e3cc13b0"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7466bedf-8264-440c-b777-e3f2dc09a9c5"
+                  name="_gr1"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f8418507-87d5-478c-88b3-8958e25155e4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DReferenceSameGeometry OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship)]) ParameterIdentifier%3D_gr1"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="235737c5-9c26-47c9-8184-f228cc8cfb7d"
+                      LastKnownName="GeometricRelationship"
+                      LastKnownLocation="Package8_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c859646f-3c87-492c-9044-4be52abc8d53"
+                  name="_gr2"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="96ec0819-edab-450a-88c4-654f767a89a2"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DReferenceSameGeometry OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship)]) ParameterIdentifier%3D_gr2"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="235737c5-9c26-47c9-8184-f228cc8cfb7d"
+                      LastKnownName="GeometricRelationship"
+                      LastKnownLocation="Package8_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bbc91bcd-b7ae-426f-953c-de0ba59d2db6"
+            name="RegisterPropertyChanged"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bb46df61-1d74-49d6-be3a-35b43cd6540a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DRegisterPropertyChanged OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e1fb3199-cb37-4aca-85cc-a56e9e5bb11e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b21c9661-774d-4dbe-b686-f3d47c05100b">
+                    <propertyInstance
+                      Id="10878111-077e-4ecb-a9c4-46b4910c0b64"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2e30140b-3f75-403e-b5b9-259f21da8974">
+                    <propertyInstance
+                      Id="e5fcc082-c137-4eaa-a6cb-94dea68e32a7"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f0f56b40-ce6e-431f-a52e-93aa23989f2a">
+                    <propertyInstance
+                      Id="a39f4020-30b0-4f36-9b0d-3f1f7221d9f7"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b0f44f64-6a84-4e0f-adcb-d8134612b576">
+                    <propertyInstance
+                      Id="4292792d-1dc7-4b5b-aee5-fd20eede13fa"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="16c7611e-6a9a-45f0-8841-ed03b9f57032">
+                    <propertyInstance
+                      Id="80f090b2-248f-4aac-873f-d4beeb6e0b3a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6b253c33-1d6d-4dc8-8f98-327fb82af55e">
+                    <propertyInstance
+                      Id="b0b6c7ea-a657-4d3c-a3e5-df8b8e95719f"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e038d7ff-b3c0-4b96-b571-88a11f64a119"
+                  name="_propName"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="39cc6f86-aa7d-48ce-a4f4-d628a288c3e7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DRegisterPropertyChanged OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3D_propName"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="cbd8fcbf-2d76-44be-b0e5-6df3adba9d9d"
+            name="GeometricRelationship"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="78ecbad3-ab44-4892-b154-4d8335036ac0"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c0d87bca-7f95-492c-9f08-3b120eaff4be"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e191f3b6-32b8-4272-b87d-690483014596">
+                    <propertyInstance
+                      Id="a1d1c371-d156-4918-861c-7ab95c3b993d"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="451a180b-d938-4019-80bc-9dc79becb37d">
+                    <propertyInstance
+                      Id="711d6caa-1c58-41c8-a526-67847d33affe"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a62fe3ca-3213-4e9d-8c3d-4b193044d877">
+                    <propertyInstance
+                      Id="9d0bcc87-5996-466d-9da4-c6704f4caa81"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cef195bf-f8af-471b-bf3f-7aaa6b6a123e">
+                    <propertyInstance
+                      Id="fbe04de3-5133-4938-8fbb-602d6be79414"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b3a59828-7549-4da7-8c17-c080b7a9764e">
+                    <propertyInstance
+                      Id="ed92f3f3-2fca-4812-9b81-72770be75ba0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="07b37243-2e8e-4e3c-aea4-67662b1f6423">
+                    <propertyInstance
+                      Id="91c435ae-e139-416e-9285-eaf513136d3d"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="090dc4e5-6d46-4f7a-94ce-63072ce14fbc"
+                  name="_name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="063d53b7-feb7-42af-8d16-a54358153404"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_name"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3e73f257-4bab-48af-b805-a377cdea1381"
+                  name="_type"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f7d3ba64-c14c-4b63-943f-563aef4c475c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_type"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="7338a726-d880-4265-9d97-d005026dc5fe"
+                      LastKnownName="Relation2GeomType"
+                      LastKnownLocation="Package8_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="195bbc65-0d83-4c51-8956-0b999ddea3a8"
+                  name="_ids"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b35228d5-91ca-4d20-b0b7-044acf36c7e3"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_ids"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5ae85862-18bd-4b66-b447-4128a3184010"
+                      LastKnownName="Vector3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fd00ed53-d4db-45c8-a114-37ad145274a7"
+                  name="_cs"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e7f70461-fd1f-4cf9-8036-7213e7aaf298"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_cs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="993d9e1d-811d-41c9-ab5d-cc9424beccdd"
+                  name="_tr_WC2LC"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="28cba62b-edb3-4073-8261-0b760796e1cd"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_tr_WC2LC"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fb77c2f0-ba8d-4241-b7da-e95f3ce1f7f3"
+                  name="_tr_LC2WC"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b9438693-232a-4608-814d-40f0440b301d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_tr_LC2WC"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="737f1932-90bd-4d72-aa8d-d4745da68583"
+            name="GeometricRelationship"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f86c8413-1a63-44a7-b314-b049d5d54f9c"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="6491723b-48fa-44b5-aa3c-1c73e15f2756"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7089ca96-f150-4f89-a5a6-584bb7c620ff">
+                    <propertyInstance
+                      Id="d80fd17d-1a6f-4fe5-9680-7df24f1e5a77"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b32f9b6a-eba0-4431-be40-842283aefe58">
+                    <propertyInstance
+                      Id="bb82bd01-8af5-4276-8310-bff0a0245c77"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1afb10a-f5b2-45a3-94ff-d3a354240db9">
+                    <propertyInstance
+                      Id="d97eadd3-026a-4977-aa00-cf151d13d30e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="21f3e11c-e2fc-48f3-8f60-ae0bd8333088">
+                    <propertyInstance
+                      Id="1fedce0d-1051-45b5-8c42-232119a7d446"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa90e6e3-18d0-4d3a-9601-953ba10ee2ef">
+                    <propertyInstance
+                      Id="7fe3752f-126a-4fb9-9110-0ca8e1a56580"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98386086-678f-4479-ab1b-cf3cb4268373">
+                    <propertyInstance
+                      Id="018c9a5b-bc13-418e-ba28-c4fed3a6f065"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3f601922-b945-40db-a29e-4a5d210b7e01"
+                  name="_name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="71b9fca1-5b3c-4a2a-a22f-263d6cec1ad6"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_name"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e33e56e9-4bf6-4be9-a2f2-7275c6cdf082"
+                  name="_type"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="23267e1c-458a-4d4a-bac0-06c8afcbc696"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_type"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="7338a726-d880-4265-9d97-d005026dc5fe"
+                      LastKnownName="Relation2GeomType"
+                      LastKnownLocation="Package8_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a927a592-fba5-4729-8afc-247a3564eeb3"
+                  name="_ids"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ffd35d67-36c4-4c5c-96e9-0161199cee19"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_ids"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5ae85862-18bd-4b66-b447-4128a3184010"
+                      LastKnownName="Vector3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4f17247b-4b10-4e9e-a274-4c5348729957"
+                  name="_cs"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b5164f36-73ca-4a0f-9376-1f943294c6aa"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_cs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0ce91410-9d2f-4ff5-aa8d-4eb45ddf9ab2"
+            name="GeometricRelationship"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="3b8b9240-5f44-4e3d-af9c-aab799d8df99"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="bb41a454-96ae-45df-823d-7ed95ea66a39"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a981c262-425e-40f7-988f-c42f78c10987">
+                    <propertyInstance
+                      Id="7d42edf5-0bd8-47b0-bb51-7c184889521a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="68346a0f-4410-4fee-b110-5b8523e2d481">
+                    <propertyInstance
+                      Id="a0bc5abc-ff3f-4eb7-b2d2-ab10775f7b78"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="21360b73-c96b-4631-8b46-7b626a55e0af">
+                    <propertyInstance
+                      Id="326173a8-2092-47db-8dba-859f3ec5d58f"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="34cf3665-ffde-48af-8530-edc081e9f3a8">
+                    <propertyInstance
+                      Id="00939768-53a1-4cc3-bdb2-409a40e566b8"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8096f2f-54f5-4e01-a2bb-f5c7590b1613">
+                    <propertyInstance
+                      Id="d7c901dc-6c7f-407b-bfe3-7a8f2a94f7e4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6bea52ab-2755-4d3b-b3e5-c911b89688bf">
+                    <propertyInstance
+                      Id="dc885551-ef95-4402-8d83-f34b12f7f333"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ba164217-aca0-4522-b654-8fe0feb50343"
+                  name="_name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f6d79329-e570-49e4-b538-0895ba85861a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)]) ParameterIdentifier%3D_name"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d26a485a-1c62-4727-bbac-117f67e1d289"
+                  name="_type"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ec2c2888-778a-4be2-ba9e-9468103cb386"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)]) ParameterIdentifier%3D_type"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="7338a726-d880-4265-9d97-d005026dc5fe"
+                      LastKnownName="Relation2GeomType"
+                      LastKnownLocation="Package8_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bc9e8357-4e14-4e17-aab0-7098e221b977"
+                  name="_ids"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="d043c9b4-22b4-4e2f-91da-f548dfaa49a0"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)]) ParameterIdentifier%3D_ids"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5ae85862-18bd-4b66-b447-4128a3184010"
+                      LastKnownName="Vector3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0c404349-67d9-4a94-91cf-4b2f1c68edcf"
+            name="GeometricRelationship"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="436ced04-ce6f-4c9d-90a1-205e502ae5a7"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0a64b8ca-fe79-47fe-beca-024827093bec"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1bf6324-32eb-4929-8e45-a7e81a300b3b">
+                    <propertyInstance
+                      Id="3a23bbcd-0c06-4efd-92ff-277499e93087"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1430f854-7ff0-400e-97b1-e20f983b4b4a">
+                    <propertyInstance
+                      Id="f7dfe4cc-f761-4b33-96b9-42c7828ed34a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b51eda3-fbac-493d-9992-0e24208cbc18">
+                    <propertyInstance
+                      Id="721ae84d-39c5-4022-934b-40a5765fb2a0"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="901f4a6a-0b12-486f-b94e-9416c2c73675">
+                    <propertyInstance
+                      Id="9204a448-252d-49b2-aa2b-da9095d9f4d0"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f5e59a2c-e927-4ee3-a503-8519af05d93d">
+                    <propertyInstance
+                      Id="69eec1a4-da32-4836-ad6b-10848c98d912"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="764cc09f-16f9-4b64-a2da-1663b523f8ff">
+                    <propertyInstance
+                      Id="05a5226b-f4b5-4339-abd4-73e1264494d8"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="963b3f9e-3724-4526-ac81-0fb4cda61734"
+            name="GeometricRelationship"
+            visibility="Package"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a1ac99a7-116d-4777-a699-aeb1d85f3981"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="082a904f-81bf-4395-a6c9-65ea7adf5913"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="09be88b6-9fbd-405b-bcbd-ba6f0c4d3f1c">
+                    <propertyInstance
+                      Id="0d06c359-3444-402f-b21b-52e3704c2bf5"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ca64843c-a96c-4b4e-a308-1c5f9f8f9f47">
+                    <propertyInstance
+                      Id="5d90b910-0524-450c-b83a-3cd5bd51e2c9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c81c2d5b-8540-41aa-b425-a37dc71136af">
+                    <propertyInstance
+                      Id="4016abf4-6836-4d25-9bd1-273a3763fb9b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c14f11d5-ec84-4bbe-993b-bd4fd0268be8">
+                    <propertyInstance
+                      Id="508db5a7-8702-4a79-9ab8-1413420953e5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c16386cf-7912-4eea-a7fd-a0bb4de1dbee">
+                    <propertyInstance
+                      Id="181ff528-57b3-41d9-8038-cf15f3dc9deb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c55c7bc0-4c1d-4593-ad34-5e2d920e2bc7">
+                    <propertyInstance
+                      Id="4beb28d7-543d-4575-b0fe-a45bcda04187"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="171f423e-3cf1-418b-8959-39a31cd74276"
+                  name="_id"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="d905d078-e414-4a32-b5a0-b6f98bcade90"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_id"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="596eec60-7db3-4ad1-8fc7-80a9cff3b20c"
+                      LastKnownName="Int64"
+                      LastKnownLocation="Package2_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ca6bd7f4-32e8-489f-8765-cd98035d299f"
+                  name="_name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="064850dd-2cc2-4ec3-9a39-68729af3dcc0"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_name"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ba957d6b-760e-4045-ae82-72acdc079d0c"
+                  name="_type"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="7f4266f2-eda4-43ec-825a-01563f127dcb"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_type"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <enumerationMoniker
+                      Id="7338a726-d880-4265-9d97-d005026dc5fe"
+                      LastKnownName="Relation2GeomType"
+                      LastKnownLocation="Package8_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="84f6605f-a01f-427b-a68c-05537f40517f"
+                  name="_ids"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="ddc9c965-51d2-410d-aa2c-5b243c560300"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_ids"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5ae85862-18bd-4b66-b447-4128a3184010"
+                      LastKnownName="Vector3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="693f2e35-d537-4c94-8389-de28e6d8e541"
+                  name="_cs"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="07457a75-b77b-4754-a7c4-f7d5b7496dfb"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_cs"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4b02e677-c40b-49cf-b48b-7a33d6fa83cc"
+                  name="_tr_WC2LC"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="df57a8c2-f6d1-4c2d-974a-81f3b19524e2"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_tr_WC2LC"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a9c92303-bf1a-48ab-ac0f-a80a9deb9c9d"
+                  name="_tr_LC2WC"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e36fa28f-5f4f-4128-8e64-0c4986155237"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt64)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DVector3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2FPresentationCore.dll&quot; Namespace%3DSystem.Windows.Media.Media3D Type%3DMatrix3D)]) ParameterIdentifier%3D_tr_LC2WC"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="c9eeabbe-38e0-4fff-b0fa-7e7d272bfaa1"
+                      LastKnownName="Matrix3D"
+                      LastKnownLocation="Package_1129.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d4c16908-d774-45ea-9274-1b207c5f2863"
+            name="ToString"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="8659af89-c05a-49d2-ba9f-a44b30eb4fc0"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3DToString"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="010654d0-9354-42e3-bbc8-9dfe6ac7debe"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="51e111c7-8f4e-4d35-81ca-ce1c56b0369c">
+                    <propertyInstance
+                      Id="f2058270-a685-4f3f-8187-fadd113f6f7e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c8a77314-70d8-4496-b0a0-cff2439b05c8">
+                    <propertyInstance
+                      Id="f832343d-91c3-40b7-a96d-caf22747fb29"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8967ad9c-416b-4638-800c-69c8054b9665">
+                    <propertyInstance
+                      Id="440186e0-9565-4dfa-8600-4065982f6083"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6e16cbc0-5d57-486f-8fb0-35a0a25cbd69">
+                    <propertyInstance
+                      Id="d4747c57-d363-49bc-ae41-0db67de368a9"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fccce4c1-c4f6-440b-b4be-2afa5c63b21d">
+                    <propertyInstance
+                      Id="136f2e04-3bdd-497e-abe6-1075cf340169"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d4b3483-ff83-4ff5-af3b-a840963d1776">
+                    <propertyInstance
+                      Id="b141724e-b576-4da9-8b00-7fea2f2ea754"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c8a72ab2-5647-48da-bc90-46e1ffa62268"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="SimultanModel.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a13769fc-a4f0-4edc-a5d2-92a78baadc2d"
+            name="AddToExport"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="6cf4dc17-3887-4690-9335-8f4b1797f128"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DAddToExport OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Text Type%3DStringBuilder ParamKind%3DRef)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="a8b87b71-4fd6-4321-b720-7bcaa34ae999"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60c11c84-6cf0-4a3a-964e-04cb09e8765d">
+                    <propertyInstance
+                      Id="f559f9a2-3e16-4e4a-bb50-2838e3e5734a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ba047d90-119b-490d-86eb-2fa16cf63cda">
+                    <propertyInstance
+                      Id="6120a8b8-b558-4db0-83e9-2f395737621a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="82a595e5-37ea-4e0b-8d56-03eeb10eeacf">
+                    <propertyInstance
+                      Id="60820359-d88e-4fa0-9291-943a8b8c22f2"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b12b551c-32de-4847-adce-aaf2f3515600">
+                    <propertyInstance
+                      Id="0c0da856-f744-4c47-b82f-05c5a9b79c69"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="09424395-0bdd-4a03-bf25-0bb0346d1583">
+                    <propertyInstance
+                      Id="7081cee3-9fdb-4033-91cc-7708ae512c5b"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2f27dc80-5a80-42e3-acb1-f4ccc1a61aa4">
+                    <propertyInstance
+                      Id="56ea6030-5f81-4344-a0e8-367679038753"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="38ab6f32-7edf-41cb-b89d-fe15367401f9"
+                  name="_sb"
+                  direction="InOut">
+                  <referencesInternal>
+                    <reference
+                      Id="413d7ee8-e8ec-4b6b-a93e-7518fc225911"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DGeometricRelationship Member%3D(Name%3DAddToExport OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem.Text Type%3DStringBuilder ParamKind%3DRef)]) ParameterIdentifier%3D_sb"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="b96167b8-51da-49ee-adc0-ae275063147f"
+                      LastKnownName="StringBuilder"
+                      LastKnownLocation="Package9_1057.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="7338a726-d880-4265-9d97-d005026dc5fe"
+        name="Relation2GeomType"
+        isAbstract="false"
+        isLeaf="false">
+        <referencesInternal>
+          <reference
+            Id="733ce67d-120c-412c-913a-8e0faf0df0c1"
+            handle="viewcode://./CodeSchema_Enum?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="35210e55-53ea-413f-a0ae-23a459c05552"
+            name="enum"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6738264d-5b90-446d-8274-0aa743a6555c">
+                <propertyInstance
+                  Id="9a9507a2-4041-4dae-9ef9-5e7efb0fd450"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="952c7d60-45b4-4929-9bb4-99d403f4c8e4">
+                <propertyInstance
+                  Id="c1802d72-b8ec-4f61-b0ea-c398ac0704e0"
+                  name="BaseType"
+                  value="int" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="964d885c-2c7a-460f-9947-e9406520d2f0">
+                <propertyInstance
+                  Id="8a039b3d-1a7f-49c4-89a1-9e31bb6bebab"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="16871a1b-ee9b-4fb5-855c-e2fe8477f855"
+            name="NONE">
+            <referencesInternal>
+              <reference
+                Id="44d65d9a-df2c-4030-8661-67b551544f7b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DNONE"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="a0558fa9-be29-4529-a65f-133e50e76536"
+            name="EXPECTING_DESCRIBES">
+            <referencesInternal>
+              <reference
+                Id="8c10268e-926a-4adc-abb3-93c79f630d2f"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DEXPECTING_DESCRIBES"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="78c81b84-a62a-46de-932c-8796faea3c25"
+            name="DESCRIBES">
+            <referencesInternal>
+              <reference
+                Id="f7631bd8-e6f3-4e3c-89c7-f16aab2c6097"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DDESCRIBES"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="57b42481-a485-4306-8155-a9a22be2da96"
+            name="EXPECTING_ALIGNED_WITH">
+            <referencesInternal>
+              <reference
+                Id="4893a8d9-a5b9-4750-a6d4-e1c9e58d6f70"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DEXPECTING_ALIGNED_WITH"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="0fb50aed-b7f0-46cb-a470-9743a1214736"
+            name="ALIGNED_WITH">
+            <referencesInternal>
+              <reference
+                Id="32d3817a-d540-499a-a533-1c006686b07e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DALIGNED_WITH"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="a0c8c6d5-8e0c-496e-abbe-0b40e5852f43"
+            name="EXPECTING_CONTAINED_IN">
+            <referencesInternal>
+              <reference
+                Id="0c2f232d-7fd7-41f9-992e-347d5fc8a8b2"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DEXPECTING_CONTAINED_IN"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="458909e9-9fec-4c21-aa62-48df685008ed"
+            name="CONTAINED_IN">
+            <referencesInternal>
+              <reference
+                Id="83d18d27-0b39-49c2-81ef-39110bc2910b"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DCONTAINED_IN"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="d510e6ce-9e99-449d-bb76-9a7e3ecd87a1"
+            name="EXPECTING_GROUPS">
+            <referencesInternal>
+              <reference
+                Id="1a885e69-a822-4560-b422-552db2d0fbee"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DEXPECTING_GROUPS"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+          <enumerationLiteral
+            Id="25269d1d-64ed-49bb-a02b-fe50c7339a41"
+            name="GROUPS">
+            <referencesInternal>
+              <reference
+                Id="ad18587f-a69c-440a-b3da-0d4f3a2369e4"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Fbin%2FDebug%2FParameterStructure.dll Namespace%3DParameterStructure.Geometry Type%3DRelation2GeomType Member%3DGROUPS"
+                tag="ViewCode" />
+            </referencesInternal>
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -1,0 +1,264 @@
+﻿<Window x:Class="ComponentBuilder.UIElements.FlowNetworkGraphWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cbui="clr-namespace:ComponentBuilder.UIElements"
+        xmlns:cbguifn="clr-namespace:ComponentBuilder.GraphUIE_FlNet"
+        Title="Flow Network Graph" Height="520" Width="560" MinHeight="520" MinWidth="560"
+        UseLayoutRounding="True" 
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="36"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.RowSpan="3" Background="Gainsboro" BorderBrush="DimGray" BorderThickness="1" Margin="2,5,2,0"/>
+        <StackPanel Grid.Row="0" Background="Transparent" Margin="2,5,2,0" Orientation="Horizontal">
+            <ToggleButton x:Name="tbtn_add_node" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Knoten hinzufügen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_add_node.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_add_edge" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Kante hinzufügen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_add_edge.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_add_nw" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Netzwerk hinzufügen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_add_nw.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+
+            <ToggleButton x:Name="tbtn_remove" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="28,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Element entfernen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\a_remove.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_reroute_edge" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Kante bearbeiten">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_reroute_edge.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_source" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Den ersten Knoten definieren">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_SOURCE.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_sink" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Den letzten Knoten definieren">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_SINK.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+
+            <Button x:Name="btn_goto_parent" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="28,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Gehe zum übergeordneten Netzwerk">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_goto_parent_nw.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_snap" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Objekte an Grid ausrichten">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_snap_to_grid.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_mark_parent" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Objekte mit verwandtem Inhalt markieren">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_common_parent.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_resize_canv" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Zeichenbereich an Netzwerk anpassen">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_expand_gr.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_expYmin_canv" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Zeichenbereich nach oben erweitern">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_expand_gr_y_.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_expXmin_canv" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Zeichenbereich nach links erweitern">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_expand_gr_x_.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_expX_canv" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Zeichenbereich nach rechts erweitern">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_expand_gr_x.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_expY_canv" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Zeichenbereich nach unten erweitern">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_expand_gr_y.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_save_canv" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Graph speichern">
+                <Button.Content>
+                    <Image Source="..\Data\icons\a_save_image.png"/>
+                </Button.Content>
+            </Button>
+
+        </StackPanel>
+        <StackPanel Grid.Row="1" Background="Transparent" Margin="2,5,2,0" Orientation="Horizontal">
+            <TextBlock Text="Name: " VerticalAlignment="Center" Foreground="DimGray" Margin="5,0,0,0"/>
+            <TextBox x:Name="txb_name" Width="120" VerticalAlignment="Center" Style="{StaticResource CoordinateInput}"/>
+            <TextBlock Text="Beschreibung: " VerticalAlignment="Center" Foreground="DimGray" Margin="10,0,0,0"/>
+            <TextBox x:Name="txb_descr" Width="120" VerticalAlignment="Center" Style="{StaticResource CoordinateInput}"/>
+            <TextBlock Text="Zeige Suffix: " VerticalAlignment="Center" Foreground="Black" Margin="10,0,0,0" FontWeight="Bold"/>
+            <TextBox x:Name="txb_suffix_to_display" Width="60" VerticalAlignment="Center" Style="{StaticResource CoordinateInput}" Margin="10,0,0,0" />           
+            <Image Source="../Data/icons/size_AssignB.png" Height="24" VerticalAlignment="Center" Margin="5,0,0,0"/>
+            <ComboBox x:Name="cb_pnames" VerticalAlignment="Center" MinWidth="80" />
+        </StackPanel>
+        <StackPanel Grid.Row="2" Background="Transparent" Margin="2,5,2,0" Orientation="Horizontal">
+            <Button x:Name="btn_all_comp_hL" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Eingebundene Komponenten in Liste hervorheben">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_hLAllComp.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_all_comp_uNhL" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Eingebundene Komponenten in Liste un-hervorheben">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_uNhLAllComp.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_all_comp_vis" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Eingebundene Komponenten in Liste sichtbar stellen">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_turnOnAllComp.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_all_comp_inst_hL" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Alle Instanzen dieser Komponente im Netzwerk hervorheben">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_hLAllCompInstances.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_all_comp_inst_UnhL" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,28,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Alle Instanzen dieser Komponente im Netzwerk un-hervorheben">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_uNhLAllCompInstances.png"/>
+                </Button.Content>
+            </Button>
+            
+            <ToggleButton x:Name="tbtn_assign_comp" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Komponente zuweisen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_assignComp.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_del_comp" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Verbindung mit Komponente entfernen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_delComp.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_size_inst" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Größe der verorteten Komponente">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\size_btn.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_operations_node" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ToggleButtonLight}"
+                    ToolTip="Operationen im Knoten festlegen">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_calc_Call.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+            <ToggleButton x:Name="tbtn_operations_copy" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,28,2"
+                          Style="{StaticResource ToggleButtonLight}"
+                          ToolTip="Operationen an alle andere Knoten übertragen, die die gleiche Komponente beinhalten">
+                <ToggleButton.Content>
+                    <Image Source="..\Data\icons\nw_calc_CallCopy.png"/>
+                </ToggleButton.Content>
+            </ToggleButton>
+
+            <Button x:Name="btn_calc_flow_RESET" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Berechnung zurücksetzen">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_calcRESET.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_calc_flow_BACKW" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Ströme berechnen: rückwärts">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_calcVS_backw.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_calc_flow_FORW" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Ströme berechnen: forwärts">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_calcVS_forw.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_calc_flow_BACKW_1" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Ströme schrittweise berechnen: 1 Schritt rückwärts">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_calcVS_backw_1.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_calc_flow_FORW_1" Width="26" Height="26" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,2,2,2"
+                    Style="{StaticResource ReliefButton}"
+                    ToolTip="Ströme schrittweise berechnen: 1 Schritt forwärts">
+                <Button.Content>
+                    <Image Source="..\Data\icons\nw_calcVS_forw_1.png"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <ScrollViewer x:Name="scrl_main" Grid.Row="3"
+                VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility ="Visible">
+            <cbguifn:FlowNwGraph x:Name="canv" Width="600" Height="600">
+                <cbguifn:FlowNwGraph.Background>
+                    <ImageBrush ImageSource="/ComponentBuilder;component/Data/icons/raster_1.png"
+                                TileMode="Tile" AlignmentX="Left" AlignmentY="Top" ViewportUnits="Absolute" Viewport="0,0,50,50" Stretch="None"/>
+                </cbguifn:FlowNwGraph.Background>
+            </cbguifn:FlowNwGraph>
+        </ScrollViewer>
+    </Grid>
+</Window>

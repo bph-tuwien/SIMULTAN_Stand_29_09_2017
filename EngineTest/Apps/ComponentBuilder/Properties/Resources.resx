@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LOGGER_CALC_CALC" xml:space="preserve">
+    <value>Gleichung wurde berechnet: </value>
+  </data>
+  <data name="LOGGER_CALC_COPY_NE" xml:space="preserve">
+    <value>Gleichung konnte nicht kopiert werden: </value>
+  </data>
+  <data name="LOGGER_CALC_COPY_OK" xml:space="preserve">
+    <value>Gleichung wurde erfolgreich kopiert: </value>
+  </data>
+  <data name="LOGGER_CALC_DEL_NE" xml:space="preserve">
+    <value>Gleichung konnte nicht gelöscht werden: </value>
+  </data>
+  <data name="LOGGER_CALC_DEL_OK" xml:space="preserve">
+    <value>Gleichung wurde erfolgreich gelöscht: </value>
+  </data>
+  <data name="LOGGER_CALC_EDIT" xml:space="preserve">
+    <value>Gleichung wurde bearbeitet: </value>
+  </data>
+  <data name="LOGGER_CALC_INP_NE" xml:space="preserve">
+    <value>Gleichung konnte der Parameter nicht als Input zugewiesen werden: </value>
+  </data>
+  <data name="LOGGER_CALC_INP_OK" xml:space="preserve">
+    <value>Gleichung wurde Input-Parameter zugewiesen: </value>
+  </data>
+  <data name="LOGGER_CALC_OUTP_NE" xml:space="preserve">
+    <value>Gleichung konnte der Parameter nicht als Output zugewiesen werden: </value>
+  </data>
+  <data name="LOGGER_CALC_OUTP_OK" xml:space="preserve">
+    <value>Gleichung wurde Output-Parameter zugewiesen: </value>
+  </data>
+  <data name="LOGGER_COMP2COMP_M_PICK_COMP" xml:space="preserve">
+    <value>Komponente wurde zum Mapping gewählt.</value>
+  </data>
+  <data name="LOGGER_COMP2WS_PICK_COMP" xml:space="preserve">
+    <value>Komponente wurde zum Mapping auf eine Web-Service ausgewählt: </value>
+  </data>
+  <data name="LOGGER_COMPCOMP_PICK_COMP" xml:space="preserve">
+    <value>Komponente wurde zum Vergleichen ausgewählt: </value>
+  </data>
+  <data name="LOGGER_COMP_ASSIGN_SLOT" xml:space="preserve">
+    <value>Der Komponente wurden mögliche Funktionen zugewiesen: </value>
+  </data>
+  <data name="LOGGER_COMP_CALC_DEL" xml:space="preserve">
+    <value>Komponenten-Gleichung wurde gelöscht: </value>
+  </data>
+  <data name="LOGGER_COMP_CALC_EDIT" xml:space="preserve">
+    <value>Komponetengleichung wird bearbeitet: </value>
+  </data>
+  <data name="LOGGER_COMP_CALC_PI_GET_NE" xml:space="preserve">
+    <value>Parameter konnte nicht in die Komponentengleichung als Input übernommen werden: </value>
+  </data>
+  <data name="LOGGER_COMP_CALC_PI_GET_OK" xml:space="preserve">
+    <value>Parameter wurde in die Komponentengleichung als Input übernommen: </value>
+  </data>
+  <data name="LOGGER_COMP_CALC_PO_GET_NE" xml:space="preserve">
+    <value>Parameter konnte nicht in die Komponentengleichung als Output übernommen werden: </value>
+  </data>
+  <data name="LOGGER_COMP_CALC_PO_GET_OK" xml:space="preserve">
+    <value>Parameter wurde in die Komponentengleichung als Output übernommen: </value>
+  </data>
+  <data name="LOGGER_COMP_COPY_NE" xml:space="preserve">
+    <value>Komponente konnte nicht kopiert werden: </value>
+  </data>
+  <data name="LOGGER_COMP_COPY_OK" xml:space="preserve">
+    <value>Komponente wurde erfolgreich kopiert: </value>
+  </data>
+  <data name="LOGGER_COMP_DEL_M" xml:space="preserve">
+    <value>Die markierten Komponenten wurden gelöscht.</value>
+  </data>
+  <data name="LOGGER_COMP_DEL_NE" xml:space="preserve">
+    <value>Komponente konnte nicht gelöscht werden: </value>
+  </data>
+  <data name="LOGGER_COMP_DEL_OK" xml:space="preserve">
+    <value>Komponente wurde erfolgreich gelöscht: </value>
+  </data>
+  <data name="LOGGER_COMP_EDIT" xml:space="preserve">
+    <value>Komponente wurde  bearbeitet: </value>
+  </data>
+  <data name="LOGGER_COMP_P_COPY" xml:space="preserve">
+    <value>Komponenten-Parameter wurde innerhalb der Komponente kopiert: </value>
+  </data>
+  <data name="LOGGER_COMP_P_EDIT" xml:space="preserve">
+    <value>Komponentenparameter wurde bearbeitet: </value>
+  </data>
+  <data name="LOGGER_COMP_P_GET_NE" xml:space="preserve">
+    <value>Parameter konnte nicht in die Komponente kopiert werden: </value>
+  </data>
+  <data name="LOGGER_COMP_P_GET_OK" xml:space="preserve">
+    <value>Parameter wurde in Komponente kopiert: </value>
+  </data>
+  <data name="LOGGER_COMP_REF_NE" xml:space="preserve">
+    <value>Konnte nicht als referenzierte Komponente übernommen werden: </value>
+  </data>
+  <data name="LOGGER_COMP_REF_OK" xml:space="preserve">
+    <value>Als referenzierte Komponente übernommen: </value>
+  </data>
+  <data name="LOGGER_COMP_RELEASE" xml:space="preserve">
+    <value>Komponente wurde zur Publikation freigegeben: </value>
+  </data>
+  <data name="LOGGER_COMP_SUB_NE" xml:space="preserve">
+    <value>Konnte nicht als Subkomponente kopiert werden: </value>
+  </data>
+  <data name="LOGGER_COMP_SUB_OK" xml:space="preserve">
+    <value>Als Subkomponenten kopiert und übernommen: </value>
+  </data>
+  <data name="LOGGER_COMP_SUPERV" xml:space="preserve">
+    <value>Komponente wurde freigegeben: </value>
+  </data>
+  <data name="LOGGER_COMP_SYMB" xml:space="preserve">
+    <value>Komponente wurde Symbol zugewiesen: </value>
+  </data>
+  <data name="LOGGER_IMG_SET" xml:space="preserve">
+    <value>Symbole wurden nach Nummer zugewiesen.</value>
+  </data>
+  <data name="LOGGER_IN_COMPS_NE" xml:space="preserve">
+    <value>Komponentenbibliothek konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_COMPS_NWS_NE" xml:space="preserve">
+    <value>Komponenten und Netzwerke konnten nicht importiert werden: </value>
+  </data>
+  <data name="LOGGER_IN_COMPS_NWS_OK" xml:space="preserve">
+    <value>Komponenten und Netzwerke wurden aus Bibliothek importiert.</value>
+  </data>
+  <data name="LOGGER_IN_COMPS_OK" xml:space="preserve">
+    <value>Komponentenbibliothek wurde aus dxf-File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_COMP_OK" xml:space="preserve">
+    <value>Komponenten wurden aus Bibliothek importiert.</value>
+  </data>
+  <data name="LOGGER_IN_COMP_VIS_NE" xml:space="preserve">
+    <value>Komponentensichtbarkeit konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_COMP_VIS_OK" xml:space="preserve">
+    <value>Komponentensichtbarkeit wurde aus txt-File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_EXCELT_NE" xml:space="preserve">
+    <value>Tabelle konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_EXCELT_OK" xml:space="preserve">
+    <value>Tabelle wurde aus excel-File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_IMGS_NE" xml:space="preserve">
+    <value>Bildsammlung konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_IMGS_OK" xml:space="preserve">
+    <value>Bildsammlung wurde aus bin-File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_IMG_NE" xml:space="preserve">
+    <value>Bild konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_IMG_OK" xml:space="preserve">
+    <value>Bild wurde aus File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_MV_NE" xml:space="preserve">
+    <value>Kennfeldbibliothek konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_MV_OK" xml:space="preserve">
+    <value>Kennfeldbibliothek aus dxf-File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_PROJ_NE" xml:space="preserve">
+    <value>Projekt konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_PROJ_OK" xml:space="preserve">
+    <value>Projekt wurde aus smn-File geladen: </value>
+  </data>
+  <data name="LOGGER_IN_P_NE" xml:space="preserve">
+    <value>Parameterbibliothek konnte nicht geladen werden: </value>
+  </data>
+  <data name="LOGGER_IN_P_OK" xml:space="preserve">
+    <value>Parameterbibliothek wurde aus dxf-File geladen: </value>
+  </data>
+  <data name="LOGGER_NW_COPY_NE" xml:space="preserve">
+    <value>Netzwerk konnte nicht kopiert werden: </value>
+  </data>
+  <data name="LOGGER_NW_COPY_OK" xml:space="preserve">
+    <value>Netzwerk wurde erfolgreich kopiert: </value>
+  </data>
+  <data name="LOGGER_NW_DEL_M" xml:space="preserve">
+    <value>Die markierten Netzwerke wurden gelöscht.</value>
+  </data>
+  <data name="LOGGER_NW_NEW" xml:space="preserve">
+    <value>Netzwerk wurde erstellt: </value>
+  </data>
+  <data name="LOGGER_NW_PICK_COMP" xml:space="preserve">
+    <value>Dem Netzwerkelement wurde Komponente zugewiesen: </value>
+  </data>
+  <data name="LOGGER_OUT_COMP_NE" xml:space="preserve">
+    <value>Komponentenbibliothek konnte nicht gespeichert werden: </value>
+  </data>
+  <data name="LOGGER_OUT_COMP_OK" xml:space="preserve">
+    <value>Komponentenbibliothek wurde als dxf-File gespeichert: </value>
+  </data>
+  <data name="LOGGER_OUT_COMP_VIS_NE" xml:space="preserve">
+    <value>Komponentensichtbarkeit konnte nicht gespeichert werden: </value>
+  </data>
+  <data name="LOGGER_OUT_COMP_VIS_OK" xml:space="preserve">
+    <value>Komponentensichtbarkeit wurde als txt-File gespeichert: </value>
+  </data>
+  <data name="LOGGER_OUT_IMGS_NE" xml:space="preserve">
+    <value>Bildsammlung konnte nicht gespeichert werden: </value>
+  </data>
+  <data name="LOGGER_OUT_IMGS_OK" xml:space="preserve">
+    <value>Bildsammlung wurde als bin-File gespeichert: </value>
+  </data>
+  <data name="LOGGER_OUT_MV_NE" xml:space="preserve">
+    <value>Kennfeldbibliothek konnte nicht gespeichert werden: </value>
+  </data>
+  <data name="LOGGER_OUT_MV_OK" xml:space="preserve">
+    <value>Kennfeldbibliothek wurde als dxf-File gespeichert: </value>
+  </data>
+  <data name="LOGGER_OUT_PROJ" xml:space="preserve">
+    <value>Projekt wird gespeichert.</value>
+  </data>
+  <data name="LOGGER_OUT_PROJ_AS" xml:space="preserve">
+    <value>Projekt wird gespeichert unter: </value>
+  </data>
+  <data name="LOGGER_OUT_PROJ_CL" xml:space="preserve">
+    <value>Projekt wird geschlossen</value>
+  </data>
+  <data name="LOGGER_OUT_PROJ_UNLOCK" xml:space="preserve">
+    <value>Projekt wird entsperrt.</value>
+  </data>
+  <data name="LOGGER_OUT_P_NE" xml:space="preserve">
+    <value>Parameterbibliothek konnte nicht gespeichert werden: </value>
+  </data>
+  <data name="LOGGER_OUT_P_OK" xml:space="preserve">
+    <value>Parameterbibliothek wurde als dxf-File gespeichert: </value>
+  </data>
+  <data name="LOGGER_OUT_TO_SERVER_COMP_NE" xml:space="preserve">
+    <value>Komponentenbibliothek konnte nicht in Repository gespeichert werden: </value>
+  </data>
+  <data name="LOGGER_OUT_TO_SERVER_COMP_OK" xml:space="preserve">
+    <value>Komponentenbibliothek wurde als dxf-File in Repository gespeichert: </value>
+  </data>
+  <data name="LOGGER_PARAM_COPY_NE" xml:space="preserve">
+    <value>Parameter konnte nicht kopiert werden: </value>
+  </data>
+  <data name="LOGGER_PARAM_COPY_OK" xml:space="preserve">
+    <value>Parameter wurde erfolgreich kopiert: </value>
+  </data>
+  <data name="LOGGER_PARAM_COUPLE" xml:space="preserve">
+    <value>Dem Parameter wurde ein Kennfeld zugewiesen: </value>
+  </data>
+  <data name="LOGGER_PARAM_DECOUPLE_OK" xml:space="preserve">
+    <value>Parameter wurde vom Wertefeld entkoppelt.</value>
+  </data>
+  <data name="LOGGER_PARAM_DEL_ALL_OK" xml:space="preserve">
+    <value>Alle Parameter wurden gelöscht.</value>
+  </data>
+  <data name="LOGGER_PARAM_DEL_NE" xml:space="preserve">
+    <value>Parameter konnte nicht gelöscht werden: </value>
+  </data>
+  <data name="LOGGER_PARAM_DEL_OK" xml:space="preserve">
+    <value>Parameter wurde erfolgreich gelöscht: </value>
+  </data>
+  <data name="LOGGER_PARAM_EDIT" xml:space="preserve">
+    <value>Parameter wurde bearbeitet: </value>
+  </data>
+  <data name="LOGGER_VALUE_COPY_NE" xml:space="preserve">
+    <value>Kennfeld konnte nicht kopiert werden!</value>
+  </data>
+  <data name="LOGGER_VALUE_COPY_OK" xml:space="preserve">
+    <value>Kennfeld wurde erfolgreich kopiert.</value>
+  </data>
+  <data name="LOGGER_VALUE_DEL_ALL" xml:space="preserve">
+    <value>Alle Kennfelder wurden gelöscht.</value>
+  </data>
+  <data name="LOGGER_VALUE_DEL_NE" xml:space="preserve">
+    <value>Kennfeld konnte nicht gelöscht werden!</value>
+  </data>
+  <data name="LOGGER_VALUE_DEL_OK" xml:space="preserve">
+    <value>Kennfeld wurde erfolgreich gelöscht.</value>
+  </data>
+  <data name="LOGGER_VALUE_EDIT_F" xml:space="preserve">
+    <value>Funktionsfeld wurde bearbeitet: </value>
+  </data>
+  <data name="LOGGER_VALUE_EDIT_T" xml:space="preserve">
+    <value>Wertefeld wurde bearbeitet: </value>
+  </data>
+  <data name="LOGGER_VALUE_NEW_BT" xml:space="preserve">
+    <value>Neue Tabelle wurde erstellt.</value>
+  </data>
+  <data name="LOGGER_VALUE_NEW_F" xml:space="preserve">
+    <value>Neues Funktionsfeld wurde erstellt.</value>
+  </data>
+  <data name="LOGGER_VALUE_NEW_T" xml:space="preserve">
+    <value>Neues Wertefeld wurde erstellt.</value>
+  </data>
+</root>

@@ -1,0 +1,3 @@
+repo = C:\Users\friedeggs\Documents\simultan_workshop
+account_user_name = galina.paskaleva
+account_password = berghamster

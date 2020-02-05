@@ -1,0 +1,180 @@
+﻿<Window x:Class="GeometryViewer.UIElements.ComponentRepWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Komponenten-Sicht" Height="400" Width="695" MinWidth="695" MinHeight="400" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="44"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition Width="48"/>
+            <ColumnDefinition Width="4"/>
+            <ColumnDefinition/>
+
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- NAME -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"
+                   Text="Komponentenbeschreibung:" HorizontalAlignment="Left" Height="25" Margin=" 5,5,5,0" FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="6" Grid.ColumnSpan="11" x:Name="tb_NamePreview" 
+                   Text="-Funktionsslot Name Beschreibung-" HorizontalAlignment="Left" Height="25" Margin="0,5,0,0" Foreground="DimGray"/>
+
+        <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="22" />
+        <TextBlock Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="5" Text="Zonendaten" HorizontalAlignment="Left" Height="18" Margin="5,0,0,0"/>
+        
+        <!-- derived parameters form the associated zoned volume -->
+        <StackPanel Grid.Column="0" Grid.ColumnSpan="22" Grid.Row="5" Grid.RowSpan="4" Background="OldLace"/>
+
+        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="12" x:Name="tb_GeomName"
+                   Text="ABGELEITET VON DER ASSOZIIERTEN GEOMETRIE:" 
+                   HorizontalAlignment="Left" Height="15" Margin="5,0,0,0" Foreground="Tan" FontSize="10"/>
+        <!-- NET -->
+        <TextBlock Grid.Row="6" Grid.Column="0"
+                   Text="FERTIG" HorizontalAlignment="Left" Height="15" Margin="0,-20,0,0" Foreground="Tan" FontSize="10" FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0"
+                   Text="FOK:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="6" Grid.Column="1" x:Name="tb_zElevN"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="3"
+                   Text="DUK:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="6" Grid.Column="5" x:Name="tb_zCeilN"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="7"
+                   Text="Höhe:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="6" Grid.Column="9" Grid.ColumnSpan="2" x:Name="tb_zHeightN"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="11"
+                   Text="Fläche:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="6" Grid.Column="13" Grid.ColumnSpan="3" x:Name="tb_zAreaN"
+                   Text="__ m&#178;"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+        
+        <TextBlock Grid.Row="6" Grid.Column="15"
+                   Text="Vol.:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="6" Grid.Column="17" Grid.ColumnSpan="3" x:Name="tb_zVolumeN"
+                   Text="__ m&#179;"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="19"
+                   Text="Perim.:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="6" Grid.Column="21" x:Name="tb_zPerimeter"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+        
+        <!-- GROSS -->
+        <TextBlock Grid.Row="7" Grid.Column="0"
+                   Text="ROH" HorizontalAlignment="Left" Height="15" Margin="0,-20,0,0" Foreground="Tan" FontSize="10" FontWeight="Bold"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="0"
+                   Text="FOK:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="7" Grid.Column="1" x:Name="tb_zElevG"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="3"
+                   Text="DUK:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="7" Grid.Column="5" x:Name="tb_zCeilG"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="7"
+                   Text="Höhe:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="7" Grid.Column="9" x:Name="tb_zHeightG"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+        
+        <TextBlock Grid.Row="7" Grid.Column="11"
+                   Text="Fläche:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="7" Grid.Column="13" Grid.ColumnSpan="3" x:Name="tb_zAreaG"
+                   Text="__ m&#178;"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="7" Grid.Column="15"
+                   Text="Vol.:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="7" Grid.Column="17" Grid.ColumnSpan="3" x:Name="tb_zVolumeG"
+                   Text="__ m&#179;"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+
+        <!-- AXES -->
+        <TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                   Text="ACHS-MAß" HorizontalAlignment="Left" Height="15" Margin="0,-20,0,0" Foreground="Tan" FontSize="10" FontWeight="Bold"/>
+        
+        <TextBlock Grid.Row="8" Grid.Column="0"
+                   Text="FOK:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" x:Name="tb_zElevA"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="8" Grid.Column="3"
+                   Text="DUK:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="8" Grid.Column="5" x:Name="tb_zCeilA"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="8" Grid.Column="7"
+                   Text="Höhe:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="8" Grid.Column="9" x:Name="tb_zHeightA"
+                   Text="__ m"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="8" Grid.Column="11"
+                   Text="Fläche:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="8" Grid.Column="13" Grid.ColumnSpan="3" x:Name="tb_zAreaA"
+                   Text="__ m&#178;"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <TextBlock Grid.Row="8" Grid.Column="15"
+                   Text="Vol.:" HorizontalAlignment="Right" Height="25" Margin="0,5,5,0" FontWeight="Bold" Foreground="Peru"/>
+        <TextBlock Grid.Row="8" Grid.Column="17" Grid.ColumnSpan="3" x:Name="tb_zVolumeA"
+                   Text="__ m&#179;"  HorizontalAlignment="Left" Height="25" Width="60"  Margin="0,5,0,0" Foreground="Peru"/>
+
+        <Separator Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="22" />
+
+        <!-- Other Info -->
+
+        <Separator Grid.Row="14" Grid.Column="0" Grid.ColumnSpan="22" />
+        
+        <!-- OK / Cancel -->
+        <Button Grid.Row="17" Grid.Column="21" Grid.ColumnSpan="1" x:Name="btn_CANCEL"
+                HorizontalAlignment="Right" Height="25" Width="60" Margin="0,0,5,0"
+                Content="Abbrechen" FontWeight="Normal" Foreground="Peru" BorderBrush="Peru"
+                Style="{StaticResource ReliefButton}" IsCancel="True"/>
+        <Button Grid.Row="17" Grid.Column="17" Grid.ColumnSpan="3" x:Name="btn_OK"
+                HorizontalAlignment="Right" Height="25" Width="60" Margin="0,0,0,0"
+                Content="OK" FontWeight="Bold" BorderThickness="2"
+                Style="{StaticResource ReliefButton}" IsDefault="True" Click="OK_Click"/>
+
+    </Grid>
+</Window>

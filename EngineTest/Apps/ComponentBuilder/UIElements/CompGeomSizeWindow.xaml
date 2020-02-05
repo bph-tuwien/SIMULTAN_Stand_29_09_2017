@@ -1,0 +1,167 @@
+﻿<Window x:Class="ComponentBuilder.UIElements.CompGeomSizeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        UseLayoutRounding="True"
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}"
+        Title="Größe der Verortung" Height="210" Width="640"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.6*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1.6*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="5"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="MIN" FontSize="10" FontWeight="Bold" Foreground="DimGray" Height="26" Padding="3" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+        <TextBlock Grid.Row="0" Grid.Column="5" Text="MAX" FontSize="10" FontWeight="Bold" Foreground="DimGray" Height="26" Padding="3" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+
+        <Rectangle Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="4" StrokeThickness="1" Stroke="DimGray" RadiusX="5" RadiusY="5"/>
+        <Rectangle Grid.Column="5" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="4" StrokeThickness="1" Stroke="DimGray" RadiusX="5" RadiusY="5"/>
+
+        <Image Grid.Row="1" Grid.Column="2" Height="24" Width="Auto" Source="../Data/icons/size_AssignHxB.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+        <Image Grid.Row="2" Grid.Column="2" Height="24" Width="Auto" Source="../Data/icons/size_AssignB.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+        <Image Grid.Row="3" Grid.Column="2" Height="24" Width="Auto" Source="../Data/icons/size_AssignL.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+        <Image Grid.Row="4" Grid.Column="2" Height="24" Width="Auto" Source="../Data/icons/size_AssignLo.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+
+        <Image Grid.Row="1" Grid.Column="6" Height="24" Width="Auto" Source="../Data/icons/size_AssignHxB.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+        <Image Grid.Row="2" Grid.Column="6" Height="24" Width="Auto" Source="../Data/icons/size_AssignB.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+        <Image Grid.Row="3" Grid.Column="6" Height="24" Width="Auto" Source="../Data/icons/size_AssignL.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+        <Image Grid.Row="4" Grid.Column="6" Height="24" Width="Auto" Source="../Data/icons/size_AssignLo.png" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+
+        
+        <Image Grid.Row="1" Height="24" Width="Auto" Source="../Data/icons/size_H.png"/>
+        
+        <!-- MIN HEIGHT -->
+        <TextBox x:Name="min_h" Grid.Row="1" Grid.Column="1"  Margin="0,5,20,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00" HorizontalAlignment="Right"
+                 IsEnabled="{Binding ElementName=chb_min_h_from_p, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="m" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+        <CheckBox x:Name="chb_min_h_from_p" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" ToolTip="Wert übernehmen von..."/>
+        <ComboBox x:Name="lb_param_names_min_h" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" MinWidth="80" Margin="0,5,2,0" 
+                  ItemTemplateSelector="{StaticResource ParameterChildrenTemplateSelectorShort}"
+                  IsEnabled="{Binding ElementName=chb_min_h_from_p, Path=IsChecked, Mode=OneWay}"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="min_h_correction" Grid.Row="1" Grid.Column="3" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_min_h_from_p, Path=IsChecked, Mode=OneWay}"/>
+        
+        <!-- MAX HEIGHT -->
+        <TextBox x:Name="max_h" Grid.Row="1" Grid.Column="5"  Margin="0,5,20,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00" HorizontalAlignment="Right"
+                 IsEnabled="{Binding ElementName=chb_max_h_from_p, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <TextBlock Grid.Row="1" Grid.Column="5" Text="m" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+        <CheckBox x:Name="chb_max_h_from_p" Grid.Row="1" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" ToolTip="Wert übernehmen von..."/>
+        <ComboBox x:Name="lb_param_names_max_h" Grid.Row="1" Grid.Column="6" HorizontalAlignment="Right" MinWidth="80" Margin="0,5,2,0" 
+                  ItemTemplateSelector="{StaticResource ParameterChildrenTemplateSelectorShort}"
+                  IsEnabled="{Binding ElementName=chb_max_h_from_p, Path=IsChecked, Mode=OneWay}"/>
+        <TextBlock Grid.Row="1" Grid.Column="7" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="max_h_correction" Grid.Row="1" Grid.Column="7" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_max_h_from_p, Path=IsChecked, Mode=OneWay}"/>
+        
+        
+        <Image Grid.Row="2" Height="24" Width="Auto" Source="../Data/icons/size_B.png"/>
+       
+        <!-- MIN BREITE -->
+        <TextBox x:Name="min_b" Grid.Row="2" Grid.Column="1"  Margin="0,5,20,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00" HorizontalAlignment="Right"
+                 IsEnabled="{Binding ElementName=chb_min_b_from_p, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="m" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+        <CheckBox x:Name="chb_min_b_from_p" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" ToolTip="Wert übernehmen von..."/>
+        <ComboBox x:Name="lb_param_names_min_b" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" MinWidth="80" Margin="0,5,2,0" 
+                  ItemTemplateSelector="{StaticResource ParameterChildrenTemplateSelectorShort}"
+                  IsEnabled="{Binding ElementName=chb_min_b_from_p, Path=IsChecked, Mode=OneWay}"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="min_b_correction" Grid.Row="2" Grid.Column="3" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_min_b_from_p, Path=IsChecked, Mode=OneWay}"/>
+        
+        <!-- MAX BREITE -->
+        <TextBox x:Name="max_b" Grid.Row="2" Grid.Column="5"  Margin="0,5,20,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00" HorizontalAlignment="Right"
+                 IsEnabled="{Binding ElementName=chb_max_b_from_p, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <TextBlock Grid.Row="2" Grid.Column="5" Text="m" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+        <CheckBox x:Name="chb_max_b_from_p" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" ToolTip="Wert übernehmen von..."/>
+        <ComboBox x:Name="lb_param_names_max_b" Grid.Row="2" Grid.Column="6" HorizontalAlignment="Right" MinWidth="80" Margin="0,5,2,0" 
+                  ItemTemplateSelector="{StaticResource ParameterChildrenTemplateSelectorShort}"
+                  IsEnabled="{Binding ElementName=chb_max_b_from_p, Path=IsChecked, Mode=OneWay}"/>
+        <TextBlock Grid.Row="2" Grid.Column="7" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="max_b_correction" Grid.Row="2" Grid.Column="7" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_max_b_from_p, Path=IsChecked, Mode=OneWay}"/>
+
+        
+        <Image Grid.Row="3" Height="24" Width="Auto" Source="../Data/icons/size_L.png"/>
+        
+        <!-- MIN LENGTH -->
+        <TextBox x:Name="min_L" Grid.Row="3" Grid.Column="1"  Margin="0,5,20,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00" HorizontalAlignment="Right">
+            <TextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource TrueValue}">
+                    <Binding ElementName="chb_min_L_from_p" Path="IsChecked" Mode="OneWay"/>
+                    <Binding ElementName="chb_min_L_from_path" Path="IsChecked" Mode="OneWay"/>
+                </MultiBinding>
+            </TextBox.IsEnabled>
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="m" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+        <CheckBox x:Name="chb_min_L_from_p" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" ToolTip="Wert übernehmen von..."
+                  IsEnabled="{Binding ElementName=chb_min_L_from_path, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <ComboBox x:Name="lb_param_names_min_L" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" MinWidth="80" Margin="0,5,2,0" 
+                  ItemTemplateSelector="{StaticResource ParameterChildrenTemplateSelectorShort}"
+                  IsEnabled="{Binding ElementName=chb_min_L_from_p, Path=IsChecked, Mode=OneWay}"/>       
+        <TextBlock Grid.Row="3" Grid.Column="3" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="min_L_correction" Grid.Row="3" Grid.Column="3" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_min_L_from_p, Path=IsChecked, Mode=OneWay}"/>
+        
+        <CheckBox x:Name="chb_min_L_from_path" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" Content="vom Pfad" ToolTip="Wert übernehmen"
+                  IsEnabled="{Binding ElementName=chb_min_L_from_p, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <TextBlock Grid.Row="4" Grid.Column="3" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="min_L_path_correction" Grid.Row="4" Grid.Column="3" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_min_L_from_path, Path=IsChecked, Mode=OneWay}"/>
+
+        <!-- MAX LENGTH -->
+        <TextBox x:Name="max_L" Grid.Row="3" Grid.Column="5"  Margin="0,5,20,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00" HorizontalAlignment="Right">
+            <TextBox.IsEnabled>
+                <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource TrueValue}">
+                    <Binding ElementName="chb_max_L_from_p" Path="IsChecked" Mode="OneWay"/>
+                    <Binding ElementName="chb_max_L_from_path" Path="IsChecked" Mode="OneWay"/>
+                </MultiBinding>
+            </TextBox.IsEnabled>
+        </TextBox>
+        <TextBlock Grid.Row="3" Grid.Column="5" Text="m" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,5,0"/>
+        <CheckBox x:Name="chb_max_L_from_p" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" ToolTip="Wert übernehmen von..."
+                  IsEnabled="{Binding ElementName=chb_max_L_from_path, Path=IsChecked, Mode=OneWay, Converter= {StaticResource InverseBooleanConverter}}"/>
+        <ComboBox x:Name="lb_param_names_max_L" Grid.Row="3" Grid.Column="6" HorizontalAlignment="Right" MinWidth="80" Margin="0,5,2,0" 
+                  ItemTemplateSelector="{StaticResource ParameterChildrenTemplateSelectorShort}"
+                  IsEnabled="{Binding ElementName=chb_max_L_from_p, Path=IsChecked, Mode=OneWay}"/>        
+        <TextBlock Grid.Row="3" Grid.Column="7" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="max_L_correction" Grid.Row="3" Grid.Column="7" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_max_L_from_p, Path=IsChecked, Mode=OneWay}"/>
+        
+        <CheckBox x:Name="chb_max_L_from_path" Grid.Row="4" Grid.Column="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="23,0,0,0" Content="vom Pfad"  ToolTip="Wert übernehmen"
+                  IsEnabled="{Binding ElementName=chb_max_L_from_p, Path=IsChecked, Mode=OneWay, Converter={StaticResource InverseBooleanConverter}}"/>
+        <TextBlock Grid.Row="4" Grid.Column="7" Text="+" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0,0,0"/>
+        <TextBox x:Name="max_L_path_correction" Grid.Row="4" Grid.Column="7" Margin="20,5,5,2" Width="45" Style="{DynamicResource CoordinateInput}" Text="0.00"
+                 IsEnabled="{Binding ElementName=chb_max_L_from_path, Path=IsChecked, Mode=OneWay}"/>
+
+        
+        <Button x:Name="btn_OK" Height="26" Width="26" Margin="0,0,10,0" Grid.Row="5" Grid.Column="7" HorizontalAlignment="Right"
+                    Style="{StaticResource ReliefButton}" BorderBrush="White"
+                    IsEnabled="True"                          
+                    IsDefault="True" 
+                    ToolTip="OK">
+            <Button.Content>
+                <Image Source="../Data/icons/btn_OK.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="White" Opacity="1" ShadowDepth="3" Direction="225"/>
+            </Button.Effect>
+        </Button>
+    </Grid>
+</Window>

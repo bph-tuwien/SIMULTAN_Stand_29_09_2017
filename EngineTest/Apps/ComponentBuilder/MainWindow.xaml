@@ -1,0 +1,1808 @@
+﻿<Window x:Class="ComponentBuilder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:cb="clr-namespace:ComponentBuilder"
+        xmlns:cbui="clr-namespace:ComponentBuilder.UIElements"
+        xmlns:cbwpfu="clr-namespace:ComponentBuilder.WpfUtils"
+        xmlns:cbwinu="clr-namespace:ComponentBuilder.WinUtils"
+        Title="{Binding UserRole, Mode=OneWay, StringFormat={}Komponenten - Baukasten: {0}, Converter={StaticResource ComponentManagerTypeToDescrConverter}}"
+        UseLayoutRounding="True"       
+        Height="700" Width="1400" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+    <Window.DataContext>
+        <cb:AppViewModel/>
+    </Window.DataContext>
+    <!--Title="{Binding Mode, Mode=OneWay, StringFormat={}Komponenten - Baukasten: {0}, Converter={StaticResource GuiModusToStringConverter}}"-->
+    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled"
+                  PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="350" MaxWidth="900"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0" Width="Auto" Margin="0,0,4,0">
+                <StackPanel>
+                    <Expander Header="Komponenten" IsExpanded="True" Style="{StaticResource MainExpander}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20" MaxHeight="800"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20" MaxHeight="800"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <Rectangle Grid.Row="0" Height="24" Margin="5,2" Stroke="DimGray" RadiusX="3" RadiusY="3"
+                                       Visibility="{Binding ProjectIsOpen, Mode=OneWay, Converter={StaticResource BooleanToVisibiltyConverter}}">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF808080" Offset="0"/>
+                                        <GradientStop Color="#FFB8B8B8" Offset="0.70"/>
+                                        <GradientStop Color="#FFC2C2FD" Offset="0.85"/>
+                                        <GradientStop Color="#FFB8B8B8" Offset="0.90"/>
+                                        <GradientStop Color="#FFB8B8B8" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <TextBlock Grid.Row="0" Text="{Binding ProjectImporter.SummaryFileName, FallbackValue=Projektname}" 
+                                       VerticalAlignment="Center" HorizontalAlignment="Left" Margin="25,0,0,0"
+                                       Visibility="{Binding ProjectIsOpen, Mode=OneWay, Converter={StaticResource BooleanToVisibiltyConverter}}"/>
+
+                            <ToggleButton Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                                  Style="{StaticResource ToggleButtonRed}"
+                                  IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+COMPONENT_NEW}"
+                                  IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_NEW}"
+                                  Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                  CommandParameter="COMPONENT_NEW"
+                                  ToolTip="Komponente Definieren">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/a_add_component.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding ImportComponentFromDXFCmd, Mode=OneWay}"
+                                    ToolTip="Komponente aus anderen Projekt importieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_add_dxf.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding ImportComponentsFromDXFAddingCmd, Mode=OneWay}"
+                                    ToolTip="kompletten Projekt zum offenen Projekt hinzufügen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_add_dxf_full.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="89,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding DeleteSelectedComponentCmd, Mode=OneWay}"
+                                    ToolTip="ausgewählte Komponente Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="117,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding DeleteMarkedComponentsCmd, Mode=OneWay}"
+                                    ToolTip="markierte Komponenten Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove_marked.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="173,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding ImportAllComponentsFromDXFCmd, Mode=OneWay}" 
+                                    ToolTip="Komponenten Importieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/dxf_import.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="201,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding SaveAllComponentsCmd, Mode=OneWay}"
+                                    ToolTip="markierte Komponenten Speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="229,2,5,2"
+                                    Style="{StaticResource ReliefButtonOrange}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding OpenComponentProjectFromDXFCmd, Mode=OneWay}" 
+                                    ToolTip="Projekt öffnen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/dxf_import_multi.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="257,2,5,2"
+                                    Style="{StaticResource ReliefButtonOrange}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding SaveComponentProjectToDXFCmd, Mode=OneWay}" 
+                                    ToolTip="Projekt speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save_multi.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="285,2,5,2"
+                                    Style="{StaticResource ReliefButtonOrange}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding SaveComponentProjectAsToDXFCmd, Mode=OneWay}" 
+                                    ToolTip="Projekt speichern als">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save_multi_as.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="313,2,5,2"
+                                    Style="{StaticResource ReliefButtonOrange}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding CloseComponentProjectCmd, Mode=OneWay}" 
+                                    ToolTip="Projekt schliessen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/btn_CANCEL.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="341,2,5,2"
+                                    Style="{StaticResource ReliefButtonOrange}"
+                                    Visibility="{Binding UserRole, Mode=OneWay, Converter={StaticResource CompManagerTypeToVisibilityConverterGroup}, ConverterParameter=@}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding RepareComponentPojectCmd, Mode=OneWay}" 
+                                    ToolTip="admin: Projekt entsperren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_file_unlock.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="369,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding GotoProjectVersionCmd, Mode=OneWay}"
+                                    ToolTip="andere Version von SERVER holen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/dxf_import_GIT.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Border Grid.Row="1" Grid.RowSpan="2"  Height="15" Width="20" HorizontalAlignment="Left" Margin="379,0,0,-2" CornerRadius="5" Background="Navy"
+                                    IsHitTestVisible="False" Focusable="False" BorderBrush="White" BorderThickness="1"
+                                    Visibility="{Binding GITUpdateNecessary, Mode=OneWay, Converter={StaticResource BooleanToVisibiltyConverter}}">
+                                <TextBlock Text="{Binding GITNrStepsBehindNewest,Mode=OneWay}" Foreground="White" FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Blue" Opacity="0.75" ShadowDepth="3"/>
+                                </Border.Effect>
+                            </Border>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="397,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding SaveProjectToServerCmd, Mode=OneWay}"
+                                    ToolTip="Daten auf SERVER speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save_multi_Git.png"/>
+                                </Button.Content>
+                            </Button>
+                            <!--<Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="425,2,5,2"
+                                    Style="{StaticResource ReliefButtonOrange}"
+                                    Command="{Binding GetGitRepoStatusCmd, Mode=OneWay}">
+                                <Button.Content>
+                                    <TextBlock Text="git" FontFamily="Courier New" FontWeight="Bold" FontSize="10"/>
+                                </Button.Content>
+                            </Button>-->
+
+
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding ExpandAllComponentsCmd, Mode=OneWay}" 
+                                    ToolTip="Komponenten entfalten">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_expand.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding ExpandSelectedCompCmd, Mode=OneWay}" 
+                                    ToolTip="Ausgewählte Komponente entfalten">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_expand_one.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding CollapseAllComponentsCmd, Mode=OneWay}" 
+                                    ToolTip="Komponenten zusammenfalten">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_collapse.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="89,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding MarkComponentsAll, Mode=OneWay}"
+                                ToolTip="alle Komponenten markieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_mark_all.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="117,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding MarkSelectedCompWRefsCmd, Mode=OneWay}"
+                                ToolTip="Komponente mit allen Referenzen markieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_mark_w_refs.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="145,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding UnmarkComponentsAll, Mode=OneWay}"
+                                ToolTip="alle Markierungen entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_mark_none.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="201,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding DisplayComponentsAsGraphCmd, Mode=OneWay}" 
+                                ToolTip="Komponentenübersicht">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_VIZ.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="229,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding SelectComponentInGraphCmd, Mode=OneWay}"
+                                    ToolTip="Komponente in Graph auswählen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_VIZ_select.png"/>
+                                </Button.Content>
+                            </Button>
+                            
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="285,2,5,2"
+                                    Style="{StaticResource ReliefButtonStrong}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding StartGeometryViewerCmd, Mode=OneWay}"
+                                    ToolTip="Projekt im Geometrie Viewer Öffnen (MIT Feedback)">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/gv_Start.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="313,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding StartGeometryViewerWOUpdatesCmd, Mode=OneWay}"
+                                    ToolTip="Projekt im Geometrie Viewer Öffnen (OHNE Feedback)">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/gv_Start_oneSided.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="341,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    Command="{Binding SendComponentToGeomViewerEditCmd, Mode=OneWay}"
+                                    ToolTip="Komponenten-Geometrie bearbeiten">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_setGeom.png"/>
+                                </Button.Content>
+                                <Button.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource FalseValue}">
+                                        <Binding Path="Mode" Mode="OneWay" Converter="{StaticResource GuiModusToBooleanConverter}" ConverterParameter="NEUTRAL"/>
+                                        <Binding Path="CommFinishedSendingMessages" Mode="OneWay"/>
+                                    </MultiBinding>
+                                </Button.IsEnabled>
+                            </Button>
+                            
+                            <ToggleButton Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Left" Margin="369,2,5,2"
+                                          Style="{StaticResource ToggleButtonLight}"
+                                          IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                          IsChecked="{Binding SynchronizeSelectionWithGV, Mode=TwoWay}"
+                                          ToolTip="Auswahl synchronisieren">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/gv_SynchSelection.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>                            
+
+                            
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,145,2"
+                                    Style="{StaticResource ReliefButtonOrange}"                                   
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding CompPublishOKCmd, Mode=OneWay}"
+                                    ToolTip="Komponente publizieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_releaseOK.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,117,2"
+                                    Style="{StaticResource ReliefButtonOrange}"                                   
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding CompSupervizeOKCmd, Mode=OneWay}"
+                                    ToolTip="Komponente freigeben">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_supervizeOK.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,89,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding CopySelectedComponentCmd, Mode=OneWay}"
+                                    ToolTip="Komponente Kopieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_copy.png"/>
+                                </Button.Content>
+                            </Button>
+                            
+                            <Button Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,61,2"
+                                    Style="{StaticResource ReliefButton}"  
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding CompPerformAllCalculationChainsCmd, Mode=OneWay}"
+                                    ToolTip="Komponente neu berechnen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_update.png"/>
+                                </Button.Content>
+                            </Button>
+                            <ToggleButton Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,33,2"
+                                          Style="{StaticResource ToggleButtonRed}"
+                                          IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_PICK_SYMBOL}"
+                                          Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                          CommandParameter="COMPONENT_PICK_SYMBOL"
+                                          ToolTip="Komponente ein Symbol zuweisen">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/xcomp_getSymbol.png"/>
+                                </ToggleButton.Content>
+                                <ToggleButton.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource FalseValue}">
+                                        <Binding Path="Mode" Mode="OneWay" Converter="{StaticResource GuiModusToBooleanConverter}" ConverterParameter="NEUTRAL+COMPONENT_PICK_SYMBOL"/>
+                                        <Binding Path="SelectedComponent.IsLocked" Converter="{StaticResource InverseBooleanConverter}"/>
+                                    </MultiBinding>
+                                </ToggleButton.IsEnabled>
+                            </ToggleButton>
+                            <ToggleButton Grid.Row="1" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,5,2"
+                                          Style="{StaticResource ToggleButtonRed}"                                                     
+                                          IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_EDIT}"
+                                          Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                          CommandParameter="COMPONENT_EDIT"
+                                          ToolTip="Komponente Bearbeiten">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/xcomp_edit.png"/>
+                                </ToggleButton.Content>
+                                <ToggleButton.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource FalseValue}">
+                                        <Binding Path="Mode" Mode="OneWay" Converter="{StaticResource GuiModusToBooleanConverter}" ConverterParameter="NEUTRAL+COMPONENT_EDIT"/>
+                                        <Binding Path="SelectedComponent.IsLocked" Converter="{StaticResource InverseBooleanConverter}"/>
+                                    </MultiBinding>
+                                </ToggleButton.IsEnabled>
+                            </ToggleButton>
+
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,33,2"
+                                    Style="{StaticResource ReliefButton}"                                   
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding CompareComponentsCmd, Mode=OneWay}"
+                                    ToolTip="Komponenten Vergleichen...">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_compare.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding PropagateOneAddedParamToCopiesCmd, Mode=OneWay}"
+                                    ToolTip="Hinzugefügten Komponentenparameter fortpflanzen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_1param.png"/>
+                                </Button.Content>
+                            </Button>
+                            
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,89,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    ToolTip="Zuordnung von Komponenten zu Web-Services definieren"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding MapToWebServiceCmd, Mode=OneWay}">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_map_wsDisplay.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,117,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    ToolTip="Zuordnung von Komponenten zu Komponenten definieren"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding MapComp2CompCmd, Mode=OneWay}">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_map_Display.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="2" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,145,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    ToolTip="Die Zuordnungen von der ausgewählten Komponente berechnen"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding CalculateMappingForSelectedCmd, Mode=OneWay}">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_map_Calc.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="5,2">
+                                <TextBlock Text="Status" Margin="30,0,0,0" Width="60"  Foreground="DimGray"/>
+                                <TextBlock Text="Funktion" Width="335" Foreground="DimGray"/>
+                                <TextBlock Text="Name" Width="110" Foreground="DimGray"/>
+                                <TextBlock Text="Beschreibung" Width="100" Foreground="DimGray"/>
+                            </StackPanel>
+                            <cbwpfu:TreeViewExt Grid.Row="4"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0" Width="Auto" Height="Auto" MaxHeight="800"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+COMPONENT_PICK_COMPONENT+NETWORK_ELEM_PICK_COMP+COMP_COMPARER_PICK_COMP+COMP_TO_WS_MAPPER_PICK_COMP+COMP_TO_COMP_MAPPER_PICK_COMP}"
+                                            ItemsSource="{Binding ExistingComponents, Mode=OneWay, Converter={StaticResource TreeViewGroupingAccToParameterConverter}, ConverterParameter=CurrentSlot}"
+                                            SelectedItem_="{Binding SelectedComponent, Mode=TwoWay}"
+                                            ItemTemplateSelector="{StaticResource ComponentDataTemplateSelector}"
+                                            ItemContainerStyle="{StaticResource TreeItemForComponents}"
+                                            AlternationCount="2"
+                                            Grid.IsSharedSizeScope="True"
+                                            >
+                                <cbwpfu:TreeViewExt.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="0.95"/>
+                                        <GradientStop Color="#FFB0B0B0" Offset="0.98"/>
+                                        <GradientStop Color="DimGray" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </cbwpfu:TreeViewExt.Background>
+                                <TreeView.GroupStyle>
+                                    <GroupStyle ContainerStyle="{StaticResource CompGroupItem}"/>
+                                </TreeView.GroupStyle>
+                                <TreeView.Resources>
+                                    <Style TargetType="{x:Type TreeViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                </TreeView.Resources>
+
+                            </cbwpfu:TreeViewExt>
+                            <GridSplitter Grid.Row="5" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+
+                            <!-- # show / hide switches acc to role or category-->
+                            <cbui:CollectionViewByManager Grid.Row="6" Orientation="Horizontal" Height="26" Margin="5,0,85,2"
+                                                          Background="DimGray" Factory="{Binding COMPFactoryProp, Mode=OneWay}"/>
+                            <!-- switches for user-defined visibility -->
+                            <StackPanel Grid.Row="6" Orientation="Horizontal" Height="26" Width="80" Margin="5,0,5,2"
+                                        HorizontalAlignment="Right" Background="DimGray">
+                                <ToggleButton Style="{StaticResource ToggleButtonBWRound}" Width="26" Height="26" Margin="2,0,2,0"
+                                              ToolTip="Benutzerdefinierte Sichtbarkeit anwenden"
+                                              IsChecked="{Binding UserDefinedVisibilityON, Mode=TwoWay}" Cursor="Hand">
+                                    <ToggleButton.Content>
+                                        <Image Source="./Data/icons/btn_OK.png"/>
+                                    </ToggleButton.Content>
+                                </ToggleButton>
+                                <Button Style="{StaticResource ReliefButtonRound}" Width="22" Height="22" Margin="0,0,2,0"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding UserSwitchComponentsAll, Mode=OneWay}"
+                                        CommandParameter="{StaticResource TrueValue}"
+                                        ToolTip="Alle Komponenten einschalten" Cursor="Hand">
+                                    <Button.Content>
+                                        <Image Source="./Data/icons/xcomp_allON.png" Height="24" Width="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Style="{StaticResource ReliefButtonRound}" Width="22" Height="22" Margin="0,0,2,0"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding UserSwitchComponentsAll, Mode=OneWay}"
+                                        CommandParameter="{StaticResource FalseValue}"
+                                        ToolTip="Alle Komponenten ausschalten" Cursor="Hand">
+                                    <Button.Content>
+                                        <Image Source="./Data/icons/xcomp_allOFF.png" Height="24" Width="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Grid.Row="7" Orientation="Horizontal" Height="30" Width="Auto" Margin="5,-2,50,2" HorizontalAlignment="Left"
+                                        Background="DimGray">
+                                <ToggleButton Style="{StaticResource ToggleButtonBWRound}" Width="26" Height="26" Margin="2,4,0,1"
+                                              ToolTip="Nur Inputparameter anzeigen"
+                                              IsChecked="{Binding ParamVisibilityInputOnlyON, Mode=TwoWay}" Cursor="Hand">
+                                    <ToggleButton.Content>
+                                        <Image Source="./Data/icons/xcomp_allP_InputOnly.png"/>
+                                    </ToggleButton.Content>
+                                </ToggleButton>
+                                <ToggleButton Style="{StaticResource ToggleButtonBWRound}" Width="26" Height="26" Margin="2,4,2,1"
+                                              ToolTip="Nur Parameter anzeigen, deren Wert in einem Netzwerks berechnet wird"
+                                              IsChecked="{Binding ParamVisibilityNWOnlyON, Mode=TwoWay}" Cursor="Hand">
+                                    <ToggleButton.Content>
+                                        <Image Source="./Data/icons/xcomp_allP_NWOnly.png"/>
+                                    </ToggleButton.Content>
+                                </ToggleButton>
+                            </StackPanel>
+                            <StackPanel Grid.Row="7" Orientation="Horizontal" Height="28" Width="Auto" Margin="5,0,5,2" HorizontalAlignment="Right">
+                                <TextBox x:Name="txt_search_text"
+                                     Margin="5,2,2,2" Height="24" Width="150" HorizontalAlignment="Right"
+                                     Style="{StaticResource ValueInput}" VerticalAlignment="Center"
+                                     IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"/>
+                                <Button Margin="0,0,28,0" Width="26" Height="26" HorizontalAlignment="Right"
+                                        Style="{StaticResource ReliefButton}"
+                                        IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                        Command="{Binding TextSearchComponentFindCmd, Mode=OneWay}"
+                                        CommandParameter="{Binding ElementName=txt_search_text, Path=Text, Mode=OneWay}"
+                                        ToolTip="Suchen">
+                                    <Button.Content>
+                                        <Image Source="./Data/icons/a_find.png"/>
+                                    </Button.Content>
+                                </Button>
+
+                                <Button Height="26" Width="26" Margin="0,0,2,0"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding ImportComponentVisSettingsCmd, Mode=OneWay}"
+                                    ToolTip="Sichtbarkeitseinstellungen laden">
+                                    <Button.Content>
+                                        <Image Source="./Data/icons/vis_import.png"/>
+                                    </Button.Content>
+                                </Button>
+                                <Button Height="26" Width="26"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding SaveAllComponentVisSettingsCmd, Mode=OneWay}"
+                                    ToolTip="Sichtbarkeitseinstellungen speichern">
+                                    <Button.Content>
+                                        <Image Source="./Data/icons/a_save_visibility.png"/>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
+
+                            <Separator Grid.Row="8" Margin="5,2,5,10"/>
+                            <!-- Component Flow Networks -->
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding CreateNewFlNetworkCmd, Mode=OneWay}"
+                                    ToolTip="Komponenten-Netzwerk Definieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_add_network.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding DeleteMarkedNetworksCmd, Mode=OneWay}"
+                                    ToolTip="markierte Netzwerke Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove_marked.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Left" Margin="89,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding MarkNetworksAllCmd, Mode=OneWay}"
+                                ToolTip="alle Komponenten markieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_mark_all.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Left" Margin="117,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding UnmarkNetworksAllCmd, Mode=OneWay}"
+                                ToolTip="alle Markierungen entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_mark_none.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                Command="{Binding DisplayNetworksAsGraphCmd, Mode=OneWay}"
+                                ToolTip="Komponenten-Netzwerk als Graph editieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/nw_edit.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,33,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding CopySelectedNetworkCmd, Mode=OneWay}"
+                                    CommandParameter="{StaticResource FalseValue}"
+                                    ToolTip="ausgewähltes Netzwerk Kopieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/nw_copy.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="9" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,61,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding CopySelectedNetworkCmd, Mode=OneWay}"
+                                    CommandParameter="{StaticResource TrueValue}"
+                                    ToolTip="ausgewähltes Netzwerk Kopieren und zur Spitze der Hierarchie verschieben">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/nw_copy_top.png"/>
+                                </Button.Content>
+                            </Button>
+                            <ComboBox Grid.Row="9" Height="24" Width="50" HorizontalAlignment="Right" Margin="5,2,89,2"                                 
+                                      ItemsSource="{Binding ExistingManagersTypes, Mode=OneWay}"                                       
+                                      FontFamily="/ComponentBuilder;component/Data/fonts/#managers" FontSize="18"
+                                      SelectedItem="{Binding SelectedNWOwnerLetter,Mode=TwoWay}">
+                                <ComboBox.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource FalseValue}">
+                                        <Binding Path="Mode" Mode="OneWay" Converter="{StaticResource GuiModusToBooleanConverter}" ConverterParameter="NEUTRAL"/>
+                                        <Binding Path="SelectedNetwork.IsLocked" Converter="{StaticResource InverseBooleanConverter}"/>
+                                    </MultiBinding>
+                                </ComboBox.IsEnabled>
+                            </ComboBox>
+
+                            <StackPanel Grid.Row="10" Orientation="Horizontal" Margin="5,2">
+                                <TextBlock Text="Status" Margin="30,0,0,0" Width="145"  Foreground="DimGray"/>
+                                <TextBlock Text="Name" Width="115" Foreground="DimGray"/>
+                                <TextBlock Text="Komponente" Width="120" Foreground="DimGray"/>
+                                <TextBlock Text="Details" Width="120" Foreground="DimGray"/>
+                            </StackPanel>
+                            <cbwpfu:TreeViewExt Grid.Row="11"
+                                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0" Width="Auto" Height="Auto" MaxHeight="800"
+                                            ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                            ItemsSource="{Binding ExistingNetworks, Mode=OneWay}"
+                                            SelectedItem_="{Binding SelectedNetwork, Mode=TwoWay}"                     
+                                            ItemTemplateSelector="{StaticResource FlowNetworkDataTemplateSelector}"
+                                            ItemContainerStyle="{StaticResource TreeItemForNetworks}"
+                                            AlternationCount="2"
+                                            Grid.IsSharedSizeScope="True">
+                                <cbwpfu:TreeViewExt.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFd9d9d9" Offset="0"/>
+                                        <GradientStop Color="#FFf5f5f5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </cbwpfu:TreeViewExt.Background>
+                                <TreeView.Resources>
+                                    <Style TargetType="{x:Type TreeViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                </TreeView.Resources>
+                            </cbwpfu:TreeViewExt>
+                            <GridSplitter Grid.Row="12" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Gleichungen" IsExpanded="True" Style="{StaticResource MainExpander}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                                  Style="{StaticResource ToggleButtonRed}"
+                                  IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=CALC_NEW}"
+                                  Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                  CommandParameter="CALC_NEW"
+                                  ToolTip="Gleichung Definieren">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/a_add_calc.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            Command="{Binding DeleteSelectedCalculationCmd, Mode=OneWay}"
+                            ToolTip="Gleichung Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            Command="{Binding PerformSelectedCalculationCmd, Mode=OneWay}"
+                            ToolTip="Gleichung Berechnen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/calc_calc.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,33,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                            Command="{Binding CopySelectedCalculationCmd, Mode=OneWay}"
+                            ToolTip="Gleichung Kopieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/calc_copy.png"/>
+                                </Button.Content>
+                            </Button>
+                            <ToggleButton Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,5,2"
+                                  Style="{StaticResource ToggleButtonRed}"
+                                  IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+CALC_EDIT}"                          
+                                  IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=CALC_EDIT}"
+                                  Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                  CommandParameter="CALC_EDIT"
+                                  ToolTip="Gleichung Bearbeiten">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/calc_edit.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+COMPONENT_PICK_CALC}"                                                           
+                              ItemsSource="{Binding ExistingCalcs, Mode=OneWay}"
+                              SelectedItem="{Binding SelectedCalculation, Mode=TwoWay}"
+                              ItemTemplate="{StaticResource CalcInList}"
+                              >
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Parameter" IsExpanded="True" Style="{StaticResource MainExpander}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                                  Style="{StaticResource ToggleButtonRed}"
+                                  IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+PARAMETER_NEW}"                          
+                                  IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=PARAMETER_NEW}"
+                                  Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                  CommandParameter="PARAMETER_NEW"
+                                  ToolTip="Parameter Definieren">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/a_add_parameter.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding DeleteSelectedParameterCmd, Mode=OneWay}"
+                                    ToolTip="Parameter Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding DeleteAllParametersCmd, Mode=OneWay}"
+                                    ToolTip="Alle Parameter Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove_all.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="89,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding SaveAllParametersCmd, Mode=OneWay}"
+                                    ToolTip="Parameter Speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="117,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding ImportParametersFromDXFCmd, Mode=OneWay}" 
+                                    ToolTip="Parameter Importieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/dxf_import.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="145,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                                    Command="{Binding ShowReservedParamNamesCmd, Mode=OneWay}" 
+                                    ToolTip="Reservierte Parameternamen anzeigen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/param_reserved.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,33,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                            Command="{Binding CopySelectedParameterCmd, Mode=OneWay}"
+                            ToolTip="Parameter Kopieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/param_copy.png"/>
+                                </Button.Content>
+                            </Button>
+                            <ToggleButton Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,5,2"
+                                  Style="{StaticResource ToggleButtonRed}"                                                      
+                                  IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=PARAMETER_EDIT}"
+                                  Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                  CommandParameter="PARAMETER_EDIT"
+                                  ToolTip="Parameter Bearbeiten">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/param_edit.png"/>
+                                </ToggleButton.Content>
+                                <ToggleButton.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource FalseValue}">
+                                        <Binding Path="Mode" Mode="OneWay" Converter="{StaticResource GuiModusToBooleanConverter}" ConverterParameter="NEUTRAL+PARAMETER_EDIT"/>
+                                        <Binding Path="SelectedParameter" Converter="{StaticResource ObjectToIsNullAsBoolenConverter}"/>
+                                    </MultiBinding>
+                                </ToggleButton.IsEnabled>
+                            </ToggleButton>
+
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                              ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+CALC_PICK_PARAMETER_IN+CALC_PICK_PARAMETER_OUT+COMPONENT_PICK_PARAMETER}"                                                           
+                              ItemsSource="{Binding ExistingParameters, Mode=OneWay}"
+                              SelectedItem="{Binding SelectedParameter, Mode=TwoWay}"
+                              ItemTemplate="{StaticResource ParamInList}">
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Kennfelder" IsExpanded="True" Style="{StaticResource MainExpander}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding DefineNewValueCmd, Mode=OneWay}"
+                            ToolTip="Wertefeld Definieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_add_table.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding DefineNewFunctCmd, Mode=OneWay}"
+                            ToolTip="Funktionsfeld Definieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_add_funct.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding DeleteSelectedValueCmd, Mode=OneWay}"
+                            ToolTip="Auswahl Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="89,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding DeleteAllValuesCmd, Mode=OneWay}"
+                            ToolTip="alle Kennfelder Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove_all.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="117,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding SaveAllValuesCmd, Mode=OneWay}"
+                            ToolTip="Kennfelder Speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="145,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding ImportValuesFromDXFCmd, Mode=OneWay}"
+                            ToolTip="Kennfelder Importieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/dxf_import.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="173,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding ImportEXCELValueTableCmd, Mode=OneWay}"
+                            ToolTip="Excel Tabelle Importieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/excel_import.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="201,2,5,2"
+                            Style="{StaticResource ReliefButtonOrange}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding ImportEXCELValueTableNamedRowsCmd, Mode=OneWay}"
+                            ToolTip="Excel Tabelle mit benannten Reihen Importieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/excel_import.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,61,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding ShowSelectedValueCmd, Mode=OneWay}"
+                            ToolTip="Kennfeld Eigenschaften">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/mv_info.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,33,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding CopySelectedValueCmd, Mode=OneWay}"
+                            ToolTip="Kennfeld Kopieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/mv_copy.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding EditSelectedValueCmd, Mode=OneWay}"
+                            ToolTip="Kennfeld Bearbeiten">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/mv_edit.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                        ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                        IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+PARAMETER_PICK_VALUE_FIELD}"                            
+                                        ItemsSource="{Binding ExistingValues, Mode=OneWay, Converter={StaticResource ListViewGroupingAccToMulitValueTypeConverter}}"
+                                        ItemTemplate="{StaticResource MValueInList}"
+                                        SelectedItem="{Binding SelectedValue, Mode=TwoWay}">
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                                <ListView.GroupStyle>
+                                    <GroupStyle ContainerStyle="{StaticResource CompGroupItem}"/>
+                                </ListView.GroupStyle>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Symbole" IsExpanded="True" Style="{StaticResource MainExpander}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding ImportImageFromPNGCmd, Mode=OneWay}"
+                            ToolTip="Symbol aus PNG File Laden">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_add_png.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                            Command="{Binding DeleteSelectedImageCmd, Mode=OneWay}"
+                            ToolTip="Symbol Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding SaveImagesToBinaryFileCmd, Mode=OneWay}"
+                            ToolTip="Symbole Speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="89,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                            Command="{Binding ImportImagesFromBinaryFileCmd, Mode=OneWay}"
+                            ToolTip="Symbole Laden">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/binary_import.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Right" Margin="5,2"
+                            Style="{StaticResource ReliefButton}"
+                            IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"                          
+                            Command="{Binding ApplyImagesToComponentsCmd, Mode=OneWay}"
+                            ToolTip="Symbole anwenden">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/btn_OK.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+COMPONENT_PICK_SYMBOL}"                            
+                                ItemsSource="{Binding ExistingSymbols, Mode=OneWay}"
+                                ItemTemplate="{StaticResource ImageRecordInList}"
+                                SelectedItem="{Binding SelectedSymbol, Mode=TwoWay}">
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+
+                </StackPanel>
+            </ScrollViewer>
+            <GridSplitter Grid.Column="0" Width="4" BorderBrush="Black" BorderThickness="1"/>
+            <ScrollViewer Grid.Column="1" Width="Auto">
+                <StackPanel >
+                    <Expander Header="Komponente: Eigenschaften" IsExpanded="True" Style="{StaticResource SpecializedExpander}">
+                        <Expander.IsEnabled>
+                            <MultiBinding Converter="{StaticResource BoolAndConverter}" ConverterParameter="{StaticResource FalseValue}">
+                                <Binding Path="Mode" Mode="OneWay" Converter="{StaticResource GuiModusToBooleanConverter}" ConverterParameter="COMPONENT_NEW+COMPONENT_EDIT+COMPONENT_PICK_PARAMETER+COMPONENT_EDIT_PARAMETER+COMPONENT_PICK_CALC+COMPONENT_EDIT_CALC+COMPONENT_CALC_PICK_PARAMETER_IN+COMPONENT_CALC_PICK_PARAMETER_OUT+COMPONENT_PICK_COMPONENT"/>
+                                <Binding Path="SelectedComponent.HideDetails" Mode="OneWay" Converter="{StaticResource InverseBooleanConverter}"/>
+                            </MultiBinding>
+                        </Expander.IsEnabled>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="70" MinWidth="70" MaxWidth="70"/>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <!-- 00 : Function Slots -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 01 : Access Profile -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 02 : Access Profile State -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 03 : Name -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 04 : Description -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 05 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 06 : Parameter -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 07 : Category from Parameters -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 08 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 09 : Gleichungen -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 10 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 11 : SubComponents, Referenced Components -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 12 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 13 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 14 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 15 : -->
+                                <RowDefinition Height="Auto"/>
+                                <!-- 16 : -->
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Funktionen:" Foreground="#FF0000ff" VerticalAlignment="Top"/>
+                            <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="24" Margin="5,2"
+                                  ItemTemplate="{StaticResource SelectableEntry}"
+                                  ItemsSource="{Binding ExistingFunctionSlots, Mode=OneWay}"
+                                  IsEnabled="{Binding UserHasWritingAccessForSelectedComp, Mode=OneWay}"/>
+
+                            <Button Grid.Row="0" Grid.Column="3" Width="26" Height="26" HorizontalAlignment="Left" Margin="5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding UserHasWritingAccessForSelectedComp, Mode=OneWay}"
+                                    Command="{Binding CompAssignSlotsCmd, Mode=OneWay}"
+                                    ToolTip="Funktionsauswahl bestätigen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/btn_OK.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Berechtigungen:" Foreground="#FF444444" VerticalAlignment="Top"/>
+                            <cbui:ComponentAccessPicker Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" UseLayoutRounding="True"
+                                                    Width="338" Height="130" Margin="5,2"
+                                                    LoggedUser="{Binding UserRole, Mode=OneWay}"
+                                                    ComponentToDisplay="{Binding SelectedComponent, Mode=OneWay}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Status:" Foreground="#FF444444"/>
+                            <Ellipse Grid.Row="2" Grid.Column="1" Height="26" Width="26" HorizontalAlignment="Left" Margin="15,0,5,0"
+                                 Stroke="Black" Fill="White">
+                                <Ellipse.Effect>
+                                    <DropShadowEffect BlurRadius="3" ShadowDepth="2" Color="{Binding SelectedComponent.AccessLocal.ProfileState, Mode=OneWay, Converter={StaticResource ComponentValidityToColorConverter}}"/>
+                                </Ellipse.Effect>
+                            </Ellipse>
+                            <Ellipse Grid.Row="2" Grid.Column="1" Height="20" Width="20" HorizontalAlignment="Left" Margin="18,0,7,0"
+                                 Stroke="Black">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="White" Offset="0"/>
+                                        <GradientStop Color="White" Offset="0.1"/>
+                                        <GradientStop Color="{Binding SelectedComponent.AccessLocal.ProfileState, Mode=OneWay, Converter={StaticResource ComponentValidityToColorConverter}}" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Height="20" HorizontalAlignment="Left" Margin="0,4,5,2"
+                                   Text="{Binding SelectedComponent.AccessLocal.ProfileState, Mode=OneWay, Converter={StaticResource ComponentValidityToDescrConverter}}">
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{Binding SelectedComponent.AccessLocal.ProfileState, Mode=OneWay, Converter={StaticResource ComponentValidityToColorConverter}}"/>
+                                </TextBlock.Foreground>
+                            </TextBlock>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Name:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Height="20" Width="355" 
+                             HorizontalAlignment="Left" Margin="5,2" TextAlignment="Left"
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedComponent.Name, Mode=TwoWay}"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Beschreibung:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Height="20" Width="355" 
+                             HorizontalAlignment="Left" Margin="5,2" TextAlignment="Left"
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedComponent.Description, Mode=TwoWay}"/>
+
+                            <Separator Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Margin="5,4"/>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Parameter:" Foreground="#FF444444"/>
+                            <ToggleButton Grid.Row="6" Grid.Column="1" Width="26" Height="26" HorizontalAlignment="Left" Margin="5,0,7,0"
+                                          Style="{StaticResource ToggleButtonRed}"
+                                          IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_NEW+COMPONENT_EDIT+COMPONENT_PICK_PARAMETER}"
+                                          Command="{Binding CompParameterSelectionCmd, Mode=OneWay}"
+                                          IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_PICK_PARAMETER}"
+                                          ToolTip="Parameter hinzufügen">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/xcomp_getP.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                            <TextBlock Grid.Row="6" Grid.Column="2" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Anzahl:" Foreground="#FF444444"/>
+                            <TextBlock Grid.Row="6" Grid.Column="3" Height="20" HorizontalAlignment="Left" Margin="5,4,0,2"
+                               Text="{Binding SelectedComponent.NrParameters, Mode=OneWay}" Foreground="#FF444444" FontWeight="Bold"/>
+                            <ToggleButton Grid.Row="6" Grid.Column="3" HorizontalAlignment="Right" Margin="5,2" Height="26" Width="26"
+                                          Style="{StaticResource ToggleButtonRed}"
+                                          IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_NEW+COMPONENT_EDIT+COMPONENT_EDIT_PARAMETER}"
+                                          IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_EDIT_PARAMETER}"
+                                          Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                          CommandParameter="COMPONENT_EDIT_PARAMETER"
+                                          ToolTip="Komponentenparameter bearbeiten">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/param_edit_submode.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+
+                            <TextBlock Grid.Row="7" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Gesamtkategorie:" Foreground="#FF444444"/>
+                            <cbui:ComponentCategoryInfo Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" UseLayoutRounding="True"
+                                                    CategoryToShow="{Binding SelectedComponent.Category, Mode=OneWay}"/>
+
+                            <Separator Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="4" Margin="5,4"/>
+                            <TextBlock Grid.Row="9" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Gleichungen:" Foreground="#FF444444"/>
+                            <ToggleButton Grid.Row="9" Grid.Column="1" Width="26" Height="26" HorizontalAlignment="Left" Margin="5,0,7,0"
+                                          Style="{StaticResource ToggleButtonRed}"                             
+                                          IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_NEW+COMPONENT_EDIT+COMPONENT_PICK_CALC}"
+                                          IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_PICK_CALC}"
+                                          Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                          CommandParameter="COMPONENT_PICK_CALC"
+                                          ToolTip="Komponentengleichung erstellen">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/a_add_calc.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+
+                            <ToggleButton Grid.Row="9" Grid.Column="3" HorizontalAlignment="Right" Margin="5,2" Height="26" Width="26"
+                                          Style="{StaticResource ToggleButtonRed}"
+                                          IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_NEW+COMPONENT_EDIT+COMPONENT_EDIT_CALC}"
+                                          IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_EDIT_CALC}"
+                                          Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                          CommandParameter="COMPONENT_EDIT_CALC"
+                                          ToolTip="Komponentengleichungen bearbeiten">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/calc_edit.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+
+                            <Separator Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="4" Margin="5,4"/>
+                            <TextBlock Grid.Row="11" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Komponenten:" Foreground="#FF444444" VerticalAlignment="Top"/>
+                            <cbui:ComponentCompPicker Grid.Row="11" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0"
+                                                      Width="360" Height="25" HorizontalAlignment="Left"
+                                                      IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_NEW+COMPONENT_EDIT+COMPONENT_PICK_COMPONENT}"
+                                                      ComponentUnderConstr="{Binding SelectedComponent, Mode=OneWay}"
+                                                      PickCompCOPYCmd="{Binding CompSubcompSelectionCmd, Mode=OneWay}"
+                                                      PickCompREFCmd="{Binding CompRefCompSelectionCmd, Mode=OneWay}"
+                                                      SelectCompREFCmd="{Binding CompRefCompHighlightCmd, Mode=OneWay}"
+                                                      IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_PICK_COMPONENT}"
+                                                      UserRole="{Binding UserRole, Mode=OneWay}"/>
+
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Gleichung: Eigenschaften" IsExpanded="True" Style="{StaticResource SpecializedExpander}"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=CALC_NEW+CALC_EDIT+CALC_PICK_PARAMETER_IN+CALC_PICK_PARAMETER_OUT}"
+                              Visibility="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModeToVisConverterGroup}, ConverterParameter=CALC_NEW+CALC_EDIT+CALC_PICK_PARAMETER_IN+CALC_PICK_PARAMETER_OUT}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="70" MinWidth="70" MaxWidth="70"/>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Name:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Height="20" Width="355" 
+                             HorizontalAlignment="Left" Margin="5,2" TextAlignment="Left"
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="Gleichung" x:Name="txt_gl_name"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                            Text="Ausdruck:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Height="20" Width="355" 
+                             HorizontalAlignment="Left" Margin="5,2" TextAlignment="Left"
+                             Style="{StaticResource ValueInput}"  Foreground="Blue"
+                             Text="(x + y)*2 + Pow(z, 4)" x:Name="txt_gl_expression"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                                   VerticalAlignment="Top" Text="Parameter:" Foreground="#FF444444"/>
+                            <cbui:CalculationParamPicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
+                                   Margin="5,2" HorizontalAlignment="Left" Width="350"
+                                   CalcName="{Binding ElementName=txt_gl_name, Path=Text, Mode=TwoWay}"
+                                   ExpressionString="{Binding ElementName=txt_gl_expression, Path=Text, Mode=TwoWay}"
+                                   PickInputParamCmd="{Binding InputParamSelectionCmd, Mode=OneWay}"
+                                   PickOutputParamCmd="{Binding OutputParamSelectionCmd, Mode=OneWay}"
+                                   IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=CALC_PICK_PARAMETER_IN+CALC_PICK_PARAMETER_OUT}"
+                                   CalcUnderConstr="{Binding SelectedCalculation, Mode=OneWay}"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Komponentengleichung: Eigenschaften" IsExpanded="True" Style="{StaticResource SpecializedExpander}"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_PICK_CALC+COMPONENT_EDIT_CALC+COMPONENT_CALC_PICK_PARAMETER_IN+COMPONENT_CALC_PICK_PARAMETER_OUT}"
+                              Visibility="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModeToVisConverterGroup}, ConverterParameter=COMPONENT_PICK_CALC+COMPONENT_EDIT_CALC+COMPONENT_CALC_PICK_PARAMETER_IN+COMPONENT_CALC_PICK_PARAMETER_OUT}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="70" MinWidth="70" MaxWidth="70"/>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Name:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Height="20" Width="355" 
+                             HorizontalAlignment="Left" Margin="5,2" TextAlignment="Left"
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="Gleichung" x:Name="txt_comp_gl_name"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                            Text="Ausdruck:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Height="20" Width="355" 
+                             HorizontalAlignment="Left" Margin="5,2" TextAlignment="Left"
+                             Style="{StaticResource ValueInput}"  Foreground="Blue"
+                             Text="(x + y)*2 + Pow(z, 4)" x:Name="txt_comp_gl_expression"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                                   VerticalAlignment="Top" Text="Parameter:" Foreground="#FF444444"/>
+                            <cbui:CalculationParamPicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
+                                   Margin="5,2" HorizontalAlignment="Left" Width="350"
+                                   CalcName="{Binding ElementName=txt_comp_gl_name, Path=Text, Mode=TwoWay}"
+                                   ExpressionString="{Binding ElementName=txt_comp_gl_expression, Path=Text, Mode=TwoWay}"
+                                   PickInputParamCmd="{Binding InputParamSelection_CalcInComp_Cmd, Mode=OneWay}"
+                                   PickOutputParamCmd="{Binding OutputParamSelection_CalcInComp_Cmd, Mode=OneWay}"
+                                   IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_CALC_PICK_PARAMETER_IN+COMPONENT_CALC_PICK_PARAMETER_OUT}"
+                                   CalcUnderConstr="{Binding SelectedCompCalculation, Mode=OneWay}"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Parameter: Eigenschaften" IsExpanded="True" Style="{StaticResource SpecializedExpander}" Width="470"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=PARAMETER_NEW+PARAMETER_EDIT+PARAMETER_PICK_VALUE_FIELD+COMPONENT_EDIT_PARAMETER}"
+                              Visibility="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModeToVisConverterGroup}, ConverterParameter=PARAMETER_NEW+PARAMETER_EDIT+PARAMETER_PICK_VALUE_FIELD+COMPONENT_EDIT_PARAMETER}">
+                        <Expander.Tag>
+                            <MultiBinding Converter="{StaticResource ObjectCollectionToParameterConverter}" ConverterParameter="PARAMETER_NEW+PARAMETER_EDIT+COMPONENT_EDIT_PARAMETER+COMPONENT_EDIT">
+                                <Binding Path="SelectedParameterDummy" Mode="OneWay"/>
+                                <Binding ElementName="txt_Category" Path="Tag" Mode="OneWay"/>
+                                <Binding ElementName="txt_InFlo" Path="Text" Mode="OneWay"/>
+                                <Binding ElementName="tb_Name" Path="Text" Mode="OneWay"/>
+                                <Binding ElementName="tb_Unit" Path="Text" Mode="OneWay"/>
+                                <Binding ElementName="tb_ValueMin" Path="Text" Mode="OneWay"/>
+                                <Binding ElementName="tb_ValueMax" Path="Text" Mode="OneWay"/>
+                                <Binding ElementName="tb_ValueCurrent" Path="Text" Mode="OneWay"/>
+                                <Binding ElementName="tb_TValue" Path="Text" Mode="OneWay"/>
+                                <Binding Path="SelectedValue" Mode="OneWay"/>
+                                <Binding Path="Mode" Mode="OneWay"/>
+                            </MultiBinding>
+                        </Expander.Tag>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="70" MinWidth="70" MaxWidth="70"/>
+                                <ColumnDefinition Width="100" MinWidth="100" MaxWidth="100"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Kategorie:" Foreground="#FF444444" x:Name="txt_Category">
+                                <TextBlock.Tag>
+                                    <MultiBinding Converter="{StaticResource LetterCollectionToCategoryConverter}" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding ElementName="txt_b" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_c" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_d" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_e" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_f" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_g" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_h" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_i" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_j" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_k" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_l" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_m" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_n" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_o" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_p" Path="Text" Mode="OneWay"/>
+                                        <Binding ElementName="txt_q" Path="Text" Mode="OneWay"/>
+                                    </MultiBinding>
+                                </TextBlock.Tag>
+                            </TextBlock>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="5,0" Orientation="Horizontal">
+                                <StackPanel.Effect>
+                                    <DropShadowEffect BlurRadius="3" Opacity="0.5" ShadowDepth="3" Color="#FF551700"/>
+                                </StackPanel.Effect>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_b"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=0, FallbackValue=b}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_c"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=1, FallbackValue=c}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_d"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=2, FallbackValue=d}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_e"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=3, FallbackValue=e}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_f"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=4, FallbackValue=f}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_g"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=5, FallbackValue=g}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_h"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=6, FallbackValue=h}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_i"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=7, FallbackValue=i}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_j"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=8, FallbackValue=j}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_k"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=9, FallbackValue=k}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_l"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=10, FallbackValue=l}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_m"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=11, FallbackValue=m}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_n"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=12, FallbackValue=n}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_o"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=13, FallbackValue=o}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_p"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=14, FallbackValue=p}"/>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                                   MouseUp="TextBlock_category_MouseUp" x:Name="txt_q"
+                                                   TextChangedEventHandler="TextBlock_category_AppearanceAccToContent"
+                                                   TextCopy="{Binding SelectedParameterDummy.Category, Mode=OneWay, Converter={StaticResource CategoryToLetterConverter}, ConverterParameter=15, FallbackValue=q}"/>
+                            </StackPanel>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Wertausbreitung:" Foreground="#FF444444" x:Name="txt_Propagation"/>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1" Margin="5,0" Orientation="Horizontal">
+                                <StackPanel.Effect>
+                                    <DropShadowEffect BlurRadius="3" Opacity="0.5" ShadowDepth="3" Color="#FF551700"/>
+                                </StackPanel.Effect>
+                                <cbui:TextBlockDoubleText Width="22" Height="26" Padding="2,2,1,1" Style="{StaticResource CategoryLabel}"
+                                   FontFamily="/ComponentBuilder;component/Data/fonts/#categories" FontSize="20"
+                                   ToolTip="In- und Output"
+                                   MouseUp="TextBlock_info_flow_MouseUp" x:Name="txt_InFlo"
+                                   TextCopy="{Binding SelectedParameterDummy.Propagation, Mode=OneWay, Converter={StaticResource InfoFlowToLetterConverter}, FallbackValue=@}"/>
+                            </StackPanel>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Name:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Height="20" Width="160" HorizontalAlignment="Center" Margin="5,2" 
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedParameterDummy.Name, Mode=TwoWay, Converter={StaticResource StringToStringWoSpacesConverter}}"
+                             x:Name="tb_Name"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Text:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Height="20" Width="160" HorizontalAlignment="Center" Margin="5,2" 
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedParameterDummy.TextValue, Mode=TwoWay}"
+                             x:Name="tb_TValue"/>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Einheit:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Height="20" Width="160" HorizontalAlignment="Center" Margin="5,2" 
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedParameterDummy.Unit, Mode=OneWay}" 
+                             x:Name="tb_Unit"/>
+
+                            <TextBlock Grid.Row="5" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Wert:" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="5" Grid.Column="1" Height="20" Width="60" HorizontalAlignment="Center" Margin="5,2" 
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedParameterDummy.ValueMin, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=F2}"
+                                    x:Name="tb_ValueMin"/>
+                            <TextBlock Grid.Row="5" Grid.Column="2" Height="20" HorizontalAlignment="Left" Margin="2,4,5,2"
+                               Text="&#8804;" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="5" Grid.Column="2" Height="20" Width="60"  HorizontalAlignment="Center" Margin="5,2" 
+                                    Style="{StaticResource ValueInput}"  Foreground="Black"
+                                    Text="{Binding SelectedParameterDummy.ValueCurrent, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=F4}"
+                             x:Name="tb_ValueCurrent">
+                                <TextBox.Effect>
+                                    <DropShadowEffect BlurRadius="3" Opacity="1" ShadowDepth="3" Color="{Binding SelectedParameterDummy.IsWithinLimits, Mode=OneWay, Converter={StaticResource BoolToWinMediaColorWOpacityConverter}}"/>
+                                </TextBox.Effect>
+                            </TextBox>
+                            <TextBlock Grid.Row="5" Grid.Column="2" Height="20" HorizontalAlignment="Right" Margin="2,4,5,2"
+                               Text="&#8804;" Foreground="#FF444444"/>
+                            <TextBox Grid.Row="5" Grid.Column="3" Height="20" Width="60"  HorizontalAlignment="Left" Margin="5,2" 
+                             Style="{StaticResource ValueInput}"  Foreground="Black"
+                             Text="{Binding SelectedParameterDummy.ValueMax, Mode=OneWay, Converter={StaticResource DoubleToStringConverter}, ConverterParameter=F2}"
+                             x:Name="tb_ValueMax"/>
+
+                            <TextBlock Grid.Row="6" Grid.Column="0" Height="20" HorizontalAlignment="Right" Margin="0,4,5,2"
+                               Text="Kennfeld:" Foreground="#FF444444"/>
+                            <ToggleButton Grid.Row="6" Grid.Column="1" Height="26" Width="26" 
+                                        HorizontalAlignment="Left" Margin="5,2" Style="{StaticResource ToggleButtonRed}"
+                                        IsChecked="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=PARAMETER_PICK_VALUE_FIELD}"
+                                        Command="{Binding SwitchGuiModeCmd, Mode=OneWay}"
+                                        CommandParameter="PARAMETER_PICK_VALUE_FIELD"
+                                        ToolTip="Kennfeld aus Liste Kopieren">
+                                <ToggleButton.Content>
+                                    <Image Source="./Data/icons/mv_copy.png"/>
+                                </ToggleButton.Content>
+                            </ToggleButton>
+                            <Button Grid.Row="6" Grid.Column="1" Height="26" Width="26" 
+                                        HorizontalAlignment="Left" Margin="33,2,5,2" Style="{StaticResource ReliefButton}"
+                                        Command="{Binding GeneratePointerParamsForParamCmd, Mode=OneWay}"                                        
+                                        ToolTip="Zeiger-Parameter generieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/mv_copy_wP.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2" Height="26" Width="26"
+                                    HorizontalAlignment="Left" Margin="61,2,5,2" Style="{StaticResource ReliefButton}"
+                                    Command="{Binding DecoupleFromFalueFieldCmd, Mode=OneWay}"
+                                    ToolTip="Vom Kennfeld Entkoppeln">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/mv_decouple.png"/>
+                                </Button.Content>
+                            </Button>
+
+                            <TextBlock Grid.Row="6" Grid.Column="2" Height="20" HorizontalAlignment="Right" Margin="2,4,5,2"
+                               Text="interpolierbar" Foreground="#FF444444"/>
+                            <CheckBox Grid.Row="6" Grid.Column="3" HorizontalAlignment="Left" Margin="5,7,5,2" Width="25"
+                              IsEnabled="False" x:Name="chb_interp"/>
+                            <TextBlock Grid.Row="6" Grid.Column="3" HorizontalAlignment="Stretch" Margin="40,4,5,2"
+                                       Foreground="DimGray" FontStyle="Italic" x:Name="tb_MVName"/>
+
+                            <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="4" MinHeight="25" Margin="15,0,5,0"
+                                Background="Gainsboro"
+                                HorizontalAlignment="Left" Width="425"
+                                x:Name="sp_param_MV"
+                                MouseUp="sp_param_MV_MouseUp"
+                                Tag="{Binding SelectedParameterDummy, Mode=OneWay}">
+                            </StackPanel>
+
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Konsole" IsExpanded="True" Style="{StaticResource MainExpander}">
+                        <Grid UseLayoutRounding="True">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="70" MaxHeight="200" MinHeight="60"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL}"
+                                    Command="{Binding SaveLogEntriesCmd, Mode=OneWay}"
+                                    ToolTip="Log speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_save.png"/>
+                                </Button.Content>
+                            </Button>
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="460" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                      ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                                      cbwpfu:ListViewExt.AutoScrollToEnd="True"
+                                      ItemsSource="{Binding ExistingLoggerEntries, Mode=OneWay}"
+                                      ItemTemplate="{StaticResource LogEntryInList}"
+                                      Foreground="White" BorderBrush="Black"
+                                      >
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF999999" Offset="0"/>
+                                        <GradientStop Color="#FF595959" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                            </ListView>
+                            <Image Grid.Row="1" Margin="7,3,6,1" Source="./Data/icons/console_brg.png" Opacity="1"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsHitTestVisible="False" 
+                                   ScrollViewer.VerticalScrollBarVisibility="Disabled" Stretch="Fill" MaxWidth="458" MaxHeight="198"/>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+            <ScrollViewer Grid.Column="2" Width="Auto">
+                <StackPanel>
+                    <Expander Header="Komponentenparameter" IsExpanded="True" Style="{StaticResource MainExpander}"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_EDIT_PARAMETER+COMPONENT_CALC_PICK_PARAMETER_IN+COMPONENT_CALC_PICK_PARAMETER_OUT}"
+                              Visibility="{Binding SelectedComponent.HideDetails, Mode=OneWay, Converter={StaticResource ReverseBoolToVisConverterGroup}}"
+                          >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            Command="{Binding DeleteSelectedCompParameterCmd, Mode=OneWay}"
+                            ToolTip="Parameter Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                                Style="{StaticResource ReliefButton}"
+                                Command="{Binding CopySelectedCompParameterCmd, Mode=OneWay}"
+                                ToolTip="Parameter Kopieren">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/param_copy.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                                    Style="{StaticResource ReliefButton}"
+                                    Command="{Binding SaveCurrentValuesAsDefaultCmd, Mode=OneWay}"
+                                    ToolTip="Alle sichtbaren Parameterwerte als Default Speichern">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/xcomp_map_PSaveDef.png"/>
+                                </Button.Content>
+                            </Button>
+                            <TextBlock Grid.Row="0" HorizontalAlignment="Left" Width="31" Margin="99,7,5,2" Text="Filter:"
+                                       ToolTip="Filter nach Text, der im Parameternamen enthalten ist"/>
+                            <TextBox Grid.Row="0" HorizontalAlignment="Left" Margin="130,7,5,2" MinWidth="60" Style="{StaticResource CoordinateInput}"
+                                     Text="{Binding CompParamFilterString, Mode=TwoWay}"
+                                     ToolTip="Filter nach Text, der im Parameternamen enthalten ist"/>
+                            
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                    ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"                                                           
+                                    ItemsSource="{Binding SelectedComponent.ParamChildren, Mode=OneWay}"
+                                    SelectedItem="{Binding SelectedParameter, Mode=TwoWay}"
+                                    ItemTemplateSelector="{StaticResource ComponentDataTemplateSelector_Inst}" 
+                                    ItemContainerStyle="{StaticResource ListItemForStructuredParameters}">
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                </ListView.Resources>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Komponentengleichungen" IsExpanded="True" Style="{StaticResource MainExpander}"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=COMPONENT_PICK_CALC+COMPONENT_EDIT_CALC}"                                                                                         
+                              Visibility="{Binding SelectedComponent.HideDetails, Mode=OneWay, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="5,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            Command="{Binding DeleteSelectedCompCalculationCmd, Mode=OneWay}"
+                            ToolTip="Gleichung Entfernen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/a_remove.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="33,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            Command="{Binding PerformSelectedCalculation_CalcInComp_Cmd, Mode=OneWay}"
+                            ToolTip="Gleichung Berechnen">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/calc_calc.png"/>
+                                </Button.Content>
+                            </Button>
+                            <Button Grid.Row="0" Height="26" Width="26" HorizontalAlignment="Left" Margin="61,2,5,2"
+                            Style="{StaticResource ReliefButton}"
+                            Command="{Binding CompPerformCalculationChainCmd, Mode=OneWay}"
+                            ToolTip="Alle Gleichungen Auswerten">
+                                <Button.Content>
+                                    <Image Source="./Data/icons/calc_calcChain.png"/>
+                                </Button.Content>
+                            </Button>
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                    ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                    ItemsSource="{Binding SelectedComponent.CalcChildren, Mode=OneWay}"
+                                    SelectedItem="{Binding SelectedCompCalculation, Mode=TwoWay}"
+                                    ItemTemplateSelector="{StaticResource ComponentDataTemplateSelector}"
+                                    ItemContainerStyle="{StaticResource ListItemForStructuredCalculations}">
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                </ListView.Resources>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                    <Expander Header="Komponenteninstanzen" IsExpanded="True" Style="{StaticResource MainExpander}"
+                              IsEnabled="{Binding Mode, Mode=OneWay, Converter={StaticResource GuiModusToBooleanConverter}, ConverterParameter=NEUTRAL+COMPONENT_NEW+COMPONENT_EDIT}"
+                              Visibility="{Binding SelectedComponent.HideDetails, Mode=OneWay, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                            </Grid.RowDefinitions>
+                            <ListView Grid.Row="1" Margin="5,2,5,0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                      ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"                                      
+                                      ItemsSource="{Binding SelectedComponent.R2GInstances, Mode=OneWay}"
+                                      ItemTemplate="{StaticResource GeomRelationshipInList}"
+                                      ItemContainerStyle="{StaticResource ListItemForGeomRel}">
+                                <ListView.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FFB0B0FF" Offset="0"/>
+                                        <GradientStop Color="#FFE0E0F0" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </ListView.Background>
+                                <ListView.Resources>
+                                    <Style TargetType="{x:Type ListViewItem}">
+                                        <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                    </Style>
+                                </ListView.Resources>
+                            </ListView>
+                            <GridSplitter Grid.Row="2" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                              HorizontalAlignment="Stretch" Margin="5,0"/>
+                        </Grid>
+                    </Expander>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </ScrollViewer>
+</Window>

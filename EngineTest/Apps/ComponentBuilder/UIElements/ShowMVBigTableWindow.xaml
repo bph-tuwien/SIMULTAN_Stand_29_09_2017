@@ -1,0 +1,38 @@
+﻿<Window x:Class="ComponentBuilder.UIElements.ShowMVBigTableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cbui="clr-namespace:ComponentBuilder.UIElements"
+        Title="Tabellenansicht" Height="360" Width="550" MinHeight="360" MinWidth="550"
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+
+        <cbui:MValueBigTableDataGrid Grid.Row="0" Height="280" Margin="5,2" Background="Gainsboro" BorderBrush="DimGray"
+                  AutoGenerateColumns="False" HorizontalGridLinesBrush="DimGray" VerticalGridLinesBrush="#FFB0B0B0"
+                  SelectionMode="Single" SelectionUnit="Cell" FrozenColumnCount="1"
+                  CanUserSortColumns="False" CanUserReorderColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                  x:Name="table" Padding="0,0,0,5" RowBackground="#FFBBBBBB" AlternatingRowBackground="#FFD8D8D8" AlternationCount="2" 
+                  IsSynchronizedWithCurrentItem="True">
+            <DataGrid.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFFF4800"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#FFFF6F36"/>
+            </DataGrid.Resources>
+        </cbui:MValueBigTableDataGrid>
+
+        <Button Grid.Row="1" Grid.Column="0" Height="26" Width="26" 
+                Style="{StaticResource ReliefButton}" BorderBrush="White"
+                HorizontalAlignment="Left" Margin="5,2"
+                IsDefault="True" Click="btn_OK_Click">
+            <Button.Content>
+                <Image Source="../Data/icons/btn_OK.png"/>
+            </Button.Content>
+            <Button.Effect>
+                <DropShadowEffect Color="White" Opacity="0.5" ShadowDepth="3"/>
+            </Button.Effect>
+        </Button>
+    </Grid>
+</Window>

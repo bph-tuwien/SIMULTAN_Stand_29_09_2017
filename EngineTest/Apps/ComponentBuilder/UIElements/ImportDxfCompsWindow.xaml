@@ -1,0 +1,137 @@
+﻿<Window x:Class="ComponentBuilder.UIElements.ImportDxfCompsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cbui="clr-namespace:ComponentBuilder.UIElements"
+        xmlns:cbwpfu="clr-namespace:ComponentBuilder.WpfUtils"
+        Title="Komponente importieren ..." Height="225" Width="720" MinHeight="225"
+        UseLayoutRounding="True"
+        Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="Auto" MinHeight="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Rectangle Grid.Row="0" Margin="4,1" Stroke="DimGray"/>
+        <StackPanel Grid.Row="0" Margin="5,2,30,2" Background="Gainsboro" Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <Button x:Name="btn_import_MV" Height="26" Width="26" Margin="2,1,1,1"
+                    Style="{StaticResource ReliefButton}"
+                    IsEnabled="True"                          
+                     
+                    ToolTip="von den Komponenten verwendeten Kennfelder importieren">
+                <Button.Content>
+                    <Image Source="../Data/icons/dxf_import_field.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_import" Height="28" Width="28" Margin="2,1,1,1"
+                    Style="{StaticResource ReliefButtonInportant}"
+                    IsEnabled="True"                          
+                     
+                    ToolTip="Komponenten importieren">
+                <Button.Content>
+                    <Image Source="../Data/icons/dxf_import.png"/>
+                </Button.Content>
+            </Button>
+
+            <Button x:Name="btn_unfold_all" Height="26" Width="26" Margin="12,1,1,1"
+                    Style="{StaticResource ReliefButtonBlue}"
+                    IsEnabled="True"                          
+                     
+                    ToolTip="Komponenten entfalten">
+                <Button.Content>
+                    <Image Source="../Data/icons/a_expand.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_unfold_selected" Height="26" Width="26" Margin="1"
+                    Style="{StaticResource ReliefButtonBlue}"
+                    IsEnabled="True"                          
+                     
+                    ToolTip="Ausgewählte Komponente entfalten">
+                <Button.Content>
+                    <Image Source="../Data/icons/a_expand_one.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_collapse" Height="26" Width="26" Margin="1"
+                    Style="{StaticResource ReliefButtonBlue}"
+                    IsEnabled="True"                          
+                    
+                    ToolTip="Komponenten zusammenfalten">
+                <Button.Content>
+                    <Image Source="../Data/icons/a_collapse.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_mark_all" Height="26" Width="26" Margin="1"
+                    Style="{StaticResource ReliefButtonBlue}"
+                    IsEnabled="True"                                             
+                    ToolTip="alle Komponenten markieren">
+                <Button.Content>
+                    <Image Source="../Data/icons/a_mark_all.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_mark_w_refs" Height="26" Width="26" Margin="1"
+                    Style="{StaticResource ReliefButtonBlue}"
+                    IsEnabled="True"                                             
+                    ToolTip="Komponente mit allen Referenzen markieren">
+                <Button.Content>
+                    <Image Source="../Data/icons/a_mark_w_refs.png"/>
+                </Button.Content>
+            </Button>
+            <Button x:Name="btn_unmarkall"  Height="26" Width="26" Margin="1"
+                    Style="{StaticResource ReliefButtonBlue}"
+                    IsEnabled="True"                                             
+                    ToolTip="alle Markierungen entfernen">
+                <Button.Content>
+                    <Image Source="../Data/icons/a_mark_none.png"/>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5,2,5,2" Width="30"
+                    Background="Gainsboro">
+            <Button x:Name="btn_OK" Height="26" Width="26" Margin="1"
+                    Style="{StaticResource ReliefButton}" BorderBrush="White"
+                    IsEnabled="True"                          
+                    IsDefault="True" 
+                    ToolTip="Übernehmen">
+                <Button.Content>
+                    <Image Source="../Data/icons/btn_OK.png"/>
+                </Button.Content>
+                <Button.Effect>
+                    <DropShadowEffect Color="White" Opacity="1" ShadowDepth="3" Direction="225"/>
+                </Button.Effect>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5,2">
+            <TextBlock Text="Status" Margin="30,0,0,0" Width="60"  Foreground="DimGray"/>
+            <TextBlock Text="Funktion" Width="305" Foreground="DimGray"/>
+            <TextBlock Text="Name" Width="110" Foreground="DimGray"/>
+            <TextBlock Text="Beschreibung" Width="100" Foreground="DimGray"/>
+        </StackPanel>
+        <cbwpfu:TreeViewExt x:Name="tve_components" Grid.Row="2"
+                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0" Width="Auto" Height="Auto"
+                            ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                            IsEnabled="True"
+                            
+                            
+                            ItemTemplateSelector="{StaticResource ComponentDataTemplateSelector}"
+                            ItemContainerStyle="{StaticResource TreeItemForComponents}"
+                            AlternationCount="2"
+                            Grid.IsSharedSizeScope="True">
+            <cbwpfu:TreeViewExt.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FFd9d9d9" Offset="0"/>
+                    <GradientStop Color="#FFf5f5f5" Offset="1"/>
+                </LinearGradientBrush>
+            </cbwpfu:TreeViewExt.Background>
+            <TreeView.Resources>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </TreeView.Resources>
+        </cbwpfu:TreeViewExt>
+        <GridSplitter Grid.Row="3" Width="Auto" Height="4" BorderBrush="DimGray" BorderThickness="1"
+                      HorizontalAlignment="Stretch" Margin="5,0"/>
+    </Grid>
+</Window>

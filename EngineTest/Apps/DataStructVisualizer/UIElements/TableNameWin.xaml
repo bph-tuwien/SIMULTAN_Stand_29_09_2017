@@ -1,0 +1,38 @@
+﻿<Window x:Class="DataStructVisualizer.UIElements.TableNameWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Choose Table Name" Height="110" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle Grid.Row="0" Grid.Column="0" StrokeThickness="1" Stroke="DarkGray" Fill="#ffeeeeee"/>
+        <Rectangle Grid.Row="0" Grid.Column="1" StrokeThickness="1" Stroke="DarkGray" Fill="FloralWhite"/>
+        <Rectangle Grid.Row="0" Grid.Column="2" StrokeThickness="1" Stroke="DarkGray" Fill="GhostWhite"/>
+        <Rectangle Grid.Row="0" Grid.Column="3" StrokeThickness="1" Stroke="DarkGray" Fill="#ffeeeeee"/>
+        <Rectangle Grid.Row="1" Grid.Column="0" StrokeThickness="1" Stroke="DarkGray" Fill="FloralWhite"/>
+        <Rectangle Grid.Row="1" Grid.Column="1" StrokeThickness="1" Stroke="DarkGray" Fill="GhostWhite"/>
+        <Rectangle Grid.Row="1" Grid.Column="2" StrokeThickness="1" Stroke="DarkGray" Fill="#ffeeeeee"/>
+        <Rectangle Grid.Row="1" Grid.Column="3" StrokeThickness="1" Stroke="DarkGray" Fill="FloralWhite"/>
+
+        <TextBox x:Name="txb_table_name"  Grid.Row="2" Grid.Column="1" Style="{StaticResource CoordinateInput}" 
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="24"
+                 Text="Tabelle1" Padding="0,2,0,0" Foreground="#ff217346" FontWeight="Bold"
+                 KeyUp="txb_table_name_KeyUp"/>
+        <Rectangle Grid.Row="3" Grid.Column="1" Fill="#ff217346"/>
+        
+        <Button Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Height="25"  Style="{StaticResource ReliefButton}" Content="OK"
+                IsDefault="True" Click="OK_Click"/>
+
+    </Grid>
+</Window>

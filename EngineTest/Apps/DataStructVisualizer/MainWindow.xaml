@@ -1,0 +1,644 @@
+﻿<Window x:Class="DataStructVisualizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+        xmlns:dsv="clr-namespace:DataStructVisualizer"
+        xmlns:dsvu="clr-namespace:DataStructVisualizer.WpfUtils"
+        Title="{Binding CurrentFilePath, StringFormat='Specification Planing Tool: {0}', Mode=OneWay}" 
+        Height="700" Width="1200" Background="{DynamicResource {x:Static SystemColors.AppWorkspaceBrushKey}}">
+    <Window.DataContext>
+        <dsv:AppViewModel/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCmd, Mode=OneWay}" CommandParameter="SAVE"/>
+        <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveCmd, Mode=OneWay}" CommandParameter="SAVE_AS"/>
+    </Window.InputBindings>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="915"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition MinHeight="5"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="./Data/icons/app_bgr.png" Height="256" Width="256" 
+               VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15,0,0,12">
+            <Image.OpacityMask>
+                <RadialGradientBrush Center="0,0.3" GradientOrigin="0,0.3" RadiusX="1" RadiusY="1">
+                    <GradientStop Color="#33000000" Offset="0.004"/>
+                    <GradientStop Offset="1" Color="#07FFFFFF"/>
+                </RadialGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+        
+        <Expander Grid.Column="0" Grid.Row="0" Height="Auto"
+                  Header="Komponentenliste" IsExpanded="True" Style="{StaticResource MainExpander}"
+                  IsEnabled="{Binding NodesEditMode, Mode=OneWay, Converter={StaticResource ReverseEditModeToBoolConverterGroup}, ConverterParameter=SHOW_CONN+DISCONNECT}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition MinHeight="28"/>
+                    <RowDefinition/>
+                    <RowDefinition MinHeight="17"/>
+                    <RowDefinition Height="Auto" MinHeight="250" MaxHeight="600"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"  MinHeight="5" MaxHeight="5"/>
+                </Grid.RowDefinitions>
+                <!-- panel below has a few EXCEL import / export funktions containing less information -->
+                <StackPanel Grid.Row="0" Height="28" Width="Auto" Margin="5,0,25,0" 
+                            Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ImportFromExcelCmd, Mode=OneWay}" CommandParameter="SIMPLE"
+                                ToolTip="Import Data from an EXCEL Table">
+                            <Button.Content>
+                                <Image Source="./Data/icons/excel_in.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ExportToExcelCmd, Mode=OneWay}" CommandParameter="SIMPLE"
+                                ToolTip="Export Nodes to an EXCEL Table SIMPLE">
+                            <Button.Content>
+                                <Image Source="./Data/icons/excel_out.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="2" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ImportFromExcelCmd, Mode=OneWay}" CommandParameter="COMPLETE"
+                                ToolTip="Import Data from an EXCEL Table COMPLETE">
+                            <Button.Content>
+                                <Image Source="./Data/icons/excel_in_big.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="3" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ExportToExcelCmd, Mode=OneWay}" CommandParameter="COMPLETE"
+                                ToolTip="Export Nodes to an EXCEL Table COMPLETE">
+                            <Button.Content>
+                                <Image Source="./Data/icons/excel_out_big.png"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+                <!-- Margin="117,0,25,0" if the panel above is visible -->
+                <StackPanel Grid.Row="0" Height="28" Width="Auto" Margin="5,0,25,0" 
+                            Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="168"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ExportToCSharpCmd, Mode=OneWay}"
+                                ToolTip="Generate Classes From Node List">
+                            <Button.Content>
+                                <Image Source="./Data/icons/c_sharp_out.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ImportFromExcelCmd, Mode=OneWay}" CommandParameter="EXPLICIT"
+                                ToolTip="Import Data from an EXCEL Table EXPLICIT">
+                            <Button.Content>
+                                <Image Source="./Data/icons/excel_in_explicit.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="2" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ExportToExcelCmd, Mode=OneWay}" CommandParameter="EXPLICIT"
+                                ToolTip="Export Nodes to an EXCEL Table EXPLICIT">
+                            <Button.Content>
+                                <Image Source="./Data/icons/excel_out_explicit.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="3" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ImportFromXMLCmd, Mode=OneWay}"
+                                ToolTip="Load Data from an XML file">
+                            <Button.Content>
+                                <Image Source="./Data/icons/xml_in.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="4" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding ExportToXMLCmd, Mode=OneWay}"
+                                ToolTip="Save Data as an XML File">
+                            <Button.Content>
+                                <Image Source="./Data/icons/xml_out.png"/>
+                            </Button.Content>
+                        </Button>
+                        
+                        <Image Grid.Column="6" Height="24" Width="168"  Source="./Data/icons/save_anim.png" RenderTransformOrigin="0.5,0.5"
+                               x:Name="img_save" Tag="{Binding SavingXMLState, NotifyOnTargetUpdated=True}">
+                            <Image.RenderTransform>
+                                <TranslateTransform X="-144"/>
+                            </Image.RenderTransform>
+                            <Image.Clip>
+                                <RectangleGeometry Rect="144,0,24,24"/>
+                            </Image.Clip>
+                            <Image.Triggers>                                
+                                <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                                    <BeginStoryboard Storyboard="{StaticResource sb_Image_Move_X}"/>
+                                    <BeginStoryboard Storyboard="{StaticResource sb_Image_Clip_X}"/>
+                                </EventTrigger>
+                            </Image.Triggers>
+                        </Image>
+
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Height="28" Width="Auto" Margin="5,0,225,0" 
+                            Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="8"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                ToolTip="Reset the Last Edited Date for ALL"
+                                Command="{Binding ResetLastUpdateCmd, Mode=OneWay}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/last_edit_reset.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                ToolTip="Start Tour of Nodes by Last Edit"
+                                Command="{Binding TourLastEditsCmd, Mode=OneWay}"
+                                Visibility="{Binding LastEditTourRunning, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/last_edit_tourStart.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="1" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                ToolTip="Stop Tour of Nodes by Last Edit"
+                                Command="{Binding TourLastEditsStopCmd, Mode=OneWay}"
+                                Visibility="{Binding LastEditTourRunning, Converter={StaticResource BooleanToVisibiltyConverter}}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/last_edit_tourEnd.png"/>
+                            </Button.Content>
+                        </Button>
+
+                        <ToggleButton Grid.Column="3" Style="{StaticResource ToggleButtonLight}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                ToolTip="Highlight Region of List"
+                                x:Name="tbtn_Highlight"
+                                IsChecked="{Binding ElementName=tvex_Nodes, Path=HighlightRegionMode, Mode=OneWayToSource}">
+                            <ToggleButton.Content>
+                                <Image Source="./Data/icons/node_tree_highlight.png"/>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                        <Button Grid.Column="4" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                ToolTip="Collapse All Nodes"
+                                Command="{Binding CollapseTreeCmd, Mode=OneWay}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_refresh.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="5" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                ToolTip="Expand All Nodes"
+                                Command="{Binding ExpandTreeCmd, Mode=OneWay}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_expand.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="6" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                IsEnabled="{Binding SortingMode, Mode=OneWay, Converter={StaticResource SortModeToBooleanConverter}, ConverterParameter=0}"
+                                ToolTip="Move Selected Node Up in the List"
+                                Command="{Binding MoveLevel0NodeInTreeCmd, Mode=OneWay}"
+                                CommandParameter="{StaticResource TrueValue}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_moveUP.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="7" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                IsEnabled="{Binding SortingMode, Mode=OneWay, Converter={StaticResource SortModeToBooleanConverter}, ConverterParameter=0}"                                
+                                ToolTip="Move Selected Node Down in the List"
+                                Command="{Binding MoveLevel0NodeInTreeCmd, Mode=OneWay}"
+                                CommandParameter="{StaticResource FalseValue}">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_moveDOWN.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="9" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding CreateNewNodeCmd, Mode=OneWay}"
+                                ToolTip="Create New Node">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_new.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="10" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding CopySelectedNodeCmd, Mode=OneWay}"
+                                CommandParameter="DEEP"
+                                ToolTip="Copy Selected Node with all Subnodes">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_copy.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="11" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding CopySelectedNodeCmd, Mode=OneWay}"
+                                CommandParameter="SHALLOW"
+                                ToolTip="Copy Selected Node">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_copy_simple.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="12" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding DeleteSelectedNodeCmd, Mode=OneWay}"
+                                ToolTip="Delete Selected Node">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_del.png"/>
+                            </Button.Content>
+                        </Button>
+                        <Button Grid.Column="13" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding DeleteAllCmd, Mode=OneWay}"
+                                ToolTip="Delete All Nodes">
+                            <Button.Content>
+                                <Image Source="./Data/icons/nodes_del_all.png"/>
+                            </Button.Content>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Height="28" Width="198" Margin="5,0,25,0" 
+                            Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="170"/>
+                            <ColumnDefinition Width="28"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="1" Style="{StaticResource ReliefButton}" 
+                                Height="26" Width="26" HorizontalAlignment="Left"
+                                Command="{Binding SearchByNameCmd, Mode=OneWay}"
+                                CommandParameter="{Binding ElementName=txt_search_text, Path=Text, Mode=OneWay}"
+                                ToolTip="Find Node">
+                            <Button.Content>
+                                <Image Source="./Data/icons/find.png"/>
+                            </Button.Content>
+                        </Button>
+                        <TextBox Grid.Column="0" Margin="5,2,2,2" Height="24" HorizontalAlignment="Stretch" 
+                                 x:Name="txt_search_text"
+                                 Style="{StaticResource CoordinateInput}"/>
+
+                    </Grid>
+                </StackPanel>
+
+                <Separator Grid.Row="1" Margin="5,0,5,0"/>
+
+                <StackPanel Grid.Row="2" Margin="25,0,5,0" Height="19">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="290"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="130"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" HorizontalAlignment="Left" Text="Name" Foreground="SaddleBrown" Padding="23,0,0,0"/>
+                        <Button Grid.Column="0" HorizontalAlignment="Left" Margin="60,0,0,0" Style="{StaticResource SortButton}" 
+                                Tag="{Binding SortingMode_Name, Mode=OneWay}"
+                                Command="{Binding SycleThroughSortingModesCmd, Mode=OneWay}"
+                                CommandParameter="NodeName"/>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Beschreibung" Foreground="#ff888888" Padding="5,0,0,0"/>
+                        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Text="Einheit" Foreground="SaddleBrown" Padding="5,0,0,0"/>
+                        <TextBlock Grid.Column="3" HorizontalAlignment="Left" Text="Default-Wert" Foreground="#ff888888" Padding="5,0,0,0"/>
+                        <TextBlock Grid.Column="4" HorizontalAlignment="Left" Text="Quelle" Foreground="SaddleBrown" Padding="5,0,0,0"/>
+                        <TextBlock Grid.Column="5" HorizontalAlignment="Left" Text="Verwaltet von" Foreground="SaddleBrown" Padding="5,0,0,0"/>
+                        <Button Grid.Column="5" HorizontalAlignment="Left" Margin="85,0,0,0" Style="{StaticResource SortButton}" 
+                                Tag="{Binding SortingMode_Manager, Mode=OneWay}"
+                                Command="{Binding SycleThroughSortingModesCmd, Mode=OneWay}"
+                                CommandParameter="NodeManager"/>
+                    </Grid>
+                </StackPanel>
+
+
+                <dsvu:TreeViewExt Grid.Row="3" x:Name="tvex_Nodes"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,0,5,0" Width="Auto" Height="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Visible" ScrollViewer.VerticalScrollBarVisibility="Visible"
+                          IsEnabled="{Binding NodesEditMode, Mode=OneWay, Converter={StaticResource ReverseEditModeToBoolConverterGroup}, ConverterParameter=TOUR_RUNNING}"
+                          SelectedItem_="{Binding SelectedNode, Mode=TwoWay}"                          
+                          ItemTemplate="{StaticResource NodeInTreeView}"
+                          ItemContainerStyle="{StaticResource TreeItemForNodes}"
+                          AlternationCount="2"
+                          Grid.IsSharedSizeScope="True"
+                          DragNDropCmd="{Binding DragNDropCmd, Mode=OneWay}"
+                          Counter="{Binding NodeTreeCounter, Mode=TwoWay}">
+                    <dsvu:TreeViewExt.ItemsSource>
+                        <MultiBinding Converter="{StaticResource TreeViewSortingAccToParameterConverter}">
+                            <Binding Path="NodeTree" Mode="OneWay"/>
+                            <Binding Path="SortingPropertyName" Mode="OneWay"/>
+                            <Binding Path="SortingMode" Mode="OneWay"/>
+                        </MultiBinding>
+                    </dsvu:TreeViewExt.ItemsSource>
+                    <dsvu:TreeViewExt.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="PaleGoldenrod" Offset="0"/>
+                            <GradientStop Color="LightGoldenrodYellow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </dsvu:TreeViewExt.Background>
+                    <TreeView.Resources>
+                        <Style TargetType="{x:Type TreeViewItem}">
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                            <Setter Property="VerticalContentAlignment" Value="Center" />
+                        </Style>
+                    </TreeView.Resources>
+                </dsvu:TreeViewExt>
+                <!-- the rectangles below are for highlighting regions in the treeview -->
+                <Rectangle x:Name="rect_Dark_TOP" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
+                           Fill="#3F000000" IsEnabled="False" IsHitTestVisible="False"
+                           Visibility="{Binding ElementName=tbtn_Highlight, Path=IsChecked, Converter={StaticResource BooleanToVisibiltyConverter}}">
+                    <Rectangle.Margin>
+                        <MultiBinding Converter="{StaticResource RectAndContextToThicknessConverter}" ConverterParameter="{StaticResource TrueValue}">
+                            <Binding ElementName="tvex_Nodes" Path="HighlightRect" Mode="OneWay"/>
+                            <Binding ElementName="tvex_Nodes" Path="ActualHeight" Mode="OneWay"/>
+                            <Binding ElementName="tvex_Nodes" Path="Margin" Mode="OneWay"/>
+                        </MultiBinding>
+                    </Rectangle.Margin>
+                </Rectangle>
+                <Border Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0,0,0,1"
+                        BorderBrush="White" Margin="{Binding ElementName=rect_Dark_TOP, Path=Margin, Mode=OneWay}"
+                        Visibility="{Binding ElementName=rect_Dark_TOP, Path=Visibility, Mode=OneWay}"/>
+                <Rectangle x:Name="rect_Dark_BOTTOM" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  
+                           Fill="#3F000000" IsEnabled="False" IsHitTestVisible="False"
+                           Visibility="{Binding ElementName=tbtn_Highlight, Path=IsChecked, Converter={StaticResource BooleanToVisibiltyConverter}}">
+                    <Rectangle.Margin>
+                        <MultiBinding Converter="{StaticResource RectAndContextToThicknessConverter}" ConverterParameter="{StaticResource FalseValue}">
+                            <Binding ElementName="tvex_Nodes" Path="HighlightRect" Mode="OneWay"/>
+                            <Binding ElementName="tvex_Nodes" Path="ActualHeight" Mode="OneWay"/>
+                            <Binding ElementName="tvex_Nodes" Path="Margin" Mode="OneWay"/>
+                        </MultiBinding>
+                    </Rectangle.Margin>
+                </Rectangle>
+                <Border Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderThickness="0,1,0,0"
+                        BorderBrush="White" Margin="{Binding ElementName=rect_Dark_BOTTOM, Path=Margin, Mode=OneWay}"
+                        Visibility="{Binding ElementName=rect_Dark_BOTTOM, Path=Visibility, Mode=OneWay}"/>
+
+                <GridSplitter Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="5,0" Height="3" ResizeDirection="Rows"
+                              Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" 
+                              BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                              BorderThickness="1"/>
+
+            </Grid>
+        </Expander>
+
+        <GridSplitter Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" 
+                      VerticalAlignment="Stretch" HorizontalAlignment="Center" Margin="0,15" Height="Auto" Width="3"  ResizeDirection="Columns"
+                      Background="{DynamicResource {x:Static SystemColors.MenuBarBrushKey}}" 
+                      BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                      BorderThickness="1"/>
+        
+        <StackPanel Grid.Column="2" Grid.Row="0" Grid.RowSpan="3">
+            <Expander IsExpanded="True" Style="{StaticResource MainExpander}"
+                      IsEnabled="{Binding NodesEditMode, Mode=OneWay, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=NONE+TOUR_RUNNING}">
+                <Expander.Header>
+                    <Run Text="{Binding SelectedNode.ID, StringFormat=Eigenschaften: {0}}"/>
+                </Expander.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="0,5,0,0" Text="Auswahl" FontWeight="Bold"  />
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="10,2,5,0" HorizontalAlignment="Stretch" Style="{StaticResource CoordinateInput}"
+                             Text="{Binding SelectedNode.NodeName, Mode=TwoWay, UpdateSourceTrigger=Explicit}" IsEnabled="{Binding SomethingISSelected}"
+                             x:Name="tb_text_completion_target"/>
+                    <ListBox Grid.Row="0" Grid.Column="1" Grid.RowSpan="16" Margin="10,22,5,0" MinHeight="25" Panel.ZIndex="1" 
+                             VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                             Background="LightGoldenrodYellow" Foreground="#ffb5830b" BorderBrush="Black" BorderThickness="2"
+                             SelectedItem="{Binding ElementName=tb_text_completion_target, Path=Text, Mode=OneWayToSource, UpdateSourceTrigger=Explicit}"
+                             x:Name="lb_text_completion_source" Visibility="Collapsed">
+                        <ListBox.ItemsSource>
+                            <MultiBinding Converter="{StaticResource StringListToSmallStringListConverter}">
+                                <Binding Path="NodeNameList" Mode="OneWay"/>
+                                <Binding ElementName="tb_text_completion_target" Path="Text" Mode="OneWay"/>
+                            </MultiBinding>
+                        </ListBox.ItemsSource>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="0,5,0,0" Text="Beschreibung" Foreground="#ff888888" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Margin="10,2,5,0" HorizontalAlignment="Stretch" Style="{StaticResource CoordinateInput}"
+                             Text="{Binding SelectedNode.NodeDescr, Mode=TwoWay}" IsEnabled="{Binding SomethingISSelected}"/>
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Geometrie" Foreground="SaddleBrown"  />
+                    <CheckBox Grid.Row="2" Grid.Column="1" Margin="10,7,5,0" IsChecked="{Binding SelectedNode.HasGeometry, Mode=TwoWay}"
+                              IsEnabled="{Binding SomethingISSelected}" Width="18" HorizontalAlignment="Left"/>
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Einheit" Foreground="SaddleBrown"  />
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="10,2,5,0" HorizontalAlignment="Stretch" Style="{StaticResource CoordinateInput}"
+                             Text="{Binding SelectedNode.NodeUnit, Mode=TwoWay}" IsEnabled="{Binding SomethingISSelected}"/>
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Default-Wert" Foreground="#ff888888"  />
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="10,2,5,0" HorizontalAlignment="Stretch" Style="{StaticResource CoordinateInput}"
+                             Text="{Binding SelectedNode.NodeDefaultVal, Mode=TwoWay}" IsEnabled="{Binding SomethingISSelected}"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Quelle" Foreground="SaddleBrown"  />
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="10,2,5,0" HorizontalAlignment="Stretch" Style="{StaticResource CoordinateInput}"
+                             Text="{Binding SelectedNode.NodeSource, Mode=TwoWay}" IsEnabled="{Binding SomethingISSelected}"/>
+
+                    <TextBlock Grid.Row="6" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Verwaltet von" Foreground="SaddleBrown"  />
+                    <ComboBox Grid.Row="6" Grid.Column="1" Margin="10,2,5,0" HorizontalAlignment="Stretch" 
+                              ItemsSource="{Binding NMTypes, Mode=OneWay}" IsEnabled="{Binding SomethingISSelected}"
+                              ItemTemplate="{StaticResource NodeManagerTypeforList}"
+                              SelectedItem="{Binding NMTofSelectedNode, Mode=TwoWay}"/>
+
+                    <TextBlock Grid.Row="7" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Vermerk" Foreground="SaddleBrown"  />
+                    <CheckBox Grid.Row="7" Grid.Column="1" Margin="10,7,5,0" IsChecked="{Binding SelectedNode.IsMarked, Mode=TwoWay}"
+                              IsEnabled="{Binding SomethingISSelected}" Width="18" HorizontalAlignment="Left"/>
+                    
+                    <TextBlock Grid.Row="8" Grid.Column="0" HorizontalAlignment="Right" Height="20" Margin="5,5,0,0" Text="Zeitstempel" Foreground="#ffa08673"  />
+                    <TextBlock Grid.Row="8" Grid.Column="1" Margin="10,5,0,0" HorizontalAlignment="Stretch" Foreground="#ffa08673"
+                             Text="{Binding SelectedNode.LastEdit, Mode=OneWay, StringFormat=g, ConverterCulture=de-DE}" IsEnabled="{Binding SomethingISSelected}"/>
+
+                    <Separator Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,2,5,2"/>
+
+                    <TextBlock Grid.Row="10" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="5,5,0,0" 
+                               Text="Vorg&#1235;nger" Foreground="SaddleBrown"  />
+                    <ListView Grid.Row="10" Grid.Column="1" Margin="10,2,5,2" Height="Auto"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ItemsSource="{Binding ParentChainOfSelectedNode, Mode=OneWay}"
+                              ItemTemplate="{StaticResource NodeInList}"
+                              IsEnabled="{Binding SomethingISSelected}">
+                        <ListView.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="PaleGoldenrod" Offset="0"/>
+                                <GradientStop Color="LightGoldenrodYellow" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                    </ListView>
+
+                    <Button Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26" Margin="10,1,0,1"
+                                  Style="{StaticResource ReliefButton}"
+                                  Command="{Binding MoveNodeToRootCmd, Mode=OneWay}"
+                                  ToolTip="Move Node to the Top of the Node Tree">
+                        <Button.Content>
+                            <Image Source="./Data/icons/node_switch_to_top.png"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Row="11" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26" Margin="38,1,0,1"
+                                  Style="{StaticResource ReliefButton}"
+                                  Command="{Binding MoveNodeToGrandParentCmd, Mode=OneWay}"
+                                  ToolTip="Move Node One Step UP the Node Tree">
+                        <Button.Content>
+                            <Image Source="./Data/icons/node_switch_1step_up.png"/>
+                        </Button.Content>
+                    </Button>
+                    <Button Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right" Height="26" Width="26" Margin="5,1,5,1"
+                                  Style="{StaticResource ReliefButton}"
+                                  Command="{Binding CopyCSharpNameToClipBoardCmd, Mode=OneWay}"
+                                  ToolTip="Copy C Sharp Class Name of Node to Clipboard">
+                        <Button.Content>
+                            <Image Source="./Data/icons/cg_NAME.png"/>
+                        </Button.Content>
+                    </Button>
+
+                </Grid>
+            </Expander>
+            <Expander Header="Verbindungen" IsExpanded="True" Style="{StaticResource MainExpander}">
+                <Expander.IsEnabled>
+                    <MultiBinding Converter="{StaticResource BoolAndConverter}">
+                        <Binding Path="SomethingISSelected" Mode="OneWay"/>
+                        <Binding Path="NodesEditMode" Mode="OneWay" Converter="{StaticResource ReverseEditModeToBoolConverterGroup}" ConverterParameter="TOUR_RUNNING"/>
+                    </MultiBinding>
+                </Expander.IsEnabled>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="5"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Top" Height="20" Margin="5,5,0,0" 
+                               Text="Verbunden:" Foreground="SaddleBrown"  />
+                    <ListView Grid.Row="0" Grid.Column="1" Margin="10,2,5,2" Height="Auto"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                              ItemsSource="{Binding ConnectionsOfSelectedNode, Mode=OneWay}"
+                              SelectedItem="{Binding SelectedConnectedNode, Mode=OneWayToSource}"
+                              ItemTemplate="{StaticResource NodeInList}"
+                              IsEnabled="{Binding SomethingISSelected}">
+                        <ListView.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFB0B0B0" Offset="0"/>
+                                <GradientStop Color="#FFE0E0E0" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ListView.Background>
+                    </ListView>
+
+                    <ToggleButton Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26" Margin="10,1,0,1"
+                                  Style="{StaticResource ToggleButtonLight}"
+                                  IsEnabled="{Binding NodesEditMode, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=NONE+SHOW_CONN}"
+                                  IsChecked="{Binding NodesEditMode, Mode=OneWay, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=SHOW_CONN}"
+                                  Command="{Binding SwitchNodeEditModeCmd, Mode=OneWay}"
+                                  CommandParameter="SHOW_CONN"
+                                  ToolTip="Show All Connections">
+                        <ToggleButton.Content>
+                            <Image Source="./Data/icons/node_show_conn.png"/>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26" Margin="48,1,0,1"
+                                  Style="{StaticResource ToggleButtonLight}"
+                                  IsEnabled="{Binding NodesEditMode, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=NONE+CONNECT}"                                  
+                                  IsChecked="{Binding NodesEditMode, Mode=OneWay, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=CONNECT}"
+                                  Command="{Binding SwitchNodeEditModeCmd, Mode=OneWay}"
+                                  CommandParameter="CONNECT"
+                                  ToolTip="Connect To Node">
+                        <ToggleButton.Content>
+                            <Image Source="./Data/icons/nodes_connect.png"/>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <ToggleButton Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26" Margin="76,1,0,1"
+                                  Style="{StaticResource ToggleButtonLight}"
+                                  IsEnabled="{Binding NodesEditMode, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=NONE+DISCONNECT}"
+                                  IsChecked="{Binding NodesEditMode, Mode=OneWay, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=DISCONNECT}"
+                                  Command="{Binding SwitchNodeEditModeCmd, Mode=OneWay}"
+                                  CommandParameter="DISCONNECT"
+                                  ToolTip="DisConnect From Node">
+                        <ToggleButton.Content>
+                            <Image Source="./Data/icons/nodes_disconnect.png"/>
+                        </ToggleButton.Content>
+                    </ToggleButton>
+                    <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Height="26" Width="26" Margin="104,1,0,1"
+                                  Style="{StaticResource ReliefButton}"
+                                  IsEnabled="{Binding NodesEditMode, Converter={StaticResource EditModeToBooleanConverter}, ConverterParameter=NONE}"
+                                  Command="{Binding DisConnectSelectedNodeFromAllCmd, Mode=OneWay}"
+                                  ToolTip="DisConnect From All Nodes">
+                        <Button.Content>
+                            <Image Source="./Data/icons/nodes_disconnect_all.png"/>
+                        </Button.Content>
+                    </Button>
+
+                </Grid>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</Window>

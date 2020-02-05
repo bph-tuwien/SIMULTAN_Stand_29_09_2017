@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="01ac8b86-ddb1-442b-8b6f-333b106a3372"
+  name="ParameterStructure"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="5f1a1142-6977-4938-bf12-673b5ed0ef43"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DParameterStructure"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="c154aecb-b9f3-4da0-b2e2-2308c7acf415"
+        LastKnownName="Component"
+        LastKnownLocation="Package1_1057.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="e00b180e-a150-42c0-afca-61c6baea2843"
+        LastKnownName="Parameter"
+        LastKnownLocation="Package7_1057.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="94e2fd51-750e-4c34-9c22-77f232489cc5"
+        LastKnownName="Geometry"
+        LastKnownLocation="Package8_1057.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="564cc11e-a90a-481e-a48d-8596f87a4fce"
+        LastKnownName="Values"
+        LastKnownLocation="Package_1123.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

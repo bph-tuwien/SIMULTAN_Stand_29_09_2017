@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="file:///C:/PROGRAM FILES (X86)/MICROSOFT VISUAL STUDIO 12.0/COMMON7/IDE/EXTENSIONS/MICROSOFT/ARCHITECTURE TOOLS/EXTENSIBILITY/Logging/ReverseEngineeringLog.xslt"?>
+<Log xmlns="http://schemas.microsoft.com/VisualStudio/2010/CodeGen.RE.Log" Label="Code Generation/Text Transformation Log">
+  <MessageClass Name="Message" Label="Message" Option="Show informational messages" />
+  <MessageClass Name="Warning" Label="Warning" Option="Show warnings" />
+  <MessageClass Name="Error" Label="Error" Option="Show errors" />
+  <MessageClass Name="Property" Label="Property" Option="Show metadata" />
+  <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
+  <Message Timestamp="2017-02-14T15:35:08" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure' -  (Package)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component' -  (Package)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Medium" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType' -  (Enumeration)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::ADMINISTRATOR' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::ARCHITECTURE' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::BUILDING_CONTRACTOR' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::BUILDING_DEVELOPER' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::BUILDING_OPERATOR' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::BUILDING_PHYSICS' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::EENERGY_SUPPLIER' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::ENERGY_NETWORK_OPERATOR' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::FIRE_SAFETY' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::GUEST' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::MEP_HVAC' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::MODERATOR' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'SimultanModel::ParameterStructure::Component::ComponentManagerType::PROCESS_MEASURING_CONTROL' -  (EnumerationLiteral)" />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2017-02-14T15:35:09" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+</Log>

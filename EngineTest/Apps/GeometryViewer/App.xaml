@@ -1,0 +1,1703 @@
+﻿<Application x:Class="GeometryViewer.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:syscm="clr-namespace:System.ComponentModel;assembly=PresentationFramework"
+             xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+             xmlns:sdx="clr-namespace:SharpDX;assembly=SharpDX"
+             xmlns:htx="clr-namespace:HelixToolkit.SharpDX.Wpf;assembly=HelixToolkit.SharpDX.Wpf"
+             xmlns:gvx="clr-namespace:GeometryViewer"
+             xmlns:gvxut="clr-namespace:GeometryViewer.Utils"
+             xmlns:gvxeg="clr-namespace:GeometryViewer.EntityGeometry"
+             xmlns:gvxc="clr-namespace:GeometryViewer.Communication"
+             xmlns:gvxcd="clr-namespace:GeometryViewer.ComponentInteraction"
+             xmlns:gvxcp="clr-namespace:GeometryViewer.ComponentReps"
+             xmlns:ipc="clr-namespace:InterProcCommunication;assembly=InterProcCommunication"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <gvxut:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <gvxut:DoubleToStringConverter x:Key="DoubleToStringConverter"/>
+        <gvxut:DoubleStringToStringConverter x:Key="DoubleStringToStringConverter"/>
+        <gvxut:StringToARGBColorConeverter x:Key="StringToARGBColorConeverter"/>
+        <gvxut:SharpDXColorToWinMediaColorConverter x:Key="SharpDXColorToWinMediaColorConverter" />
+        <gvxut:BoolToWinMediaColorConverter x:Key="BoolToWinMediaColorConverter"/>
+        <gvxut:BoolToWinMediaFontWeightConverter x:Key="BoolToWinMediaFontWeightConverter"/>
+        <gvxut:BoolToWinMediaColorWOpacityConverter x:Key="BoolToWinMediaColorWOpacityConverter"/>
+        <gvxut:BoolToLinearGradientBrushConverter x:Key="BoolToLinearGradientBrushConverter"/>
+        <gvxut:BoolToOpacityConverter x:Key="BoolToOpacityConverter"/>
+        <gvxut:BooleanToVisibiltyConverter x:Key="BoolToVisConverter" />
+        <gvxut:EntityVisibilityCorrespondenceToBoolConverter x:Key="EntityVisibilityCorrespondenceToBoolConverter"/>
+        <gvxut:EntityToZonedPolygonConverter x:Key="EntityToZonedPolygonConverter"/>
+
+        <gvxeg:TreeViewSortingEntityConverter x:Key="TreeViewSortingEntityConverter" />
+        <gvxeg:PolygonEditModeTypeToBooleanConverter x:Key="PolygonEditModeTypeToBooleanConverter"/>
+
+        <gvxcp:Relation2GeomTypeToBooleanConverter x:Key="Relation2GeomTypeToBooleanConverter"/>
+        <gvxcp:Relation2GeomTypeToStringConverter x:Key="Relation2GeomTypeToStringConverter"/>
+        <gvxcp:Relation2GeomTypeToWinMediaColorConverter x:Key="Relation2GeomTypeToWinMediaColorConverter"/>
+
+        <gvxut:SharpDXColor4ToWinMediaColorConverter x:Key="SharpDXColor4ToWinMediaColorConverter"/>
+        
+        <gvxut:TypeToBoolConverter x:Key="TypeToBoolConverter"/>
+
+        <ipc:LoggerEntryTypeToWColorConverter x:Key="LoggerEntryTypeToWColorConverter"/>
+
+        <gvxut:ValueConverterGroup x:Key="TypeToVisibilityConverterGroup">
+            <gvxut:TypeToBoolConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+        
+        <gvxut:ValueConverterGroup x:Key="ReverseBoolToVisConverterGroup">
+            <gvxut:InverseBooleanConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+        
+        <gvxut:ValueConverterGroup x:Key="ReverseBoolToOpacityConverterGroup">
+            <gvxut:InverseBooleanConverter/>
+            <gvxut:BoolToOpacityConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:ValueConverterGroup x:Key="ReverseBoolToLinearGradientBrushConverterGroup">
+            <gvxut:InverseBooleanConverter/>
+            <gvxut:BoolToLinearGradientBrushConverter/>
+        </gvxut:ValueConverterGroup>
+        
+        <gvxut:ValueConverterGroup x:Key="EntityVisToUIVisConverterGroup">
+            <gvxut:EntityVisibilityCorrespondenceToBoolConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:ValueConverterGroup x:Key="ReversedEntityVisToUIVisConverterGroup">
+            <gvxut:EntityVisibilityCorrespondenceToBoolConverter/>
+            <gvxut:InverseBooleanConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:ValueConverterGroup x:Key="PolygonEditModeTypeToVisibilityConverterGroup">
+            <gvxeg:PolygonEditModeTypeToBooleanConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:ValueConverterGroup x:Key="EntityGeometryToVisibiltyConverterGroup">
+            <gvxeg:EntityGeometryToBooleanConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:ValueConverterGroup x:Key="Relation2GeomTypeToVisibiltyConverterGroup">
+            <gvxcp:Relation2GeomTypeToBooleanConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:ValueConverterGroup x:Key="LoggerEntryTypeVisibiltyConverterGroup">
+            <ipc:LoggerEntryTypeToBoolConverter/>
+            <gvxut:BooleanToVisibiltyConverter/>
+        </gvxut:ValueConverterGroup>
+
+        <gvxut:TreeDepthToLengthConverter InitLength="80" Factor="-19" x:Key="TreeDepthToLengthConverter"/>
+
+        <LinearGradientBrush x:Key="RegularButtonGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFDADADA" Offset="0"/>
+            <GradientStop Color="White" Offset="0.15"/>
+            <GradientStop Color="#FFDADADA" Offset="0.20"/>
+            <GradientStop Color="#FFAAAAAA" Offset="0.85"/>
+            <GradientStop Color="#FF595959" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="PushedButtonGradient_1" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF919191" Offset="0"/>
+            <GradientStop Color="#FFC37C00" Offset="0.154"/>
+            <GradientStop Color="#FFC9A274" Offset="0.854"/>
+            <GradientStop Color="#FFDADADA" Offset="0.95"/>
+            <GradientStop Color="#FFB6B6B6" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="DarkButtonGradient" EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFAAAAAA" Offset="0"/>
+            <GradientStop Color="White" Offset="0.15"/>
+            <GradientStop Color="#FF898989" Offset="0.20"/>
+            <GradientStop Color="#FF595959" Offset="0.85"/>
+            <GradientStop Color="#FF292929" Offset="1"/>
+        </LinearGradientBrush>
+        
+        <Style x:Key="ActiveActionBorder" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource RegularButtonGradient}"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0,0,1,2"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect Color="White" BlurRadius="3" ShadowDepth="3" Direction="315"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="InactiveActionBorder" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource RegularButtonGradient}"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1,1,0,0"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Opacity" Value="0.5"/>
+        </Style>
+
+        <gvxut:BooleanToBorderStyleConverter x:Key="BooleanToBorderStyleConverter"/>
+
+        <Style x:Key="ToggleButtonLight" TargetType="ToggleButton">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFDADADA" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFDADADA" Offset="0.20"/>
+                        <GradientStop Color="#FFAAAAAA" Offset="0.85"/>
+                        <GradientStop Color="#FF595959" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#FF2C2C2C"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF919191" Offset="0"/>
+                                <GradientStop Color="#FFC37C00" Offset="0.154"/>
+                                <GradientStop Color="#FFC9A274" Offset="0.854"/>
+                                <GradientStop Color="#FFDADADA" Offset="0.95"/>
+                                <GradientStop Color="#FFB6B6B6" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="BorderBrush" Value="#FFFFD35F"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FFDADADA"/>
+                    <Setter Property="BorderBrush" Value="#FF919191"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Foreground" Value="DimGray"/>
+                    <Setter Property="FontWeight" Value="Normal"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.35" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Style.Resources>
+        </Style>
+        
+        <Style x:Key="ToggleButtonLight_1" TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonLight}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEADDC7" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFEADDC7" Offset="0.20"/>
+                        <GradientStop Color="#FFB2A48D" Offset="0.85"/>
+                        <GradientStop Color="#FF665531" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ToggleButtonLight_2" TargetType="ToggleButton" BasedOn="{StaticResource ToggleButtonLight}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <!--<GradientStop Color="#FFF3DBB2" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFF3DBB2" Offset="0.20"/>
+                        <GradientStop Color="#FFBDA274" Offset="0.85"/>
+                        <GradientStop Color="#FF7A5300" Offset="1"/>-->
+                        <!--<GradientStop Color="#FFFBCF84" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFFBCF84" Offset="0.20"/>
+                        <GradientStop Color="#FFF79B00" Offset="0.85"/>
+                        <GradientStop Color="#FF785100" Offset="1"/>-->
+                        <GradientStop Color="#FFFBCF84" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFFBCF84" Offset="0.20"/>
+                        <GradientStop Color="#FF9999BB" Offset="0.85"/>
+                        <GradientStop Color="#FF785100" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ReliefButton" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFDADADA" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFDADADA" Offset="0.20"/>
+                        <GradientStop Color="#FFAAAAAA" Offset="0.85"/>
+                        <GradientStop Color="#FF595959" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#FFBFBFBF"/>
+                    <Setter Property="BorderBrush" Value="#FF919191"/>
+                    <Setter Property="Foreground" Value="#FF898989"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#FFFFD35F"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.35" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Style.Resources>
+        </Style>  
+        
+        <Style x:Key="ReliefButton_1" TargetType="Button" BasedOn="{StaticResource ReliefButton}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFEADDC7" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FFEADDC7" Offset="0.20"/>
+                        <GradientStop Color="#FFB2A48D" Offset="0.85"/>
+                        <GradientStop Color="#FF665531" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="ReliefButton_Important" TargetType="Button" BasedOn="{StaticResource ReliefButton}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFAAAAAA" Offset="0"/>
+                        <GradientStop Color="White" Offset="0.15"/>
+                        <GradientStop Color="#FF898989" Offset="0.20"/>
+                        <GradientStop Color="#FF595959" Offset="0.85"/>
+                        <GradientStop Color="#FF292929" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="ReliefButton_ForwTriangle" TargetType="Button" BasedOn="{StaticResource ReliefButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Path Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" Data="M 4,0 L 13,0 L 26,13 L 13,26 L 4,26 L 4,0"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ReliefButton_BackwTriangle" TargetType="Button" BasedOn="{StaticResource ReliefButton}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Path Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" Data="M 22,26 L 11,26 L 0,13 L 11,0 L 22,0 L 22,26"/>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ViewportExpander" TargetType="Expander">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush" Value="LightGray"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Opacity="0.3" Color="WhiteSmoke"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="syscm:DesignerProperties.IsInDesignMode"  Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ViewportExpanderNavi" TargetType="Expander">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Opacity="0.75" Color="#FF9C9C9C"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <Style x:Key="CoordinateInfo" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="58"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <Setter Property="Foreground" Value="DimGray"/>
+        </Style>
+        
+        <Style x:Key="CoordinateInput" TargetType="TextBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border x:Name="bg" BorderBrush="Black" BorderThickness="1">
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                        Background="White"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="PART_ContentHost" Value="#FFFFE6B9"/>
+                                <Setter Property="BorderBrush" TargetName="bg" Value="Orange"/>
+                                <Setter Property="BorderThickness" TargetName="bg" Value="2"/>
+                                <Setter Property="Padding" Value="2,-1,2,2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="PART_ContentHost" Value="LightGray"/>
+                                <Setter Property="BorderBrush" TargetName="bg" Value="#FF8D8D8D"/>
+                                <Setter Property="BorderThickness" TargetName="bg" Value="1"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="Border.MouseDown" SourceName="PART_ContentHost">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FFFFC558" 
+                                                         Duration="0:0:0.2"
+                                                         Storyboard.TargetName="PART_ContentHost" 
+                                                         Storyboard.TargetProperty="Background.Color"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Border.GotFocus" SourceName="PART_ContentHost">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="#FFFFC558" 
+                                                         Duration="0:0:0.2"
+                                                         Storyboard.TargetName="PART_ContentHost" 
+                                                         Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="Orange" 
+                                                         Duration="0:0:0.2"
+                                                         Storyboard.TargetName="bg" 
+                                                         Storyboard.TargetProperty="BorderBrush.Color"/>
+                                        <!--<ThicknessAnimation To="2" 
+                                                         Duration="0:0:0.2"
+                                                         Storyboard.TargetName="bg" 
+                                                         Storyboard.TargetProperty="BorderThickness"/>-->
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Border.LostFocus" SourceName="PART_ContentHost">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation To="LightBlue" 
+                                                         Duration="0:0:0.2"
+                                                         Storyboard.TargetName="PART_ContentHost" 
+                                                         Storyboard.TargetProperty="Background.Color"/>
+                                        <ColorAnimation To="DarkBlue" 
+                                                         Duration="0:0:0.2"
+                                                         Storyboard.TargetName="bg" 
+                                                         Storyboard.TargetProperty="BorderBrush.Color"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="Width" Value="45"/>
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="#FF8D8D8D"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+        
+        <Style x:Key="CoordinateInfoBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#FF6A6A6A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="22"/>
+        </Style>
+
+        <Style x:Key="MyFocusVisualStyle">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate >
+                        <Rectangle Margin="-2" StrokeThickness="2" RadiusX="2" RadiusY="2">
+                            <Rectangle.Stroke>
+                                <SolidColorBrush Color="Orange" x:Name="RectangleStroke" />
+                            </Rectangle.Stroke>
+                            <Rectangle.Triggers>
+                                <EventTrigger RoutedEvent="Rectangle.Loaded" >
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation From="Orange"
+                                                        To="Yellow"
+                                                        Duration="0:0:0.5"
+                                                        RepeatBehavior="3x" 
+                                                        Storyboard.TargetName="RectangleStroke"
+                                                        Storyboard.TargetProperty="Color"/>
+                                            <DoubleAnimation To="3" 
+                                                         Duration="0:0:0.5"
+                                                         RepeatBehavior="3x"
+                                                         Storyboard.TargetProperty="StrokeDashOffset" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Rectangle.Triggers>
+                        </Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <Style x:Key="SliderStyleOrange" TargetType="{x:Type Slider}">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#FFE5E5E5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Slider}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,0,0,2" Placement="Top" Grid.Row="0" Visibility="Collapsed"/>
+                                <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
+                                <Border x:Name="TrackBackground" BorderBrush="#FFD6D6D6" BorderThickness="1" Background="#FFE7EAEA" Height="4" Margin="5,0" Grid.Row="1" VerticalAlignment="Center">
+                                    <Canvas Margin="-6,-1">
+                                        <Rectangle x:Name="PART_SelectionRange" Fill="#FFFFD35F" Height="4" Visibility="Hidden"/>
+                                    </Canvas>
+                                </Border>
+                                <Track x:Name="PART_Track" Grid.Row="1">
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="Slider.DecreaseLarge">
+                                            <RepeatButton.Style>
+                                                <Style TargetType="{x:Type RepeatButton}">
+                                                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Focusable" Value="False"/>
+                                                    <Setter Property="IsTabStop" Value="False"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                                <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </RepeatButton.Style>
+                                        </RepeatButton>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="Slider.IncreaseLarge">
+                                            <RepeatButton.Style>
+                                                <Style TargetType="{x:Type RepeatButton}">
+                                                    <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Focusable" Value="False"/>
+                                                    <Setter Property="IsTabStop" Value="False"/>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                                <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </RepeatButton.Style>
+                                        </RepeatButton>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb x:Name="Thumb" Focusable="False" Height="18" OverridesDefaultStyle="True" VerticalAlignment="Center" Width="11">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="{x:Type Thumb}">
+                                                    <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                                                        <Path x:Name="grip" Data="M0,0C0,0 11,0 11,0 11,0 11,18 11,18 11,18 0,18 0,18 0,18 0,0 0,0z" Fill="#FFF0F0F0" Stretch="Fill" SnapsToDevicePixels="True" Stroke="#FFACACAC" StrokeThickness="1" UseLayoutRounding="True" VerticalAlignment="Center"/>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFFCF3DC"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FFFFB533"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsDragging" Value="True">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFFCF3DC"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FFFFB533"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFF0F0F0"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FFD9D9D9"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TickPlacement" Value="TopLeft">
+                                <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                                <Setter Property="Template" TargetName="Thumb">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                                                <Path x:Name="grip" Data="M0,6C0,6 5.5,0 5.5,0 5.5,0 11,6 11,6 11,6 11,18 11,18 11,18 0,18 0,18 0,18 0,6 0,6z" Fill="#FFF0F0F0" Stretch="Fill" SnapsToDevicePixels="True" Stroke="#FFACACAC" StrokeThickness="1" UseLayoutRounding="True" VerticalAlignment="Center"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Fill" TargetName="grip" Value="#FFFCF3DC"/>
+                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFFFB533"/>
+                                                </Trigger>
+                                                <Trigger Property="IsDragging" Value="True">
+                                                    <Setter Property="Fill" TargetName="grip" Value="#FFFCF3DC"/>
+                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFFFB533"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Fill" TargetName="grip" Value="#FFF0F0F0"/>
+                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFD9D9D9"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="TrackBackground" Value="5,2,5,0"/>
+                            </Trigger>
+                            <Trigger Property="TickPlacement" Value="BottomRight">
+                                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                                <Setter Property="Template" TargetName="Thumb">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                                                <Path x:Name="grip" Data="M0,12C0,12 5.5,18 5.5,18 5.5,18 11,12 11,12 11,12 11,0 11,0 11,0 0,0 0,0 0,0 0,12 0,12z" Fill="#FFF0F0F0" Stretch="Fill" SnapsToDevicePixels="True" Stroke="#FFACACAC" StrokeThickness="1" UseLayoutRounding="True" VerticalAlignment="Center"/>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Fill" TargetName="grip" Value="#FFFCF3DC"/>
+                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFFFB533"/>
+                                                </Trigger>
+                                                <Trigger Property="IsDragging" Value="True">
+                                                    <Setter Property="Fill" TargetName="grip" Value="#FFFCF3DC"/>
+                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFFFB533"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="False">
+                                                    <Setter Property="Fill" TargetName="grip" Value="#FFF0F0F0"/>
+                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFD9D9D9"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="TrackBackground" Value="5,0,5,2"/>
+                            </Trigger>
+                            <Trigger Property="TickPlacement" Value="Both">
+                                <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True">
+                                <Setter Property="Foreground" TargetName="Thumb" Value="Blue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Vertical">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Slider}">
+                                <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TickBar x:Name="TopTick" Grid.Column="0" Fill="{TemplateBinding Foreground}" Margin="0,0,2,0" Placement="Left" Visibility="Collapsed" Width="4"/>
+                                        <TickBar x:Name="BottomTick" Grid.Column="2" Fill="{TemplateBinding Foreground}" Margin="2,0,0,0" Placement="Right" Visibility="Collapsed" Width="4"/>
+                                        <Border x:Name="TrackBackground" BorderBrush="#FFD6D6D6" BorderThickness="1" Background="#FFE7EAEA" Grid.Column="1" HorizontalAlignment="Center" Margin="0,5" Width="4">
+                                            <Canvas Margin="-1,-6">
+                                                <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Visibility="Hidden" Width="4"/>
+                                            </Canvas>
+                                        </Border>
+                                        <Track x:Name="PART_Track" Grid.Column="1">
+                                            <Track.DecreaseRepeatButton>
+                                                <RepeatButton Command="Slider.DecreaseLarge">
+                                                    <RepeatButton.Style>
+                                                        <Style TargetType="{x:Type RepeatButton}">
+                                                            <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                            <Setter Property="Focusable" Value="False"/>
+                                                            <Setter Property="IsTabStop" Value="False"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </RepeatButton.Style>
+                                                </RepeatButton>
+                                            </Track.DecreaseRepeatButton>
+                                            <Track.IncreaseRepeatButton>
+                                                <RepeatButton Command="Slider.IncreaseLarge">
+                                                    <RepeatButton.Style>
+                                                        <Style TargetType="{x:Type RepeatButton}">
+                                                            <Setter Property="OverridesDefaultStyle" Value="True"/>
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                            <Setter Property="Focusable" Value="False"/>
+                                                            <Setter Property="IsTabStop" Value="False"/>
+                                                            <Setter Property="Template">
+                                                                <Setter.Value>
+                                                                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                                                                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                                                                    </ControlTemplate>
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                        </Style>
+                                                    </RepeatButton.Style>
+                                                </RepeatButton>
+                                            </Track.IncreaseRepeatButton>
+                                            <Track.Thumb>
+                                                <Thumb x:Name="Thumb" Focusable="False" Height="11" OverridesDefaultStyle="True" VerticalAlignment="Top" Width="18">
+                                                    <Thumb.Template>
+                                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                                                                <Path x:Name="grip" Data="M0.5,0.5L18.5,0.5 18.5,11.5 0.5,11.5z" Fill="#FFF0F0F0" Stretch="Fill" Stroke="#FFACACAC"/>
+                                                            </Grid>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Fill" TargetName="grip" Value="#FFDCECFC"/>
+                                                                    <Setter Property="Stroke" TargetName="grip" Value="#FF7EB4EA"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsDragging" Value="True">
+                                                                    <Setter Property="Fill" TargetName="grip" Value="#FFDAECFC"/>
+                                                                    <Setter Property="Stroke" TargetName="grip" Value="#FF569DE5"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsEnabled" Value="False">
+                                                                    <Setter Property="Fill" TargetName="grip" Value="#FFF0F0F0"/>
+                                                                    <Setter Property="Stroke" TargetName="grip" Value="#FFD9D9D9"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Thumb.Template>
+                                                </Thumb>
+                                            </Track.Thumb>
+                                        </Track>
+                                    </Grid>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="TickPlacement" Value="TopLeft">
+                                        <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                                        <Setter Property="Template" TargetName="Thumb">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Thumb}">
+                                                    <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                                                        <Path x:Name="grip" Data="M6,11C6,11 0,5.5 0,5.5 0,5.5 6,0 6,0 6,0 18,0 18,0 18,0 18,11 18,11 18,11 6,11 6,11z" Fill="#FFF0F0F0" Stretch="Fill" Stroke="#FFACACAC"/>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFDCECFC"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FF7EB4EA"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsDragging" Value="True">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFDAECFC"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FF569DE5"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFF0F0F0"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FFD9D9D9"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Margin" TargetName="TrackBackground" Value="2,5,0,5"/>
+                                    </Trigger>
+                                    <Trigger Property="TickPlacement" Value="BottomRight">
+                                        <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                                        <Setter Property="Template" TargetName="Thumb">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Thumb}">
+                                                    <Grid HorizontalAlignment="Center" UseLayoutRounding="True" VerticalAlignment="Center">
+                                                        <Path x:Name="grip" Data="M12,11C12,11 18,5.5 18,5.5 18,5.5 12,0 12,0 12,0 0,0 0,0 0,0 0,11 0,11 0,11 12,11 12,11z" Fill="#FFF0F0F0" Stretch="Fill" Stroke="#FFACACAC"/>
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFDCECFC"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FF7EB4EA"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsDragging" Value="True">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFDAECFC"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FF569DE5"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Fill" TargetName="grip" Value="#FFF0F0F0"/>
+                                                            <Setter Property="Stroke" TargetName="grip" Value="#FFD9D9D9"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Setter Property="Margin" TargetName="TrackBackground" Value="0,5,2,5"/>
+                                    </Trigger>
+                                    <Trigger Property="TickPlacement" Value="Both">
+                                        <Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+                                        <Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                                        <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                                    </Trigger>
+                                    <Trigger Property="IsKeyboardFocused" Value="True">
+                                        <Setter Property="Foreground" TargetName="Thumb" Value="Blue"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="ListBoxGeometry" TargetType="{x:Type ListBox}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <SolidColorBrush Opacity="0.75" Color="WhiteSmoke"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+
+        <!--Scrollbar Thumbs-->
+        <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Grid x:Name="Grid">
+                            <Rectangle x:Name="Rectangle0" RadiusX="5" RadiusY="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="7" Height="Auto" Fill="Transparent" Stroke="{TemplateBinding BorderBrush}"  StrokeThickness="1"/>
+                            <Border x:Name="Rectangle1" CornerRadius="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="5" Height="Auto"  Background="{TemplateBinding Background}" Margin="0,1"/>
+                            <Rectangle x:Name="MidLine0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="3" Height="1" Stroke="{TemplateBinding BorderBrush}"  StrokeThickness="1"/>
+                            <Rectangle x:Name="MidLine1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="3" Height="1" Stroke="{TemplateBinding BorderBrush}"  StrokeThickness="1" Margin="0,5,0,0"/>
+                            <Rectangle x:Name="MidLine2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="3" Height="1" Stroke="{TemplateBinding BorderBrush}"  StrokeThickness="1" Margin="0,0,0,5"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Tag" Value="Horizontal">
+                                <Setter TargetName="Rectangle0" Property="Width" Value="Auto" />
+                                <Setter TargetName="Rectangle0" Property="Height" Value="7" />
+                                <Setter TargetName="Rectangle1" Property="Width" Value="Auto" />
+                                <Setter TargetName="Rectangle1" Property="Height" Value="5" />
+                                <Setter TargetName="Rectangle1" Property="Margin" Value="1,0" />
+                                <Setter TargetName="MidLine0" Property="Width" Value="1" />
+                                <Setter TargetName="MidLine0" Property="Height" Value="3" />
+                                <Setter TargetName="MidLine1" Property="Width" Value="1" />
+                                <Setter TargetName="MidLine1" Property="Height" Value="3" />
+                                <Setter TargetName="MidLine1" Property="Margin" Value="5,0,0,0" />
+                                <Setter TargetName="MidLine2" Property="Width" Value="1" />
+                                <Setter TargetName="MidLine2" Property="Height" Value="3" />
+                                <Setter TargetName="MidLine2" Property="Margin" Value="0,0,5,0" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--ScrollBars-->
+        <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
+            <Setter Property="Foreground" Value="#8C8C8C" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Width" Value="9" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="GridRoot" Width="9" Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0.00001*" />
+                            </Grid.RowDefinitions>
+
+                            <Track x:Name="PART_Track" Grid.Row="0" IsDirectionReversed="true" Focusable="false">
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Background="{TemplateBinding Foreground}" BorderBrush="Black" Style="{DynamicResource ScrollThumbs}" />
+                                </Track.Thumb>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton x:Name="PageUp" Command="ScrollBar.PageDownCommand" Opacity="0" Focusable="false" />
+                                </Track.IncreaseRepeatButton>
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton x:Name="PageDown" Command="ScrollBar.PageUpCommand" Opacity="0" Focusable="false" />
+                                </Track.DecreaseRepeatButton>
+                            </Track>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger SourceName="Thumb" Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Thumb" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FF777777"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="Thumb" Property="BorderBrush">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FF000000"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger SourceName="Thumb" Property="IsDragging" Value="true">
+                                <Setter TargetName="Thumb" Property="Background">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FF555577"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="Thumb" Property="BorderBrush">
+                                    <Setter.Value>
+                                        <SolidColorBrush Color="#FFFFFFFF"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter TargetName="Thumb" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="Orientation" Value="Horizontal">
+                                <Setter TargetName="GridRoot" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="PART_Track" Property="LayoutTransform">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Width" Value="Auto" />
+                                <Setter Property="Height" Value="9" />
+                                <Setter TargetName="Thumb" Property="Tag" Value="Horizontal" />
+                                <Setter TargetName="PageDown" Property="Command" Value="ScrollBar.PageLeftCommand" />
+                                <Setter TargetName="PageUp" Property="Command" Value="ScrollBar.PageRightCommand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <!--ToolTip -->
+        <Style x:Key="ToolTipImportant" TargetType="ToolTip" BasedOn="{StaticResource {x:Type ToolTip}}">
+            <Setter Property="Foreground" Value="OrangeRed"/>
+            <Setter Property="BorderBrush" Value="OrangeRed"/>
+            <Setter Property="Background" Value="PaleGoldenrod"/>
+        </Style>
+
+        <DataTemplate x:Key="DataTemplateGeometry">
+            <Grid>
+                <Grid.InputBindings>
+                    <!--<MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ElementName=lineGroupDisplay, Path=EditModelNameCmd, Mode=OneWay}"/>-->
+                </Grid.InputBindings>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Ellipse Grid.Column="0" Width="12" Stroke="Black" Margin="2,2,6,2">
+                    <Ellipse.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ElementName=lineGroupDisplay, Path=EditModelColorCmd, Mode=OneWay}"/>
+                    </Ellipse.InputBindings>
+                    <Ellipse.Fill>
+                        <SolidColorBrush Color="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Content, Converter={StaticResource StringToARGBColorConeverter}}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Grid.Column="1" Text="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Content}">
+                    <TextBlock.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ElementName=lineGroupDisplay, Path=EditModelNameCmd, Mode=OneWay}"/>
+                    </TextBlock.InputBindings>
+                </TextBlock>                
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DataTemplateColorPicker">
+            <Rectangle Width="20" Height="20" Stroke="Black" Margin="-5,-2,-5,-2">
+                <Rectangle.Fill>
+                    <SolidColorBrush Color="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Content.Color}"/>
+                </Rectangle.Fill>
+            </Rectangle>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="ColorButton">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="21"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Width="15" Height="15" Stroke="Black">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=ManagedColor}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Column="1" Text="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}, Path=Content}"/>
+            </Grid>
+        </DataTemplate>
+
+        <!-- Empty Template-->      
+        <DataTemplate x:Key="DT_Empty">
+            <Grid>
+                <TextBlock Text="[ - - - ]" Foreground="DimGray" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>          
+        </DataTemplate>
+
+        <HierarchicalDataTemplate x:Key="HDT_Empty" DataType="{x:Type gvxcp:CompRepInfo}" ItemsSource="{Binding CR_SubCompReps}">
+            <Grid>
+                <TextBlock Text=" - - - - - - - " Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </HierarchicalDataTemplate>
+        
+        <!-- Unknown Template-->
+        <DataTemplate x:Key="DT_Unknown">
+            <Grid>
+                <TextBlock Text="unknown type" Foreground="OrangeRed" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        
+        <!-- LOG ENTRIES-->
+        <DataTemplate x:Key="LogEntryInList" DataType="{x:Type ipc:LoggerEntry}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- 0: Prefix -->
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="2"/>
+                    <!-- 2: Symbol -->
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="2"/>
+                    <!-- 4: Text-->
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="{Binding Prefix, Mode=OneWay}" FontFamily="Courier New" TextDecorations="Underline"/>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Image Source="./Data/Icons/cmd_info.png" Width="16" Height="16"
+                           Visibility="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeVisibiltyConverterGroup}, ConverterParameter=INFO}"/>
+                    <Image Source="./Data/Icons/cmd_warning.png" Width="16" Height="16"
+                           Visibility="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeVisibiltyConverterGroup}, ConverterParameter=WARNING}"/>
+                    <Image Source="./Data/Icons/cmd_error.png" Width="16" Height="16"
+                           Visibility="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeVisibiltyConverterGroup}, ConverterParameter=ERROR}"/>
+                    <Image Source="./Data/Icons/cmd_comm_unit.png" Width="16" Height="16"
+                           Visibility="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeVisibiltyConverterGroup}, ConverterParameter=COMM}"/>
+                    <Image Source="./Data/Icons/cmd_server.png" Width="16" Height="16"
+                           Visibility="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeVisibiltyConverterGroup}, ConverterParameter=SERVER}"/>
+                    <Image Source="./Data/Icons/cmd_client.png" Width="16" Height="16"
+                           Visibility="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeVisibiltyConverterGroup}, ConverterParameter=CLIENT}"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="4" Text="{Binding Text, Mode=OneWay}" FontFamily="Courier New">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding Type, Mode=OneWay, Converter={StaticResource LoggerEntryTypeToWColorConverter}}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+
+            </Grid>
+        </DataTemplate>
+
+        <!-- HIERARCHICAL LIST TEMPLATES -->
+
+        <Style x:Key="LayerListStyle" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+
+        <Style x:Key="LayerListStyleVolCreation" TargetType="{x:Type TreeViewItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+            <Setter Property="Focusable" Value="{Binding Converter={StaticResource TypeToBoolConverter}, ConverterParameter=GeometryViewer.EntityGeometry.ZonedPolygonGroup}"/>
+        </Style>
+
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE LINE DEFINITIONS (ARCHITECTURE)-->
+
+        <HierarchicalDataTemplate x:Key="ArchInList" DataType="{x:Type gvxeg:Entity}" ItemsSource="{Binding Path=ContainedEntities, Converter={StaticResource TreeViewSortingEntityConverter}, ConverterParameter=EntityName}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- visibility switches -->
+                <StackPanel Grid.Column="0">
+                    <StackPanel Visibility="{Binding Path=HasGeometry, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                        <Image Source="./Data/Icons/switch_onON.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=ON, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_onOFF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=OFF, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_onHALF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=HALF, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=HasGeometry, Converter={StaticResource BoolToVisConverter}}">
+                        <Image Source="./Data/Icons/switch_LON.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=ON, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_LOFF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=OFF, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_LHALF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=HALF, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding ElementName=arcDisplay, Path=SwitchVisibilityCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </StackPanel.InputBindings>
+                </StackPanel>
+
+                <!-- color definition for all -->
+                <Rectangle Grid.Column="2" Width="12" Height="12" Stroke="Black">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=EntityColor, Converter={StaticResource SharpDXColorToWinMediaColorConverter}}"/>
+                    </Rectangle.Fill>
+                    <Rectangle.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ElementName=arcDisplay, Path=ChangeColorCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </Rectangle.InputBindings>
+                </Rectangle>
+                
+                <!-- thickness definition for lines -->
+                <Rectangle Grid.Column="4" Width="{Binding Path=LineThicknessGUI}" Height="12" Stroke="Black" Fill="Black" Visibility="{Binding Path=HasGeometry, Converter={StaticResource BoolToVisConverter}}">
+
+                </Rectangle>
+
+                <!-- entity name regardless of type -->
+                <TextBlock Grid.Column="6" Text="{Binding Path=EntityName}" FontWeight="{Binding IsValid, Mode=OneWay, Converter={StaticResource BoolToWinMediaFontWeightConverter}}">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding IsValid, Mode=OneWay, Converter={StaticResource BoolToWinMediaColorConverter}}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+
+            </Grid>
+            <!--<HierarchicalDataTemplate.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                    <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </HierarchicalDataTemplate.ItemContainerStyle>-->
+        </HierarchicalDataTemplate>
+
+        <Style x:Key="ListBoxNumberOrange" TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border
+                                    BorderThickness="{TemplateBinding Border.BorderThickness}"
+                                    Padding="{TemplateBinding Control.Padding}"
+                                    BorderBrush="#FFCD8500"
+                                    Background="#FFFFD380"
+                                    SnapsToDevicePixels="True">
+                                    <ContentPresenter
+                                        Content="{TemplateBinding ContentControl.Content}"
+                                        ContentTemplate="{TemplateBinding ContentControl.ContentTemplate}"
+                                        HorizontalAlignment="{TemplateBinding Control.HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding Control.VerticalContentAlignment}"
+                                        SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+            
+        </Style>
+        
+        
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE ZONE DEFINITIONS (BUILDING PHYSICS)-->
+
+        <HierarchicalDataTemplate x:Key="ZoneInList" DataType="{x:Type gvxeg:Entity}" ItemsSource="{Binding Path=ContainedEntities, Converter={StaticResource TreeViewSortingEntityConverter}, ConverterParameter=EntityName}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" ToolTip="switch visibility">
+                    <StackPanel Visibility="{Binding Path=HasGeometry, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                        <Image Source="./Data/Icons/switch_onON.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=ON, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_onOFF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=OFF, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_onHALF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=HALF, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=HasGeometryType, Converter={StaticResource EntityGeometryToVisibiltyConverterGroup}, ConverterParameter=LINE}">
+                        <Image Source="./Data/Icons/switch_gON.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=ON, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_gOFF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=OFF, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_gHALF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=HALF, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Visibility="{Binding Path=HasGeometryType, Converter={StaticResource EntityGeometryToVisibiltyConverterGroup}, ConverterParameter=MESH}">
+                        <Image Source="./Data/Icons/switch_gvON.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=ON, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_gvOFF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=OFF, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Image Source="./Data/Icons/switch_gvHALF.png" Visibility="{Binding Path=Visibility, Converter={StaticResource EntityVisToUIVisConverterGroup}, ConverterParameter=HALF, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding ElementName=zoneGroupDisplay, Path=SwitchVisibilityCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </StackPanel.InputBindings>
+                </StackPanel>
+
+                <!-- color definition for layers -->
+                <Rectangle Grid.Column="2" Width="12" Height="12" Stroke="Black" ToolTip="change color"
+                           Visibility="{Binding Path=HasGeometry, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=EntityColor, Converter={StaticResource SharpDXColorToWinMediaColorConverter}}"/>
+                    </Rectangle.Fill>
+                    <Rectangle.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding ElementName=zoneGroupDisplay, Path=ChangeColorCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </Rectangle.InputBindings>
+                </Rectangle>
+                
+                <!-- zone switch for geometry -->
+                <StackPanel Grid.Column="2" Width="12" Height="12" Visibility="{Binding Path=HasGeometry, Converter={StaticResource BoolToVisConverter}}" ToolTip="switch helper geometry">
+                    <Image Source="./Data/Icons/switch_gZON.png" Visibility="{Binding Path=ShowZones, Converter={StaticResource BoolToVisConverter}}"/>
+                    <Image Source="./Data/Icons/switch_gZOFF.png" Visibility="{Binding Path=ShowZones, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <StackPanel.InputBindings>
+                        <MouseBinding MouseAction="LeftClick" Command="{Binding ElementName=zoneGroupDisplay, Path=SwitchZoneVisibilityCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </StackPanel.InputBindings>
+                </StackPanel>
+
+                <!-- association with a component representation (only for ZonedVolume objects) -->
+                <StackPanel Grid.Column="4" Width="16" Height="16"
+                            Visibility="{Binding Converter={StaticResource TypeToVisibilityConverterGroup}, ConverterParameter=GeometryViewer.EntityGeometry.ZonedVolume}">
+                    <Image Source="./Data/Icons/space_volYES.png" ToolTip="to associated space" Visibility="{Binding Path=AssociatedWComp, Converter={StaticResource BoolToVisConverter}}"/>
+                    <Image Source="./Data/Icons/space_volNO.png" Visibility="{Binding Path=AssociatedWComp, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <StackPanel.InputBindings>
+                        <!--<MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=CommandExt, Path=SwitchFromZonedVolumeToSpaceCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>-->
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=CommandExt, Path=SwitchFromZonedVolumeToCompRepCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </StackPanel.InputBindings>
+                </StackPanel>
+
+                <!-- entity name regardless of type -->
+                <TextBlock Grid.Column="6" Text="{Binding Path=EntityName, Mode=OneWay}">
+                    <TextBlock.ToolTip>
+                        <ToolTip>
+                            <ToolTip.Content>
+                                <TextBlock>
+                                    <Run Text="ID: "/>
+                                    <Run Text="{Binding Path=ID, Mode=OneWay}" FontWeight="Bold"/>
+                                </TextBlock>
+                            </ToolTip.Content>
+                        </ToolTip>
+                    </TextBlock.ToolTip>
+                    <TextBlock.TextDecorations>
+                        <TextDecoration Location="Strikethrough">
+                            <TextDecoration.Pen>
+                                <Pen>
+                                    <Pen.Brush>
+                                        <SolidColorBrush Color="{Binding IsValid, Mode=OneWay, Converter={StaticResource BoolToWinMediaColorWOpacityConverter}}"/>
+                                    </Pen.Brush>
+                                </Pen>
+                            </TextDecoration.Pen>
+                        </TextDecoration>
+                    </TextBlock.TextDecorations>
+                </TextBlock>
+            </Grid>
+        </HierarchicalDataTemplate>
+        
+        <DataTemplate x:Key="ZoneInComboBox" DataType="{x:Type gvxeg:Layer}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="0" Width="12" Height="12" Stroke="Black">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="{Binding Path=EntityColor, Converter={StaticResource SharpDXColorToWinMediaColorConverter}}"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Column="2" Text="{Binding Path=EntityName}"/>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="WindingDeirectionLabel" DataType="{x:Type gvxeg:Entity}">
+            <StackPanel>
+                <StackPanel.Resources>
+                    <DataTemplate DataType="{x:Type gvxeg:ZonedPolygon}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="24"/>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="2"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="0" Grid.ColumnSpan="7" Stroke="DimGray" RadiusX="5" RadiusY="5"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Path=EntityName, StringFormat=\{0\}:}" FontWeight="Bold" Padding="0,5,0,0"/>
+                            <Image Grid.Column="3" Width="24" Height="24" Source="./Data/Icons/winding_CCW.png" Visibility="{Binding Path=IsClockWise, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Image Grid.Column="3" Width="24" Height="24" Source="./Data/Icons/winding_CW.png" Visibility="{Binding Path=IsClockWise, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                            <TextBlock Grid.Column="5" Text="{Binding Path=Polygon_Coords.Count, StringFormat=\{0:0\} vertices}" Padding="0,5,0,0"/>
+                        </Grid>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type gvxeg:Entity}">
+                        <TextBlock Text="{Binding Path=EntityName, StringFormat=\{0\}:}" FontWeight="Bold" Padding="0,5,0,0"/>
+                    </DataTemplate>
+                </StackPanel.Resources>
+                <ContentPresenter Content="{Binding}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="TreeItemForLayers" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Orange"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FFFFD382"/>                
+            </Style.Resources>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+        </Style>
+
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE VERTICES OF THE POLYGON IN EDIT MODE -->        
+        <DataTemplate x:Key="PolygonVertexInList" DataType="{x:Type gvxeg:ZonedPolygonVertexVis}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="55" MaxWidth="90"/>
+                    <ColumnDefinition MinWidth="120" MaxWidth="200"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Label}" FontWeight="Bold"/>
+                <TextBlock Grid.Column="1" Text="{Binding Position, StringFormat=[\{0:0.00\}], Mode=OneWay}" Background="#FFE8E8E8"/>
+                <StackPanel Grid.Column="2" Visibility="{Binding ElementName=zoneGroupDisplay, Path=PolygonEditModeType, Converter={StaticResource PolygonEditModeTypeToVisibilityConverterGroup}, ConverterParameter=POLY_LABELS_EDIT}">
+                    <TextBlock Width="30" Height="20"
+                           Text="{Binding ZoneInOwner, StringFormat=|[\{0:0\}]|, Mode=OneWay}" Background="#FFCFCFCF"
+                           Visibility="{Binding Path=IsSelected, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <TextBox Width="30" Height="20"
+                         Text="{Binding ZoneInOwner, Mode=TwoWay, Converter={StaticResource DoubleStringToStringConverter}, ConverterParameter=F0}"
+                         Visibility="{Binding Path=IsSelected, Converter={StaticResource BoolToVisConverter}}"/>
+                </StackPanel>
+                
+            </Grid>
+            
+        </DataTemplate>
+
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE OPENINGS OF THE POLYGON IN EDIT MODE -->
+        <DataTemplate x:Key="PolygonOpeningInList" DataType="{x:Type gvxeg:ZoneOpeningVis}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="55" MaxWidth="90"/>
+                    
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="35"/>
+                    
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="35"/>
+
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="9">
+                    <TextBlock Text="{Binding Label, Mode=TwoWay}" FontWeight="Bold"
+                               Visibility="{Binding Path=IsSelected, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <TextBox Text="{Binding Label, Mode=TwoWay}" 
+                             Visibility="{Binding Path=IsSelected, Converter={StaticResource BoolToVisConverter}}"/>
+                </StackPanel>
+                
+                <Image Grid.Row="1" Grid.Column="2" Source="./Data/Icons/opening_dH.png" Height="16" Width="16"/>
+                <StackPanel Grid.Row="1" Grid.Column="4">
+                    <TextBlock  Text="{Binding DistFromVertex, StringFormat=\{0:0.00\}, Mode=OneWay}" 
+                                Visibility="{Binding Path=IsSelected, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <TextBox Text="{Binding DistFromVertex, Mode=TwoWay, Converter={StaticResource DoubleStringToStringConverter}, ConverterParameter=F2}" 
+                             Visibility="{Binding Path=IsSelected, Converter={StaticResource BoolToVisConverter}}"
+                             IsEnabled="{Binding ElementName=zoneGroupDisplay, Path=PolygonEditModeType, Converter={StaticResource PolygonEditModeTypeToBooleanConverter}, ConverterParameter=OPENING_EDIT, Mode=OneWay}"
+                             Height="20" Width="35"/>
+                </StackPanel>          
+                
+                <Image Grid.Row="1" Grid.Column="6" Source="./Data/Icons/opening_dV.png" Height="16" Width="16"/>
+                <StackPanel Grid.Row="1" Grid.Column="8">
+                    <TextBlock Text="{Binding DistFromFloorPolygon, StringFormat=\{0:0.00\}, Mode=OneWay}" 
+                               Visibility="{Binding Path=IsSelected, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <TextBox Text="{Binding DistFromFloorPolygon, Mode=TwoWay, Converter={StaticResource DoubleStringToStringConverter}, ConverterParameter=F2}" 
+                             Visibility="{Binding Path=IsSelected, Converter={StaticResource BoolToVisConverter}}"
+                             IsEnabled="{Binding ElementName=zoneGroupDisplay, Path=PolygonEditModeType, Converter={StaticResource PolygonEditModeTypeToBooleanConverter}, ConverterParameter=OPENING_EDIT, Mode=OneWay}" 
+                             Height="20" Width="35"/>
+                </StackPanel>
+                
+                
+                <Image Grid.Row="2" Grid.Column="2" Source="./Data/Icons/opening_lH.png" Height="16" Width="16"/>
+                <StackPanel Grid.Row="2" Grid.Column="4">
+                    <TextBlock  Text="{Binding Length, StringFormat=\{0:0.00\}, Mode=OneWay}" 
+                                Visibility="{Binding Path=IsSelected, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <TextBox Text="{Binding Length, Mode=TwoWay, Converter={StaticResource DoubleStringToStringConverter}, ConverterParameter=F2}" 
+                             Visibility="{Binding Path=IsSelected, Converter={StaticResource BoolToVisConverter}}"
+                             IsEnabled="{Binding ElementName=zoneGroupDisplay, Path=PolygonEditModeType, Converter={StaticResource PolygonEditModeTypeToBooleanConverter}, ConverterParameter=OPENING_EDIT, Mode=OneWay}"
+                             Height="20" Width="35"/>
+                </StackPanel>
+                
+
+                <Image Grid.Row="2" Grid.Column="6" Source="./Data/Icons/opening_lV.png" Height="16" Width="16"/>
+                <StackPanel Grid.Row="2" Grid.Column="8">
+                    <TextBlock Text="{Binding Height, StringFormat=\{0:0.00\}, Mode=OneWay}"
+                               Visibility="{Binding Path=IsSelected, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                    <TextBox Text="{Binding Height, Mode=TwoWay, Converter={StaticResource DoubleStringToStringConverter}}" 
+                             Visibility="{Binding Path=IsSelected, Converter={StaticResource BoolToVisConverter}}"
+                             IsEnabled="{Binding ElementName=zoneGroupDisplay, Path=PolygonEditModeType, Converter={StaticResource PolygonEditModeTypeToBooleanConverter}, ConverterParameter=OPENING_EDIT, Mode=OneWay}"
+                             Height="20" Width="35"/>
+                </StackPanel>
+                
+                
+            </Grid>
+        </DataTemplate>
+
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE LEVELS IN A VOLUME DEFINITION -->
+        <HierarchicalDataTemplate x:Key="VolumeLevelInList" DataType="{x:Type gvxeg:Entity}" ItemsSource="{Binding Path=ContainedEntities}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- icon to indicate element is geometry -->
+                <StackPanel Grid.Column="0" Width="12" Height="12" Visibility="{Binding Path=HasGeometry, Converter={StaticResource BoolToVisConverter}}">
+                    <Image Source="./Data/Icons/switch_gON.png"/>
+                </StackPanel>
+                
+                <!-- TOP switch -->
+                <StackPanel Grid.Column="2" Width="15" Height="15" Visibility="{Binding Path=HasGeometry, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                    <CheckBox IsChecked="{Binding Path=IsTopClosure, Mode=TwoWay}" ToolTip="Level is an Upward Facing Closure "/>
+                </StackPanel>
+
+                <!-- BOTTOM switch -->
+                <StackPanel Grid.Column="4" Width="15" Height="15" Visibility="{Binding Path=HasGeometry, Converter={StaticResource ReverseBoolToVisConverterGroup}}">
+                    <CheckBox IsChecked="{Binding Path=IsBottomClosure, Mode=TwoWay}" ToolTip="Level is a Downward Facing Closure"/>
+                </StackPanel>
+
+                <!-- entity name regardless of type -->
+                <TextBlock Grid.Column="6" Text="{Binding Path=EntityName}" />
+
+            </Grid>
+
+        </HierarchicalDataTemplate>
+
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE SURFACES IN VOLUME MATERIAL EDITING MODE -->
+        <DataTemplate x:Key="MaterialInComboBox" DataType="{x:Type gvxcd:Material}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="26"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="2"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0" Text="i"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Rectangle Width="1" Height="12" Fill="Black"/>
+                    <Rectangle Width="{Binding Path=OffsetInGUI}" Height="12" Fill="#FFCC9900"/>
+                    <Rectangle Width="2" Height="12" Fill="#FF633304"/>
+                    <Rectangle Width="{Binding Path=OffsetOutGUI}" Height="12" Fill="#FFA45508"/>
+                    <Rectangle Width="2" Height="12" Fill="Black"/>
+                </StackPanel>
+                <TextBlock Grid.Column="2" Text="o"/>
+
+                <!-- association with a component representation -->
+                <StackPanel Grid.Column="4" Width="16" Height="16">
+                    <Image Source="./Data/Icons/space_volYES.png" ToolTip="to associated compRep" Visibility="{Binding Path=IsBound2CR, Converter={StaticResource BoolToVisConverter}}"/>
+                    <Image Source="./Data/Icons/space_volNO.png" Visibility="{Binding Path=IsBound2CR, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="6" Text="{Binding Path=Name}"/>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="VolumeSurfaceInList" DataType="{x:Type gvxeg:ZonedVolumeSurfaceVis}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition MinWidth="60" MaxWidth="90"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition MinWidth="50" MaxWidth="70"/>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition MinWidth="90" MaxWidth="200"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="1" Source="./Data/Icons/surface_single.png" Height="16" Width="16"/>
+                <TextBlock Grid.Column="3" Text="{Binding Label}" FontWeight="Bold"/>
+                <TextBlock Grid.Column="5" Text="{Binding AssocAreaStr}" Foreground="DarkBlue"/>
+                <ContentPresenter Grid.Column="7" ContentTemplate="{StaticResource MaterialInComboBox}" Content="{Binding AssocMaterial}"/>
+
+            </Grid>
+
+        </DataTemplate>
+        
+        <!-- TEMPLATES FOR THE TREEVIEW OF THE COMPONENT REP DEIFINITIONS -->
+        <gvxut:DataTemplateSelectorMaterial x:Key="DataTemplateSelectorMaterial"/>
+        <gvxcd:IsMaterialToBoolConverter x:Key="IsMaterialToBoolConverter"/>
+        
+        <HierarchicalDataTemplate x:Key="CompRepInList" DataType="{x:Type gvxcp:CompRepInfo}" ItemsSource="{Binding CR_SubCompReps}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="Icon"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="176" SharedSizeGroup="Name"/>
+                    <ColumnDefinition Width="4"/>
+                    <!-- alignment column -->
+                    <ColumnDefinition Width="Auto" MinWidth="{Binding Converter={StaticResource TreeDepthToLengthConverter}, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}}"/> 
+                    <ColumnDefinition Width="70" SharedSizeGroup="ZonedVol"/>
+                    <ColumnDefinition Width="4"/>
+                    <!-- 80 in the header (see MainWindow.xaml)-->
+                    <ColumnDefinition Width="120" SharedSizeGroup="OtherInfo"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal"
+                            ToolTip="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToStringConverter}}">
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GNone.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=NONE}"/>
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GInSub.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=DESCRIBES}"/>
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GDescribes.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=DESCRIBES_3D}"/>
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GDescribesE.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=DESCRIBES_2DorLESS}"/>
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GAligned.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=ALIGNED_WITH}"/>                   
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GContained.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=CONTAINED_IN}"/>
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GConnects.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=CONNECTS}"/>
+                    <Image Source="./Data/Icons/xcomp_switch_Comp_GGrouped.png" Width="16" Height="16"
+                           Visibility="{Binding GR_State.Type, Mode=OneWay, Converter={StaticResource Relation2GeomTypeToVisibiltyConverterGroup}, ConverterParameter=GROUPS}"/>
+                    <StackPanel.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" Command="{Binding ElementName=CommandExt, Path=SwitchFromCompRepToZonedVolumeCmd, Mode=OneWay}" CommandParameter="{Binding Mode=OneWay}"/>
+                    </StackPanel.InputBindings>
+                    <StackPanel.Effect>
+                        <DropShadowEffect Color="Blue" BlurRadius="3" ShadowDepth="3" Opacity="{Binding GR_State.IsRealized, Mode=OneWay, Converter={StaticResource BoolToOpacityConverter}}"/>
+                    </StackPanel.Effect>
+                </StackPanel>
+
+                <TextBlock Grid.Column="2" Text="{Binding Comp_Description, Mode=OneWay}">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding GR_State.Type, Converter={StaticResource Relation2GeomTypeToWinMediaColorConverter}}"/>
+                    </TextBlock.Foreground>
+                    <TextBlock.ToolTip>
+                        <ToolTip Content="{Binding Comp_Description_Long, Mode=OneWay}" Style="{StaticResource ToolTipImportant}"/>
+                    </TextBlock.ToolTip>
+                </TextBlock>
+
+                <TextBlock Grid.Column="5" Text="{Binding GR_RelationshipWith, Mode=OneWay}" FontWeight="Bold" FontSize="10">
+                    <TextBlock.Foreground>
+                        <SolidColorBrush Color="{Binding GR_State.Type, Converter={StaticResource Relation2GeomTypeToWinMediaColorConverter}}"/>
+                    </TextBlock.Foreground>
+                </TextBlock>
+                
+                <TextBlock Grid.Column="7" Text="{Binding ALL_IDS, Mode=OneWay}" Foreground="DimGray" FontSize="10"/>
+
+            </Grid>
+        </HierarchicalDataTemplate>
+        
+        <Style x:Key="TreeItemForCompReps" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Orange"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FFFFD382"/>
+                <AlternationConverter x:Key="SpaceBgrConverter">
+                    <SolidColorBrush Color="#DDf5f5f5"/>
+                    <SolidColorBrush Color="#DDd9d9d9"/>
+                </AlternationConverter>
+            </Style.Resources>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsExpanded" Value="{Binding Path=IsExpanded, Mode=TwoWay}"/>
+            <Setter Property="IsSelected" Value="{Binding Path=IsSelected, Mode=TwoWay}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#00FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="{Binding AlternationIndex, RelativeSource={RelativeSource Self}, Converter={StaticResource SpaceBgrConverter}}"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <HierarchicalDataTemplate x:Key="MaterialInTreeView" DataType="{x:Type gvxcd:Material}" ItemsSource="{Binding Content, Mode=OneWay}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <!-- 0-2: symbol of wall -->
+                    <ColumnDefinition Width="12"/>
+                    <ColumnDefinition Width="26"/>
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="4"/>
+                    <!-- 4: accumulated area -->
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="4"/>
+                    <!-- 6: comp association -->
+                    <ColumnDefinition Width="16"/>
+                    <ColumnDefinition Width="2"/>
+                    <!-- 8: name -->
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#33633304"/>
+                <TextBlock Grid.Column="0" Text="in" FontSize="10"/>
+
+                <Rectangle Grid.Column="1" Fill="#33633304" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                <StackPanel Grid.Column="1" Orientation="Horizontal">                    
+                    <Rectangle Width="1" Height="12" Fill="Black"/>
+                    <Rectangle Width="{Binding Path=OffsetInGUI}" Height="12" Fill="#FFCC9900"/>
+                    <Rectangle Width="2" Height="12" Fill="#FF633304"/>
+                    <Rectangle Width="{Binding Path=OffsetOutGUI}" Height="12" Fill="#FFA45508"/>
+                    <Rectangle Width="2" Height="12" Fill="Black"/>
+                </StackPanel>
+                <Rectangle Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Fill="#33633304"/>
+                <TextBlock Grid.Column="2" Text="out" FontSize="10"/>
+
+                <!-- accumulated area -->
+                <TextBlock Grid.Column="4" Text="{Binding AccAreaString, Mode=OneWay}" Foreground="Indigo" HorizontalAlignment="Right"/>
+                
+                <!-- association with a component representation -->
+                <StackPanel Grid.Column="6" Width="16" Height="16">
+                    <Image Source="./Data/Icons/space_volYES.png" ToolTip="to associated compRep" Visibility="{Binding Path=IsBound2CR, Converter={StaticResource BoolToVisConverter}}"/>
+                    <Image Source="./Data/Icons/space_volNO.png" Visibility="{Binding Path=IsBound2CR, Converter={StaticResource ReverseBoolToVisConverterGroup}}"/>
+                </StackPanel>
+
+                <TextBlock Grid.Column="8" Text="{Binding Path=Name}"/>
+            </Grid>
+        </HierarchicalDataTemplate>
+        
+        <Style x:Key="TreeItemForMaterials" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource {x:Type TreeViewItem}}">
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Blue"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#FF82D3FF"/>
+                <AlternationConverter x:Key="SpaceBgrConverter">
+                    <SolidColorBrush Color="#FFd9d9d9"/>
+                    <SolidColorBrush Color="#FFAAA9A9"/>
+                </AlternationConverter>
+            </Style.Resources>
+            <!-- the Fucusable property makes sure only MATERIALS can be selected ! -->
+            <Setter Property="Focusable" Value="{Binding Converter={StaticResource IsMaterialToBoolConverter}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#00FFFFFF"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Background" Value="{Binding AlternationIndex, RelativeSource={RelativeSource Self}, Converter={StaticResource SpaceBgrConverter}}"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true"/>
+                        <Condition Property="IsSelectionActive" Value="false"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Application.Resources>
+</Application>

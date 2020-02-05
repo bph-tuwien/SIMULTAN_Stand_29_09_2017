@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="9d5649eb-22b3-4ce6-bb5f-df76d4a2db36"
+  name="Calc"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="ad79f075-415d-4448-bd4c-137c42b60f2b"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSprache.Calc"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="5a8e31ff-4b8c-41d1-8dae-841ab77df42c"
+        name="XtensibleCalculator"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="8a497069-2cc3-4408-bcb7-508640dc1035"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2F_TU%2FCode-Test%2Fc%2523%2FEngineTest%2FApps%2FParameterStructure%2Flib%2FSprache.Calc.dll Namespace%3DSprache.Calc Type%3DXtensibleCalculator"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="ab394cec-4830-456c-b684-38e5a4b826cb"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f4e507c2-578f-4ec2-bc31-ee1790313023">
+                <propertyInstance
+                  Id="b21a5a7f-3ba3-44d4-a232-1fc69fc39c74"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b9def741-6a1a-4659-b3ab-ceb4bddbbf4e">
+                <propertyInstance
+                  Id="a08f75ba-9e82-476b-be6c-354679d4abbf"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="25a57992-a8da-4a0c-b265-f7f99a3c939e">
+                <propertyInstance
+                  Id="e2cf2ac1-3cfc-435e-b16d-a1bf60f79503"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ba1357a7-ad1e-45e8-a0d2-06c1d5d87e01">
+                <propertyInstance
+                  Id="13a5e9cc-3c8b-4f5d-a4a7-89cbf5c8c92a"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="60dad174-1b6f-45dd-99a6-c129fe8b470b">
+                <propertyInstance
+                  Id="16641b1b-f9d7-46e8-bd46-fb6043828223"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
