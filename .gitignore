@@ -1,0 +1,13 @@
+*.csproj.user
+*.vcxproj.user
+/**/bin/
+/**/obj/
+/EngineTest/EngineTest.v12.suo
+/EngineTest/.vs/*
+/EngineTest/packages/*
+.vs
+/EngineTest/Doc/SIMULTAN/Help/*
+x64
+/EngineTest/GeometryViewer/GeometryViewer.Shader/build
+*.diagsession
+*.vspx
